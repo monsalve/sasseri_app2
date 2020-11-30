@@ -17,7 +17,7 @@
 
     <!-- Fontfaces CSS-->
     <link href="css/plantilla.css" rel="stylesheet">
-
+    
 </head>
 
 <body class="animsition">
@@ -322,7 +322,7 @@
 
                 <!-- MAIN CONTENT-->
                 <div class="main-content">
-                    <div class="section__content section__content--p10">
+                    <div class="section__content section__content--p30">
                         <div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -350,6 +350,10 @@
     <script src="js/app.js"></script>
     <script src="js/plantilla.js"></script>
     <script src="js/main.js"></script>
+    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js">
+    </script>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/>
     
     
      <!-- <script src="js/app.js"></script> -->
