@@ -14,3 +14,4 @@ yarn-error.log
 /public/Empresas
 /node_modules/.cache
 /public/plantilla
+public/plantilla/CoolAdmin

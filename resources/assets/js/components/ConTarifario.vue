@@ -1,9 +1,7 @@
 <template>
         <main class="main">
             <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-            </ol>
+            
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
@@ -34,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-sm table-responsive">
                             <thead>
                                 <tr>
                                     <th class="col-md-5">Nombre</th>
@@ -120,7 +118,7 @@
                         <h6>Descripción:</h6><br>
                         <p v-text="verDescripcionTarifario"></p><br>
                         
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-sm table-responsive">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -182,7 +180,7 @@
                             </form>
 
                             <div class="container-fluid" style="max-height: 25em !important;overflow-y: auto;">
-                                <table class="table table-bordered table-striped table-sm col-md-12">
+                                <table class="table table-bordered table-striped table-sm col-md-12 table-responsive">
                                     <thead>
                                         <tr>
                                             <th class="col-md-11">Nombre</th>

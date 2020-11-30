@@ -1,9 +1,7 @@
 <template>
         <main class="main">
             <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-            </ol>
+            
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
@@ -86,7 +84,7 @@
                         </div>
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -275,7 +273,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm  table-responsive">
                                     
                                         <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                     
@@ -373,7 +371,7 @@
                          <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <div class="table-responsive" style="overflow-y: auto;max-height: 16em !important;display: block;border: none;">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 <thead>
                                     <tr>
                                         <th>#</th>

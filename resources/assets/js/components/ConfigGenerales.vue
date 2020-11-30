@@ -1,9 +1,7 @@
 <template>
         <main class="main">
             <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-            </ol>
+            
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card" v-if="superAdmin==1">
@@ -35,7 +33,7 @@
                                 </div>-->
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-sm table-responsive">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -500,7 +498,6 @@
 </script>
 <style>    
     .modal-content{
-        width: 120% !important;
         position: absolute !important;
     }
     .mostrar{

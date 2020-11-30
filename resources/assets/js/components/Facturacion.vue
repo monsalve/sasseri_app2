@@ -2,9 +2,7 @@
         <main class="main">
             <!--<cierresCaja></cierresCaja>-->
             <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-            </ol>
+            
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
@@ -147,7 +145,7 @@
                             </div>  
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -372,7 +370,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm  table-responsive">
                                     <thead>
                                         <tr>
                                             <th>Opciones</th>
@@ -524,7 +522,7 @@
                             </div>
                             <div class="form-group row border">
                                 <!--ppp-->
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm  table-responsive">
                                     <thead>
                                         <tr>
                                             <th>Artículo</th>
@@ -629,7 +627,7 @@
                                 </div>
                             </div>
                             <div v-if="tipo_vista_articulo==1" class="table-responsive" style="display: block;height: 35em;max-height: 35em;overflow-y: auto;">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm  table-responsive">
                                     <thead>
                                         <tr>
                                             <th>Código</th>
@@ -785,7 +783,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-sm">
+                                    <table class="table table-bordered table-striped table-sm  table-responsive">
                                         
                                             <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                         
