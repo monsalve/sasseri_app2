@@ -246,94 +246,96 @@
 
                     <!-- PAGE CONTAINER-->
                     <div class="page-container col-lg-9">
-                        <!-- HEADER DESKTOP-->
-                        <header class="header-desktopx col-lg-12">
-                            <div class="section__content section__content--p30">
-                                <div class="container-fluid">
-                                    <div class="header-wrap2">                                
-                                        <div class="header-button">
-                                            <div class="noti-wrap">                                      
-                                                <div class="noti__item js-item-menu">
-                                                    <i class="zmdi zmdi-notifications"></i>
-                                                    <span class="quantity">3</span>
-                                                    <div class="notifi-dropdown js-dropdown">
-                                                        <div class="notifi__title">
-                                                            <p>You have 3 Notifications</p>
-                                                        </div>
-                                                        <div class="notifi__item">
-                                                            <div class="bg-c1 img-cir img-40">
-                                                                <i class="zmdi zmdi-email-open"></i>
+                        <section id="main">
+                            <!-- HEADER DESKTOP-->
+                            <header class="header-desktop3 col-lg-12 bg-light">
+                                <div class="section__content section__content--p30">
+                                    <div class="container-fluid">
+                                        <div class="header-wrap2">                                
+                                            <div class="header-button">
+                                                <div class="noti-wrap">                                      
+                                                    <div class="noti__item js-item-menu">
+                                                        <i class="zmdi zmdi-notifications"></i>
+                                                        <span class="quantity">3</span>
+                                                        <div class="notifi-dropdown js-dropdown">
+                                                            <div class="notifi__title">
+                                                                <p>You have 3 Notifications</p>
                                                             </div>
-                                                            <div class="content">
-                                                                <p>You got a email notification</p>
-                                                                <span class="date">April 12, 2018 06:50</span>
+                                                            <div class="notifi__item">
+                                                                <div class="bg-c1 img-cir img-40">
+                                                                    <i class="zmdi zmdi-email-open"></i>
+                                                                </div>
+                                                                <div class="content">
+                                                                    <p>You got a email notification</p>
+                                                                    <span class="date">April 12, 2018 06:50</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="notifi__item">
-                                                            <div class="bg-c2 img-cir img-40">
-                                                                <i class="zmdi zmdi-account-box"></i>
+                                                            <div class="notifi__item">
+                                                                <div class="bg-c2 img-cir img-40">
+                                                                    <i class="zmdi zmdi-account-box"></i>
+                                                                </div>
+                                                                <div class="content">
+                                                                    <p>Your account has been blocked</p>
+                                                                    <span class="date">April 12, 2018 06:50</span>
+                                                                </div>
                                                             </div>
-                                                            <div class="content">
-                                                                <p>Your account has been blocked</p>
-                                                                <span class="date">April 12, 2018 06:50</span>
+                                                            <div class="notifi__item">
+                                                                <div class="bg-c3 img-cir img-40">
+                                                                    <i class="zmdi zmdi-file-text"></i>
+                                                                </div>
+                                                                <div class="content">
+                                                                    <p>You got a new file</p>
+                                                                    <span class="date">April 12, 2018 06:50</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="notifi__item">
-                                                            <div class="bg-c3 img-cir img-40">
-                                                                <i class="zmdi zmdi-file-text"></i>
+                                                            <div class="notifi__footer">
+                                                                <a href="#">All notifications</a>
                                                             </div>
-                                                            <div class="content">
-                                                                <p>You got a new file</p>
-                                                                <span class="date">April 12, 2018 06:50</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="notifi__footer">
-                                                            <a href="#">All notifications</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="account-wrap">
-                                                <div class="account-item clearfix js-item-menu">
-                                                
-                                                    <div class="content">
-                                                        <a class="js-acc-btn" href="#">{{Auth::user()->usuario}}</a>
-                                                    </div>
-                                                    <div class="account-dropdown js-dropdown">                                               
-                                                        <div class="account-dropdown__footer">
-                                                            
-                                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                                <i class="zmdi zmdi-power"></i> Cerrar sesión
-                                                            </a>
+                                                <div class="account-wrap">
+                                                    <div class="account-item clearfix js-item-menu">
+                                                    
+                                                        <div class="content">
+                                                            <a class="js-acc-btn" href="#">{{Auth::user()->usuario}}</a>
                                                         </div>
-                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                            {{ csrf_field() }}
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </header>
-                        <!-- HEADER DESKTOP-->
-
-                        <!-- MAIN CONTENT-->
-                        <div class="main-content">
-                            <div class="section__content section__content--p10">
-                                <div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                        @yield('contenido')
+                                                        <div class="account-dropdown js-dropdown">                                               
+                                                            <div class="account-dropdown__footer">
                                                                 
+                                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                                    <i class="zmdi zmdi-power"></i> Cerrar sesión
+                                                                </a>
+                                                            </div>
+                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                                {{ csrf_field() }}
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            <!-- HEADER DESKTOP-->
+
+                            <!-- MAIN CONTENT-->
+                            <div class="main-content">
+                                <div class="section__content section__content--p10">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            @yield('contenido')
+                                                                    
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- END MAIN CONTENT-->
-                        <!-- END PAGE CONTAINER-->                
+                            <!-- END MAIN CONTENT-->
+                            <!-- END PAGE CONTAINER-->                
+                        </section>
                     </div>
                 </div>
 
