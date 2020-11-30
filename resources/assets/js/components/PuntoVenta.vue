@@ -788,7 +788,7 @@
 <script>
     import vSelect from 'vue-select';
     export default {
-        props : ['ruta','permisosUser'],
+        props : ['ruta'],
         data (){
             return {
                 ingreso_id: 0,
@@ -821,6 +821,13 @@
                     'last_page' : 0,
                     'from' : 0,
                     'to' : 0,
+                },
+                permisosUser: {
+                    'leer' : 1,
+                    'escribir':1,
+                    'crear':1,
+                    'actualizar':1,
+                    'anular':1,
                 },
                 offset : 3,
                 criterio : 'num_comprobante',
