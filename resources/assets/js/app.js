@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -55,15 +54,16 @@ Vue.component('cierrescaja', require('./components/CierresXCaja.vue'));
 Vue.component('informes', require('./components/Informes.vue'));
 Vue.component('cuentasxcobrar', require('./components/CuentasxCobrar.vue'));
 Vue.component('cuentasxpagar', require('./components/CuentasxPagar.vue'));
+Vue.component('punto_venta', require('./components/PuntoVenta.vue'));
 Vue.component('multiselect', Multiselect);
 
 const app = new Vue({
-    el: '#app', 
-    data :{
-        menu : 0,
+    el: '#app',
+    data: {
+        menu: 0,
         // ruta : 'http://192.168.0.100/laravel_estudio/sistema2/public',
         // ruta : 'http://localhost/laravel_estudio/sistema2/public',
-         ruta : 'http://localhost/sasseri_app2/public',
+        ruta: 'http://localhost/sasseri_app2/public',
         //ruta : 'http://fractalagenciadigital.com/sistema/public',
         permisosUser : {
             'leer' : 1,
@@ -78,12 +78,12 @@ const app = new Vue({
 
     mounted() {
         let me = this;
-        var url= this.ruta +'/permisos/listarPermisosLogueado';
-        axios.get(url).then(function (response) {
-            me.permisosUser = response.data.permisosLogueado;
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        var url = this.ruta + '/permisos/listarPermisosLogueado';
+        axios.get(url).then(function(response) {
+                me.permisosUser = response.data.permisosLogueado;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     }
 });

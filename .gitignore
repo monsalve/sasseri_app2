@@ -4,11 +4,17 @@
 /.idea
 /.vscode
 /.vagrant
+/node_modules/.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
+/node_modules/.cache
 yarn-error.log
 /public/logos
 /public/Empresas
+<<<<<<< HEAD
 /node_modules/.cache
 /public/plantilla
+=======
+/node_modules
+>>>>>>> f9be9cc2364561d7fee425478180401ce98b7124

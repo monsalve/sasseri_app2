@@ -18,6 +18,9 @@
 				@endif
 			@endforeach -->
 			
+            <template v-if="menu==999981">
+                <punto_venta :ruta="ruta"></punto_venta>
+            </template>
             <template v-if="menu==999991">
                 <user :ruta="ruta"></user>
             </template>
