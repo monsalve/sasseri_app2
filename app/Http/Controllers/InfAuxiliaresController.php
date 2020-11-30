@@ -80,7 +80,7 @@ class InfAuxiliaresController extends Controller
         $long = count($Aux); $cont=0;
         foreach($Aux as $clave => $a){
             $cont++;
-            $html.= '<table class="table table-bordered table-striped table-sm" style="font-size: 12px !important;">';
+            $html.= '<table class="table table-bordered table-striped table-sm table-responsive" style="font-size: 12px !important;">';
             $html.='<tr><th>Cuenta</th><th colspan="7"><center>'.$a['cuenta'].' - '.$a['nom_cuenta'].'</center></th><th>Saldo</th><th>0.00</th></tr><tr><th style="text-align: center;">Fecha</th><th style="text-align: center;">Comprobante</th><th style="text-align: center;">Número</th><th style="text-align: center;">Doc Ref</th><th style="text-align: center;">Descripcion</th><th style="text-align: center;">Tercero</th><th style="text-align: center;">Identficación</th><th style="text-align: center;">Debitos</th><th style="text-align: center;">Creditos</th><th style="text-align: center;">Saldo</th></tr>';
             foreach($a['dets_cuentas'] as $key => $dc){
                 if($dc->doc_afecta_long=="''"){$dc->doc_afecta_long=null;}
