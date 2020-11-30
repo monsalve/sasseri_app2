@@ -870,9 +870,16 @@
 <script>
     import VueBarcode from 'vue-barcode';
     export default {
-        props : ['ruta','permisosUser'],
+        props : ['ruta'],
         data (){
             return {
+                permisosUser : {
+                    'leer' : 1,
+                    'escribir' : 1,
+                    'crear' : 1,
+                    'actualizar' : 1,
+                    'anular' : 1,
+                },
                 articulo_id: 0,
                 idcategoria : 0,
                 idcategoria2 : 0,

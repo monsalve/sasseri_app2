@@ -65,7 +65,15 @@ const app = new Vue({
         // ruta : 'http://localhost/laravel_estudio/sistema2/public',
         ruta: 'http://localhost/sasseri_app2/public',
         //ruta : 'http://fractalagenciadigital.com/sistema/public',
-        permisosUser: []
+        permisosUser : {
+            'leer' : 1,
+            'escribir' : 1,
+            'crear' : 1,
+            'actualizar' : 1,
+            'anular' : 1,
+        }
+            
+        
     },
 
     mounted() {
