@@ -156,6 +156,9 @@
                             <li @click="menu=10" class="nav-item">
                                 <a href="#"><i class="icon-user"></i> Terceros</a>
                             </li>
+                            <li @click="menu=40" class="nav-item">
+                                <a href="#"><i class="icon-user"></i> Punto de venta</a>
+                            </li>
                             <li @click="menu=14" class="nav-item">
                                 <a href="#"><i class="icon-user"></i> Facturación</a>
                             </li>

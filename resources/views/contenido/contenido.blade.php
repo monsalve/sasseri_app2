@@ -41,7 +41,9 @@
                     <cajas :ruta="ruta"></cajas>
                 </template>
                 
-
+            <template v-if="menu==40">
+                <punto_venta :ruta="ruta"></punto_venta>
+            </template>
             <template v-if="menu==14">
                 <facturacion :ruta="ruta"></facturacion>
             </template>
