@@ -131,9 +131,16 @@
 
 <script>
     export default {
-        props : ['ruta', 'permisosUser'],
+        props : ['ruta'],
         data (){
             return {
+                permisosUser : {
+                    'leer' : 1,
+                    'escribir' : 1,
+                    'crear' : 1,
+                    'actualizar' : 1,
+                    'anular' : 1,
+                },
                 // variables primer filtro
                 nombre  : '',
                 descripcion : '',

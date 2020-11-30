@@ -10,3 +10,5 @@ npm-debug.log
 yarn-error.log
 /public/logos
 /public/Empresas
+/node_modules/.cache
+/public/plantilla

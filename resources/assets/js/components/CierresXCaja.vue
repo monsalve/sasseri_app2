@@ -245,9 +245,16 @@
 
 <script>
     export default {
-        props : ['ruta', 'permisosUser'],
+        props : ['ruta'],
         data (){
             return {
+                permisosUser : {
+                    'leer' : 1,
+                    'escribir' : 1,
+                    'crear' : 1,
+                    'actualizar' : 1,
+                    'anular' : 1,
+                },
                 cierre_caja_id: 0,
                 id_caja : '',
                 nombre_caja : '',

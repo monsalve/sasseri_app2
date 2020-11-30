@@ -7647,7 +7647,7 @@ base-chart.chart {
   margin: 0;
   background-color: #fff;
   border-bottom: 1px solid #c2cfd6; }
-  .app-header.navbar .navbar-brand {
+  .app-header.navbar .navbar-brand, .logo a.navbar-brand {
     display: inline-block;
     width: 155px;
     height: 55px;
