@@ -278,13 +278,13 @@
                                     <div class="col-md-2">
                                         <label class="form-control-label col-md-9 float-left">Cliente</label>
                                         <div class="col-md-3 float-right">
-                                            <input type="checkbox" class="form-control" :value="1" v-model="cliente">
+                                            <input type="checkbox" class="form-check-input" :value="1" v-model="cliente">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-control-label col-md-9 float-left">Proveedor</label>
                                         <div class="col-md-3 float-right">
-                                            <input type="checkbox" class="form-control" v-model="proveedor">
+                                            <input type="checkbox" class="form-check-input" v-model="proveedor">
                                         </div>
                                     </div>
                                 </div>
@@ -360,25 +360,25 @@
                                     <div class="col-md-2">
                                         <label class="form-control-label col-md-9 float-left">Retenedor fuente</label>
                                         <div class="col-md-3 float-right">
-                                            <input type="checkbox" class="form-control" v-model="retenedor_fuente" v-bind:class="{ 'is-invalid': hasError.retenedor_fuente==1 }">
+                                            <input type="checkbox" class="form-check-input" v-model="retenedor_fuente" v-bind:class="{ 'is-invalid': hasError.retenedor_fuente==1 }">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-control-label col-md-9 float-left">Retenedor iva</label>
                                         <div class="col-md-3 float-right">
-                                            <input type="checkbox" class="form-control" v-model="retenedor_iva" v-bind:class="{ 'is-invalid': hasError.retenedor_iva==1 }">
+                                            <input type="checkbox" class="form-check-input" v-model="retenedor_iva" v-bind:class="{ 'is-invalid': hasError.retenedor_iva==1 }">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-control-label col-md-9 float-left">Excluido iva</label>
                                         <div class="col-md-3 float-right">
-                                            <input type="checkbox" class="form-control" v-model="excluido_iva" v-bind:class="{ 'is-invalid': hasError.excluido_iva==1 }">
+                                            <input type="checkbox" class="form-check-input" v-model="excluido_iva" v-bind:class="{ 'is-invalid': hasError.excluido_iva==1 }">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <label class="form-control-label col-md-9 float-left">Cupo credito</label>
                                         <div class="col-md-3 float-right">
-                                            <input type="checkbox" class="form-control" v-model="cupo_credito" @click="function(){if(!cupo_credito) vr_cupo_credito=0;}">
+                                            <input type="checkbox" class="form-check-input" v-model="cupo_credito" @click="function(){if(!cupo_credito) vr_cupo_credito=0;}">
                                         </div>
                                     </div>
                                     <div class="col-md-4" v-if="cupo_credito">

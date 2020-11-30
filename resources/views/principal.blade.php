@@ -144,7 +144,7 @@
             <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
                     <a href="#">
-                        <img src="../img/logo.png" alt="Sasseri" />
+                        <img src="img/logo.png" alt="Sasseri" />
                     </a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
