@@ -1,786 +1,179 @@
 <template>
         <main class="main">
-            <!--<cierresCaja></cierresCaja>-->
-            <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-            </ol>
-            <div class="container-fluid">
+            <div class="container">
                 <!-- Ejemplo de tabla Listado -->
-                <div class="card">
+                <div class="card" v-if="position==1">
                     <div class="card-header">
-                        <div class="col-md-6 float-left">
-                            <i class="fa fa-align-justify"></i> Facturacion
-                            <button v-if="permisosUser.crear && id_caja_facturacion!=0" type="button" @click="mostrarDetalle('facturacion','registrar')" v-show="listado==1" class="btn btn-primary">
-                                <i class="icon-plus"></i>&nbsp;Nuevo
-                            </button>
-                            <button v-else type="button" v-show="listado==1" class="btn btn-secondary">
-                                <i class="icon-plus"></i>&nbsp;Nuevo
-                            </button>
+                        <div class="row">
+                            
+                            <div class="col-9">
+                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-outline-success mt-1" type="submit">Buscar
 
+                                </button>
+                            </div>
+                            
                         </div>
-                        <div class="col-md-6 float-right">
-                            <span v-if="nom_caja_cierre_facturacion && nom_caja_cierre_facturacion!=''" v-text="'Usted esta en la caja: '+nom_caja_cierre_facturacion"></span>
-                            <span v-else >No hay caja abierta</span>
+                        <div class="row">                            
+                            <div class="col-12">
+                                <select class="form-control" multiple  placeholder="Categoria" size ="2">
+                                    <option value="">-Seleccionar Categoria(s)-</option>
+                                    <option value="1">Categoria 1</option>
+                                    <option value="2">Categoria 2</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <!-- Listado-->
-                    <template v-if="listado==1">
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
-                              
-                                <div class="form-group col-md-3">
-                                    <label class="float-left">N° factura</label>
-                                    <div class="col-md-8 float-right">
-                                        <input v-if="permisosUser.leer" type="number" :min=0 class="form-control" v-model="numFacturaFiltro">
-                                        <input v-else disabled type="number" :min=0 class="form-control" v-model="numFacturaFiltro">
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label class="float-left">Estado</label>
-                                    <div class="col-md-8 float-right">
-                                        <select v-if="permisosUser.leer" class="form-control" v-model="estadoFiltro">
-                                            <option value="0">Todas</option>
-                                            <option value="1">Activa</option>
-                                            <option value="2">Registrada</option>
-                                            <option value="3">Enviada</option>
-                                            <option value="4">Anulada</option>
-                                        </select>
-                                        <select v-else disabled class="form-control" v-model="estadoFiltro">
-                                        </select>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="" class="float-left">Tercero(*) </label>
-                                    <div class="form-inline float-right">
-                                        <input type="text" readonly style="max-width: 85px;" class="form-control" name="cuenta_fin" v-model="terceroFiltro">
-
-                                        <button v-if="permisosUser.leer" @click="abrirModalT('tercero_filtro')" style="min-width: 30px;" class="btn btn-primary form-control">...</button>
-                                        <button v-else  style="min-width: 30px;" class="btn btn-secondary form-control">...</button>
-
-                                        <button v-if="permisosUser.leer" @click="quitar(4)" style="min-width: 30px;" class="btn btn-danger form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                        <button v-else style="min-width: 30px;" class="btn btn-secondary form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="float-left">Orden</label>
-                                    <div class="col-md-8 float-right">
-                                        <select v-if="permisosUser.leer" v-model="ordenFiltro" class="form-control">
-                                            <option value="num_factura">N° Factura</option>
-                                            <option value="nom_tercero">Tercero</option>
-                                        </select>
-                                        <select v-else v-model="ordenFiltro" class="form-control">
-                                        </select>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button">Facturar</a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label class="float-left">Desde:</label>
-                                    <div class="col-md-8 float-right">
-                                        <input v-if="permisosUser.leer" type="date" class="form-control" v-model="desdeFiltro">
-                                        <input v-else disabled type="date" class="form-control" v-model="desdeFiltro">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="float-left">Hasta:</label>
-                                    <div class="col-md-8 float-right">
-                                        <input v-if="permisosUser.leer" type="date" class="form-control" v-model="hastaFiltro">
-                                        <input v-else disabled type="date" class="form-control" v-model="hastaFiltro">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="" class="float-left">Vendedor(*) </label>
-                                    <div class="form-inline float-right">
-                                        <input type="text" readonly style="max-width: 85px;" class="form-control" name="cuenta_fin" v-model="vendedorFiltro">
-
-                                        <button v-if="permisosUser.leer" @click="abrirModalT('vendedor_filtro')" style="min-width: 30px;" class="btn btn-primary form-control">...</button>
-                                        <button v-else style="min-width: 30px;" class="btn btn-secondary form-control">...</button>
-
-                                        <button v-if="permisosUser.leer" @click="quitar(5)" style="min-width: 30px;" class="btn btn-danger form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                        <button v-else style="min-width: 30px;" class="btn btn-secondary form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <button v-if="permisosUser.leer" type="submit" @click="listarFacturacion(1,numFacturaFiltro,estadoFiltro,idTerceroFiltro,ordenFiltro,desdeFiltro,hastaFiltro,idVendedorFiltro)" class="btn btn-primary">
-                                        <i class="fa fa-search"></i> Buscar
-                                    </button>
-                                    <button v-else type="submit" class="btn btn-secondary">
-                                        <i class="fa fa-search"></i> Buscar
-                                    </button>
-                                </div>
-                            </div>  
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>N° factura</th>
-                                        <th>Tercero</th>
-                                        <th>Fecha</th>
-                                        <th>Subtotal</th>
-                                        <th>Descuento</th>
-                                        <th>Lugar</th>
-                                        <th>Iva</th>
-                                        <th>Total</th>
-                                        <th>Estado</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody v-if="permisosUser.leer && arrayFacturacion.length">
-                                    <tr v-for="facturacion in arrayFacturacion" :key="facturacion.id" style="text-align: right;">
-                                        <td v-text="facturacion.id"></td>
-                                        <td v-if="facturacion.num_factura" v-text="facturacion.num_factura"></td>
-                                        <td v-else ><i class="icon-eye"></i></td>
-                                        <td v-text="facturacion.nom_tercero"></td>
-                                        <td v-text="facturacion.fecha"></td>
-                                        <td v-text="facturacion.subtotal"></td>
-                                        <td v-text="facturacion.descuento"></td>
-                                        <td v-text="facturacion.nom_lugar"></td>
-                                        <td v-text="facturacion.valor_iva"></td>
-                                        <td v-text="facturacion.total"></td>
-                                        <td v-if="facturacion.estado==1"><span>Activa</span></td>
-                                        <td v-else-if="facturacion.estado==2"><span>Registrada</span></td>
-                                        <td v-else-if="facturacion.estado==3"><span>Enviada</span></td>
-                                        <td v-else-if="facturacion.estado==4"><span>Anulada</span></td>
-                                        <td>
-                                            <button type="button" @click="verFacturacion(facturacion.id)" class="btn btn-success btn-sm" title="Ver factura">
-                                                <i class="icon-eye"></i>
-                                            </button>
-                                            <template>
-                                                <button type="button" @click="mostrarDetalle('facturacion','actualizar',facturacion)" class="btn btn-warning btn-sm" v-if="permisosUser.actualizar  && facturacion.estado==1" title="Actualizar">
-                                                    <i class="icon-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-secondary btn-sm" v-else title="Actualizar (Deshabilitado)">
-                                                    <i class="icon-pencil"></i>
-                                                </button>
-                                            </template>
+
+                    </div>
+                </div>
+
+                <div class="card" v-if="position==2">
+                    <div class="row mt-1">
+                                    <div class="col-12">
+                                        <div class="card">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                    <div class="col-9">
+                                                        
+                                                    </div>
+                                                    <div class="col-3">
+                                                        
+                                                    </div>
+                                                
+                                            </div>
+                                            <div class="row">                            
+                                                <div class="col-12">
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
                                             
-                                            <!--<template>
-                                                <button type="button" v-if="permisosUser.actualizar && facturacion.estado==1" class="btn btn-warning btn-sm" @click="cambiarEstadoFacturacion(facturacion.id,'registrar')">
-                                                    <i class="fa fa-registered"></i>
-                                                </button>
-                                                <button type="button" v-else class="btn btn-secondary btn-sm">
-                                                    <i class="fa fa-registered"></i>
-                                                </button>
-                                            </template>-->
-                                            <template>
-                                                <button type="button" v-if="permisosUser.actualizar && facturacion.estado==1" class="btn btn-warning btn-sm" @click="cambiarEstadoFacturacion(facturacion.id,'registrar')" title="Registrar">
-                                                    <i class="fa fa-registered"></i>
-                                                </button>
-
-                                                <button type="button" v-else-if="permisosUser.actualizar && facturacion.estado==2" @click="pdfFormato(facturacion.id)" class="btn btn-info btn-sm" title="PDF">
-                                                    <i class="icon-doc"></i>
-                                                </button>
-
-                                                <button type="button" v-else class="btn btn-secondary btn-sm" title="Registrar (Deshabilitado)">
-                                                    <i class="fa fa-registered"></i>
-                                                </button>
-                                            </template>
-                                            <!--
-                                            <template v-else-if="facturacion.estado==2">
-                                                <button type="button" class="btn btn-primary btn-sm" @click="cambiarEstadoFacturacion(facturacion.id,'enviar')">
-                                                    <i class="fa fa-share-square"></i>
-                                                </button>
-                                            </template>
-                                            <template v-if="facturacion.estado==3">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <i class="fa fa-share-square"></i>
-                                                </button>
-                                            </template>
-                                            -->
-                                            <template v-if="permisosUser.anular && facturacion.estado==1">
-                                                <button type="button" class="btn btn-danger btn-sm" @click="cambiarEstadoFacturacion(facturacion.id,'anular')" v-if="facturacion.estado!=4 && facturacion.estado!=3" title="Anular">
-                                                    <i class="icon-trash"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-secondary btn-sm" v-else title="Anular (Deshabilitado)">
-                                                    <i class="icon-trash"></i>
-                                                </button>
-                                            </template>
-                                            <template v-else>
-                                                <button type="button" class="btn btn-secondary btn-sm" title="Anular (Deshabilitado)">
-                                                    <i class="icon-trash"></i>
-                                                </button>
-                                            </template>
-                                        </td>
-                                    </tr>                                
-                                </tbody>
-                                <tbody v-else>
-                                    <tr><td colspan="11">No hay registros para mostrar</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item" v-if="pagination.current_page > 1">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1,buscar,criterio)">Ant</a>
-                                </li>
-                                <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar,criterio)" v-text="page"></a>
-                                </li>
-                                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar,criterio)">Sig</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    </template>
-                    <!--Fin Listado-->
-                    <!-- Detalle-->
-                    <template v-else-if="listado==0">
-                    <div class="card-body">
-                        <div class="form-group row border">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Fecha</label>
-                                    <input type="date" class="form-control" v-model="fecha">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>N° factura</label>
-                                    <input type="number" disabled class="form-control" v-model="num_factura">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="">Tercero(*)</label>
-                                    <div class="form-inline">
-                                        <input type="text" readonly style="    max-width: 163px;" class="form-control" name="cuenta_fin" v-model="tercero">
-                                        <button @click="abrirModalT('terceros')" style="    min-width: 30px;" class="btn btn-primary form-control">...</button>
-                                        <button @click="quitar(3)" style="    min-width: 30px;" class="btn btn-danger form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Tarifario</label>
-                                    <select v-model="id_tarifario" class="form-control" @change="cargarPreciosTarifarios(id_tarifario)">
-                                        <option v-for="tarifario in arrayTarifario" :key="tarifario.id" :value="tarifario.id" v-text="tarifario.nombre"></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Lugar</label>
-                                    <select v-model="lugar" class="form-control">
-                                        <option v-for="zonas in arrayZonas" :key="zonas.id" :value="zonas.id" v-text="zonas.zona"></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Detalle</label>
-                                    <input type="text" class="form-control" v-model="detalle">
-                                </div>
-                            </div>
-                            <div class="col-md-3" v-if="estado" style="display:none;">
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                    <select v-if="estado!=3" v-model="estado" class="form-control" @change="if(estado==2) sugerirNumFactura();">
-                                        <option value="1" v-if="estado==1" disabled selected>Creada</option>
-                                        <option value="2">Registrada</option>
-                                        <option value="3">Enviada</option>
-                                        <option value="4">Anulada</option>
-                                    </select>
-                                    <input type="text" disabled v-else value="Enviada" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row border">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Artículo <span style="color:red;" v-show="idarticulo==0">(*Seleccione)</span></label>
-                                    <div class="form-inline">
-                                        <input v-if="id_tarifario!=0" type="text" class="form-control col-md-4" v-model="codigo" @keyup.enter="buscarArticulo()" placeholder="Ingrese artículo">
-                                        <input v-else type="text" class="form-control col-md-4" disabled placeholder="Ingrese artículo">
-
-                                        <button v-if="id_tarifario!=0" @click="abrirModal()" class="btn btn-primary">...</button>
-                                        <button v-else class="btn btn-secondary">...</button>
-
-                                        <input type="text" readonly class="form-control col-md-4" v-model="articulo">
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Precio</label>
-                                    <input type="number" :min="1" :max="precio" disabled step="any" class="form-control" v-model="precio">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Cantidad <span style="color:red;" v-show="cantidad==0 && idarticulo!=0">(*Ingrese)</span></label>
-                                    <!--<input type="number" v-if="stock!=0" :min="1" :max="stock" class="form-control" v-model="cantidad" @blur="if(cantidad>stock) cantidad=stock">-->
-                                    <input type="number" v-if="stock!=0 && idarticulo!=0" :min="1" :max="stock" class="form-control" v-model="cantidad" @blur="function(){if(cantidad>stock) {cantidad=stock;}else if(cantidad<=0){cantidad=1;}}">
-                                    <input type="number" v-else disabled class="form-control" v-model="cantidad">
-                                    <span  v-if="stock!=0" v-text="'Cantidad en stock: '+stock"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Descuento</label>
-                                    <input type="number" v-if="idarticulo!=0" :min="0" :max="Math.round((precio*cantidad)/((iva/100)+1))" @blur="if(descuento>Math.round((precio*cantidad)/((iva/100)+1))) descuento=Math.round((precio*cantidad)/((iva/100)+1))" class="form-control" v-model="descuento" >
-                                    <input type="number" v-else disabled class="form-control" v-model="descuento">
-                                    <span v-if="idarticulo!=0" v-text="'Maximo descuento '+Math.round((precio*cantidad)/((iva/100)+1))"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <button v-if="idarticulo!=0 && cantidad!=0" @click="agregarDetalle()" class="btn btn-success form-control btnagregar"><i class="icon-plus"></i></button>
-                                    <button v-else class="btn btn-secondary form-control btnagregar"><i class="icon-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row border">
-                            <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Opciones</th>
-                                            <th>Artículo</th>
-                                            <th>Precio</th>
-                                            <th style="width: 9em;">Cantidad</th>
-                                            <th style="width: 9em;">Descuento</th>
-                                            <th>Iva</th>
-                                            <th style="width: 9em;">Vr sin iva</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody v-if="arrayDetalle.length">
-                                        <tr v-for="(detalle,index) in arrayDetalle" :key="detalle.id">
-                                            <td>
-                                                <button @click="eliminarDetalle(index)" type="button" class="btn btn-danger btn-sm">
-                                                    <i class="icon-close"></i>
-                                                </button>
-                                            </td>
-                                            <td v-if="detalle.padre==null || detalle.padre==''" v-text="detalle.codigo+' - '+detalle.articulo+' - '+detalle.nom_presentacion">
-                                            </td>
-                                            <td v-else v-text="detalle.codigo+' - '+detalle.articulo+' - '+detalle.nom_presentacion+' (Presentación asociada)'">
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.precio}}
-                                            </td>
-                                            <!--<td>
-                                                <input v-model="detalle.cantidad" type="number" class="form-control" style="width: 9em; text-align: right;" :min="1" :max="detalle.stock" @blur="if(detalle.cantidad>detalle.stock)
-                                                detalle.cantidad=detalle.stock">
-                                                <span v-text="'Disponible: '+detalle.stock"></span>
-                                            </td>-->
-                                            <td style="text-align: right;">
-                                                {{detalle.cantidad}}
-                                            </td>
-                                            <td>
-                                                <input v-model="detalle.valor_descuento" v-if="tipoAccion2==1" type="number" value="0" class="form-control" style="width: 9em; text-align: right;" :min="0" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="function(){
-                                                        if(detalle.valor_descuento>((detalle.precio*detalle.cantidad)-detalle.valor_iva) || detalle.valor_descuento>0)
-                                                        {detalle.valor_descuento=((detalle.precio*detalle.cantidad)-detalle.valor_iva);}
-                                                        else{ detalle.valor_descuento=0;}
-                                                    }
-                                                ">
-
-                                                <!--<input v-model="detalle.valor_descuento" v-else-if="tipoAccion2==2" type="number" value="0" class="form-control" style="width: 9em; text-align: right;" :min="detalle.valor_descuento2" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="
-                                                if(detalle.valor_descuento>((detalle.precio*detalle.cantidad)-detalle.valor_iva)) 
-                                                detalle.valor_descuento=((detalle.precio*detalle.cantidad)-detalle.valor_iva) || (detalle.valor_descuento<detalle.valor_descuento2)
-                                                detalle.valor_descuento=detalle.valor_descuento2
-                                                ">-->
-
-                                                <input v-model="detalle.valor_descuento" v-else-if="tipoAccion2==2" type="number" value="0" class="form-control" style="width: 9em; text-align: right;" :min="0" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="function(){
-                                                    if(detalle.valor_descuento>((detalle.precio*detalle.cantidad)-detalle.valor_iva) || detalle.valor_descuento>0) 
-                                                    {detalle.valor_descuento=((detalle.precio*detalle.cantidad)-detalle.valor_iva);}
-                                                    else{detalle.valor_descuento=0;}
-                                                }">
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.valor_iva=Math.round(parseFloat(detalle.precio*detalle.cantidad)-parseFloat((detalle.precio*detalle.cantidad)/((detalle.iva/100)+1)))}}
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.valor_subtotal=Math.round(parseFloat((detalle.precio*detalle.cantidad)-detalle.valor_iva-detalle.valor_descuento))}}
-                                            </td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="6" align="right"><strong>Total iva:</strong></td>
-                                            <td>$ {{valor_iva=calcularTotalIva}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="6" align="right"><strong>Total sin iva:</strong></td>
-                                            <td>$ {{subtotal=calcularSubtotal}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="6" align="right"><strong>Total Neto:</strong></td>
-                                            <td>$ {{valor_final=calcularTotal}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="6" align="right"><strong>Abono:</strong></td>
-                                            <td v-if="tipoAccion2==1"><input v-model="abono" :min="0" :max="calcularTotal" type="number" class="form-control" @blur="
-                                            if(abono>calcularTotal) {abono=calcularTotal;}" style="width: 9em; text-align: right;"></td>
-
-                                            <td v-else-if="tipoAccion2==2"><input v-model="abono" :min="abono2" :max="calcularTotal" type="number" class="form-control" @blur="
-                                            if(abono>calcularTotal){ abono=calcularTotal;}else if(abono<abono2){ abono = abono2;}" style="width: 9em; text-align: right;"></td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="6" align="right"><strong>Saldo:</strong></td>
-                                            <td>$ {{saldo=calcularSaldo}}</td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody v-else>
-                                        <tr class="container-fluid">
-                                            <td colspan="7">
-                                                NO hay artículos agregados
-                                            </td>
-                                        </tr>
-                                    </tbody>                                    
-                                </table>
-                            </div>
-                        </div>
-                        <div v-show="errorFacturacion" class="form-group row div-error">
-                            <div class="text-center text-error">
-                                <div v-for="error in errorMostrarMsjFacturacion" :key="error" v-text="error">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row" v-if="tipoAccion2==1">
-                            <div class="col-md-12">
-                                <button type="button" @click="ocultarDetalle()" class="btn btn-secondary">Cerrar</button>
-                                <button type="button" class="btn btn-primary" v-if="tipoAccion2==1" @click="registrarFacturacion()">Crear</button>
-                            </div>
-                        </div>
-                        <div class="form-group row" v-if="tipoAccion2==2">
-                            <div class="col-md-12">
-                                <button type="button" @click="ocultarDetalle()" class="btn btn-secondary">Cerrar</button>
-                                <button type="button" v-if="estado==1" class="btn btn-primary" @click="actualizarFacturacion()">Actualizar</button>
-                                <button type="button" v-if="estado==1" class="btn btn-primary" @click="cambiarEstadoFacturacion(facturacion_id,'registrar')">Registrar</button>
-                            </div>
-                        </div>
-                    </div>
-                    </template>
-                    <!-- Fin Detalle-->
-                    <!-- Ver ingreso -->
-                    <template v-else-if="listado==2">
-                        <div class="card-body">
-                            <div class="form-group row border">
-                                <!--ppp-->
-                                <div class="col-md-2">
-                                    <label v-text="'Fecha: '+fecha" class="control-label"></label>
-                                </div>
-                                <div class="col-md-2">
-                                    <label v-text="'N° factura: '+num_factura" v-if="num_factura!=null"></label>
-                                    <label v-text="'N° factura: N/A'" v-else></label>
-                                </div>
-                                <div class="col-md-2">
-                                    <label v-text="'Tercero: '+tercero"></label>
-                                </div>
-                                <div class="col-md-2">
-                                    <label v-text="'Detalle: '+detalle" v-if="detalle!='' && detalle!=null"></label>
-                                    <label v-text="'Detalle: N/A'" v-else></label>
-                                </div>
-                                <div class="col-md-2">
-                                    <label v-text="'Lugar: '+lugar" v-if="lugar!=''"></label>
-                                    <label v-text="'Lugar: N/A'" v-else></label>
-                                </div>
-                                <div class="col-md-2">
-                                    <label v-text="'Estado: Activa'" class="btn-warning" v-if="estado==1" style="font-size: 100%;"></label>
-                                    <label v-text="'Estado: Registrada'" class="btn-success" v-else-if="estado==2" style="font-size: 100%;"></label>
-                                    <label v-text="'Estado: Enviada'" class="btn-primary" v-else-if="estado==3" style="font-size: 100%;"></label>
-                                    <label v-text="'Estado: Anulada'" class="btn-danger" v-else-if="estado==4" style="font-size: 100%;"></label>
-                                    <label v-text="'Estado: N/A'" v-else></label>
-                                </div>
-                            </div>
-                            <div class="form-group row border">
-                                <!--ppp-->
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Artículo</th>
-                                            <th>Precio</th>
-                                            <th style="width: 9em;">Cantidad</th>
-                                            <th style="width: 9em;">Descuento</th>
-                                            <th>Iva</th>
-                                            <th style="width: 9em;">Vr sin iva</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody v-if="arrayDetalleT.length">
-                                        <tr v-for="detalle in arrayDetalleT" :key="detalle.id">
-                                            <td v-if="detalle.padre==null || detalle.padre==''" v-text="detalle.codigo+' - '+detalle.articulo+' - '+detalle.nom_presentacion">
-                                            </td>
-                                            <td v-else v-text="detalle.codigo+' - '+detalle.articulo+' - '+detalle.nom_presentacion+' (Presentación asociada)'">
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.precio}}
-                                            </td>
-                                            <td style="text-align: right;">
-                                                {{detalle.cantidad}}
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.valor_descuento}}
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.valor_iva}}
-                                            </td>
-                                            <td style="text-align: right;">
-                                                $ {{detalle.valor_subtotal}}
-                                            </td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="5" align="right"><strong>Total iva:</strong></td>
-                                            <td>$ {{valor_iva}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="5" align="right"><strong>Total sin iva:</strong></td>
-                                            <td>$ {{subtotal}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="5" align="right"><strong>Total Neto:</strong></td>
-                                            <td>$ {{total}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="5" align="right"><strong>Abono:</strong></td>
-                                            <td>$ {{abono}}</td>
-                                        </tr>
-                                        <tr style="background-color: #CEECF5; text-align: right;">
-                                            <td colspan="5" align="right"><strong>Saldo:</strong></td>
-                                            <td>$ {{saldo}}</td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody v-else>
-                                        <tr class="container-fluid">
-                                            <td colspan="7">
-                                                NO hay artículos agregados
-                                            </td>
-                                        </tr>
-                                    </tbody>                                    
-                                </table>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <button type="button" @click="ocultarDetalle()" class="btn btn-secondary">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                    <!-- fin ver ingreso -->
-                </div>
-                <!-- Fin ejemplo de tabla Listado -->
-            </div>
-            <!--Inicio del modal agregar/actualizar-->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModal"></h4>
-                            <button type="button" class="close" @click="cerrarModal()" aria-label="Close">
-                              <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <div class="col-sm-12 col-md-5 pb-sm-1">
-                                    <label class="control-label col-sm-3 col-md-4 float-left"><i class="fa fa-search"></i> Buscar</label>
-                                    <input type="text" v-model="buscarA" @keyup="listarArticulo(buscarA,criterioA,buscarCategoriaA)" class="form-control col-sm-9 col-md-8 float-right" placeholder="Texto a buscar">
-                                </div>
-                                <div class="col-sm-9 col-md-5">
-                                    <label class="control-label col-sm-4 col-md-4 float-left"><i class="fa fa-search"></i> Categoría</label>
-                                    <select class="form-control col-sm-8 col-md-8 float-right" v-model="buscarCategoriaA" @change="listarArticulo(buscarA,criterioA,buscarCategoriaA)">
-                                        <option value="">Seleccione</option>
-                                        <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-3 col-md-2 text-center">
-                                    <button v-if="tipo_vista_articulo==1" type="button" class="btn btn-info"><i class="fa fa-list"></i></button>
-                                    <button v-else type="button" class="btn btn-secondary" @click="tipo_vista_articulo=1"><i class="fa fa-list"></i></button>
-                                    <button v-if="tipo_vista_articulo==2" type="button" class="btn btn-info"><i class="fa fa-th-large"></i></button>
-                                    <button v-else type="button" class="btn btn-secondary" @click="tipo_vista_articulo=2"><i class="fa fa-th-large"></i></button>
-                                </div>
-                            </div>
-                            <div v-if="tipo_vista_articulo==1" class="table-responsive" style="display: block;height: 35em;max-height: 35em;overflow-y: auto;">
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>IMG</th>
-                                            <th>Nombre</th>
-                                            <th>Modelo contable</th>
-                                            <th>Categoría</th>
-                                            <th>Precio Venta</th>
-                                            <th>Stock</th>
-                                            <th>Cant</th>
-                                            <th>Opciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody v-if="arrayArticulo.length">
-                                        <tr v-for="(articulo, index) in arrayArticulo">
-                                            <td v-if="articulo.padre==''" v-text="articulo.codigo"></td>
-                                            <td v-else></td>
-                                            <td>
-                                                <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" height="30" width="30">
-
-                                                <img v-else :src="`${ruta}/Empresas/${articulo.img}`" height="30" width="30">
-                                            </td>
-                                            <td>
-                                                <span v-text="articulo.nombre"></span>
-                                                <span v-if="articulo.id_presentacion!=null" v-text="' - '+articulo.nom_presentacion"></span>
-                                                <span v-else> - N/A presentacion</span>
-                                                <span v-if="articulo.talla!=null" v-text="' - '+articulo.talla"></span>
-                                                <span v-else> - N/A talla</span>
-                                            </td>
-                                            <td v-text="articulo.nom_modelo_contable"></td>
-                                            <td v-text="articulo.nom_categoria"></td>
-                                            <td v-text="articulo.precio_venta"></td>
-                                            <td v-if="articulo.padre!=''" v-text="parseInt(articulo.stock/articulo.unidades)"></td>
-                                            <td v-else v-text="articulo.stock"></td>
-                                            <td><input type="number" v-model="articulo.cant"></td>
-                                            <td v-if="articulo.cant">
-                                                <button type="button" v-if="articulo.cant!=0 && articulo.cant!=''" @click="agregarDetalleModal(articulo),articulo.cant=''" class="btn btn-success btn-sm">
-                                                    <i class="icon-check"></i>
-                                                </button>
-                                                <button type="button" v-else class="btn btn-secondary btn-sm">
-                                                    <i class="icon-check"></i>
-                                                </button>
-                                            </td>
-                                            <td v-else>
-                                                <button type="button" class="btn btn-secondary btn-sm">
-                                                    <i class="icon-check"></i>
-                                                </button>
-                                            </td>
-                                        </tr>                                
-                                    </tbody>
-                                    <tbody v-else>
-                                        <tr colspan="10">No hay registros para mostrar</tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div v-if="tipo_vista_articulo==2" class="container" style="display: block;height: 36em;max-height: 36em;overflow-y: auto;">
-                                <div v-for="(articulo, index) in arrayArticulo" @click="abrirModalCantidadArticulo(articulo)" class="col-sm-6 col-md-3 p-sm-2 p-md-1 mosaico" style="height: 43%;">
-                                    <div class="border col-md-12" style="height: 100%;">
-                                        <div class="text-center py-md-2">
-                                            <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" class="img-responsive img-thumbnail" style="width: 8.5em;height: 8.5em;">
-
-                                            <img v-else :src="`${ruta}/Empresas/${articulo.img}`" class="img-responsive img-thumbnail" style="width: 8.5em;height: 8.5em;">
+                                            
                                         </div>
-                                        <div class="text-center col-md-12">
-                                            <h6 v-text="articulo.nombre"></h6>
-                                            <span v-if="articulo.id_presentacion!=null" v-text="articulo.nom_presentacion"></span>
-                                            <span v-else>N/A presentacion</span>
-                                        </div>
-                                        <div class="text-center col-md-12 pb-md-1">
-                                            <span v-text="'Precio: '+articulo.precio_venta"></span>
+                                        <div class="row mt-1">
+                                            <div class="col-12">
+                                               
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </div>
+                            VISTA DE FACTURA 
+                            <button class="btn btn-secondary" @click="position=1">Productos</button>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPersona()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPersona()">Actualizar</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!--Fin del modal-->
-            <!-- Modal cantidad por articulo-->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modalCantidadArticulo}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width:35em !important;">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModalCantidadArticulo"></h4>
-                            <button type="button" class="close" @click="cerrarModalCantidadArticulo()" aria-label="Close">
-                                <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 pb-sm-2 pb-md-1">
-                                        <div class="col-sm-10 col-md-10 float-left">
-                                            <label class="col-sm-3 col-md-4 float-left">Cant</label>
-                                            <input type="number" class="form-control float-right col-sm-9 col-md-8" v-model="cantidadArticulo">
-                                        </div>
-                                        <div class="col-sm-2 col-md-2 float-right">
-                                            <button v-if="cantidadArticulo!=0 && cantidadArticulo!=''" type="button" @click="agregarDetalleModalCantidadArticulo()" class="btn btn-success btn-sm float-right">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm float-right">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="col-sm-4 col-md-5 float-right">
-                                            <label class="col-sm-6 col-md-6 float-left">Saldo parcial</label>
-                                            <label class="col-sm-6 col-md-6 float-right" v-text="precioArticulo"></label>
-                                        </div>
-                                        <div class="col-sm-4 col-md-5 float-left">
-                                            <label class="col-sm-6 col-md-6 float-left">Stock</label>
-                                            <label class="col-sm-6 col-md-6 float-right" v-text="stockCantidadArticulo"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModalCantidadArticulo()">Cerrar</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
-
-            <!-- Modal busqueda tercero-->
-                <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal2}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-primary modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" v-text="tituloModal2"></h4>
-                                <button type="button" class="close" @click="cerrarModalT()" aria-label="Close">
-                                    <span aria-hidden="true" title="Cerrar">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                    <div style="max-width: 120px !important;" class="col-md-2   ">
-                                        <label style='margin-top: 3px; '><b>Tercero</b></label>                                
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="cta_busq" v-model="terc_busq" @keyup="buscarTercero()">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-sm">
-                                        
-                                            <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
-                                        
-                                            <tr v-for="tercero in arrayTerceros" :key="tercero.id">
-                                                <td v-text="tercero.num_documento"></td>
-                                                <td v-if="tercero.nombre && !tercero.nombre1">{{ tercero.nombre }}  </td>
-                                                <td v-else>{{ tercero.nombre1 + ' ' + validarUnder(tercero.nombre2)+' '+tercero.apellido1+' '+validarUnder(tercero.apellido2) }} </td>
-                                                <td>
-                                                    <button type="button" style=" margin-right: -8px;" @click="cargarTercero(tercero)" class="btn btn-success btn-sm" title='Ver formato'>
-                                                        <i class="icon-check"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- Fin Modal buscar tercero -->
-
             
         </main>
 </template>
@@ -791,6 +184,7 @@
         props : ['ruta'],
         data (){
             return {
+                position: 1,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -2397,6 +1791,12 @@
     }
 </script>
 <style>    
+    .precio-prod{
+            position: relative;
+            float: right;
+            top: em;
+            right: 4px;
+    }
     .modal-content{
         width: 100% !important;
         position: absolute !important;
