@@ -1,6 +1,180 @@
 <template>
         <main class="main">
-          
+            <div class="container">
+                <!-- Ejemplo de tabla Listado -->
+                <div class="card" v-if="position==1">
+                    <div class="card-header">
+                        <div class="row">
+                            
+                            <div class="col-9">
+                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-outline-success mt-1" type="submit">Buscar
+
+                                </button>
+                            </div>
+                            
+                        </div>
+                        <div class="row">                            
+                            <div class="col-12">
+                                <select class="form-control" multiple  placeholder="Categoria" size ="2">
+                                    <option value="">-Seleccionar Categoria(s)-</option>
+                                    <option value="1">Categoria 1</option>
+                                    <option value="2">Categoria 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">  
+                                    <div class="thumbnail">
+                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
+                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
+                                        
+                                        <div class="caption">
+                                            Corrientazo
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button">Facturar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card" v-if="position==2">
+                    <div class="row mt-1">
+                                    <div class="col-12">
+                                        <div class="card">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                    <div class="col-9">
+                                                        
+                                                    </div>
+                                                    <div class="col-3">
+                                                        
+                                                    </div>
+                                                
+                                            </div>
+                                            <div class="row">                            
+                                                <div class="col-12">
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            
+                                            
+                                        </div>
+                                        <div class="row mt-1">
+                                            <div class="col-12">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            VISTA DE FACTURA 
+                            <button class="btn btn-secondary" @click="position=1">Productos</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
         </main>
 </template>
 
@@ -10,6 +184,7 @@
         props : ['ruta'],
         data (){
             return {
+                position: 1,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -1616,6 +1791,12 @@
     }
 </script>
 <style>    
+    .precio-prod{
+            position: relative;
+            float: right;
+            top: em;
+            right: 4px;
+    }
     .modal-content{
         width: 100% !important;
         position: absolute !important;
