@@ -52,9 +52,12 @@ $menu_usuario = Session::get('menu_usu');
                             
                         </ul>
                     </li>-->
-                    
+                   
+                    <li @click="menu=999981" class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-user"></i> Ventas</a>
+                    </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> Acceso</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i>sdfsdf Acceso</a>
                         <ul class="nav-dropdown-items">
                             <li @click="menu=999991" class="nav-item">
                                 <a class="nav-link" href="#"><i class="icon-user"></i> Usuarios</a>
