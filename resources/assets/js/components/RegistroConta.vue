@@ -102,7 +102,7 @@
                             </div>
                         </div>         
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -392,7 +392,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm  table-responsive">
                                     <thead>
                                         <tr>
                                             <th>Cuenta</th>
@@ -472,7 +472,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 
                                     <tr><th>Codigo</th><th>Cuenta</th><th>-</th></tr>
                                 
@@ -520,7 +520,7 @@
                             
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 
                                     <tr><th>-</th><th>Formato</th><th>Numero</th><th>Fecha</th><th>Detalle</th><th>Valor</th></tr>
                                 
@@ -581,7 +581,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm  table-responsive">
                                     
                                         <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                     
@@ -622,7 +622,7 @@
                     </div>
                     <div v-if="tipoAccionRetenciones == 1" class="modal-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-sm">
+                            <table class="table table-striped table-sm  table-responsive">
                                 
                                     <tr>
                                         <th>Codigo</th>
@@ -654,7 +654,7 @@
                     </div>
                     <div v-else-if="tipoAccionRetenciones == 2" class="modal-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm">
+                            <table class="table table-bordered table-striped table-sm  table-responsive">
                                 <thead>
                                     <tr>
                                         <th>-</th>

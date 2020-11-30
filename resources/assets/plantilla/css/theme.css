@@ -329,21 +329,21 @@ section {
 
 .page-wrapper {
     overflow: hidden;
-    background: #e5e5e5;
+   
     padding-bottom: 8vh;
 }
 
 @media (max-width: 991px) {
     .page-wrapper {
         overflow: auto;
-        background: #e5e5e5;
+      
         padding-bottom: 12vh;
     }
 }
 
 .page-container {
-    background: #e5e5e5;
-    padding-left: 300px;
+ 
+    
 }
 
 @media (max-width: 991px) {
@@ -355,8 +355,8 @@ section {
 }
 
 .page-container2 {
-    background: #f2f2f2;
-    padding-left: 300px;
+  
+    
 }
 
 @media (max-width: 991px) {
@@ -1654,14 +1654,14 @@ section {
     border-bottom: 1px solid #c2cfd6;
 }
 
-.menu-sidebar {
+.menu-sidebar {/*
     width: 300px;
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
     background: #fff;
-    overflow-y: auto;
+    overflow-y: auto;*/
 }
 
 .menu-sidebar .logo {
@@ -1710,7 +1710,6 @@ section {
 .navbar-sidebar .navbar__list li a {
     display: block;
     color: #555;
-    font-size: 16px;
     padding: 15px 0;
 }
 
@@ -13334,4 +13333,59 @@ section {
 .vue-lists ul,
 .vue-lists ol {
     padding-left: 30px;
+}
+
+/* Ajustes Sasseri */
+
+*{
+    padding: 0;
+    outline: none;
+    font-size: 14px;
+}
+.logo img{
+    width: 180px;
+}
+.main-content{
+    padding-top: 3rem;
+}
+.header-mobile .header-mobile__bar{background-color: #fff;}
+.menu-sidebar .logo{
+    background-color: #fff;
+    box-shadow: none;
+    border-right:none;
+}
+.header-desktop{
+    height: 3rem;
+    box-shadow: none;
+}
+.breadcrumb{
+    padding-top: 5px 10px;
+}
+.breadcrumb li a{
+    font-size: 10px;
+}
+.navbar-sidebar{
+    border-right:none;
+}
+.menu-sidebar{
+    border-right:2px solid #93bf1f;
+}
+.noti__item i{
+    color: #08537c;
+}
+.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before {
+	position: absolute;
+	width: 40px;
+	height: 4px;
+	transition-timing-function: ease;
+	transition-duration: .15s;
+	transition-property: transform;
+	border-radius: 4px;
+	background-color: #000;
+}
+@media (max-width:991px){
+    .header-button{margin-top: 0;}
+    .header-desktop{
+        height: 3rem;
+    }
 }

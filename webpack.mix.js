@@ -25,14 +25,12 @@ mix.styles([
     'resources/assets/plantilla/css/slick.css',
     'resources/assets/plantilla/css/select2.min.css',
     'resources/assets/plantilla/css/perfect-scrollbar.css',
-    'resources/assets/plantilla/css/theme.css',
-    
     'resources/assets/plantilla/css/simple-line-icons.min.css',
     'resources/assets/plantilla/css/bootstrap-datetimepicker.min.css',
+    'node_modules/vue-multiselect/dist/vue-multiselect.min.css',
+    'resources/assets/plantilla/css/theme.css'
     
-    // 'resources/assets/plantilla/css/theme.css',
-    // 'resources/assets/plantilla/css/style.css',
-    'node_modules/vue-multiselect/dist/vue-multiselect.min.css'
+     
 ], 'public/css/plantilla.css')
 .scripts([
 

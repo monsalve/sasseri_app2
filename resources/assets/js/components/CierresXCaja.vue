@@ -33,7 +33,7 @@
                             <input v-else disabled type="date" v-model="fec_hasta" class="form-control col-md-9 float-right">
                         </div>
                     </div>
-                    <table v-if="tipoAccion!=3" class="table table-bordered table-striped table-sm">
+                    <table v-if="tipoAccion!=3" class="table table-bordered table-striped table-sm table-responsive">
                         <thead>
                             <tr>
                                 <th class="col-md-19">Nombre</th>

@@ -1,9 +1,7 @@
 <template>
         <main class="main">
             <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-            </ol>
+            
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
@@ -34,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-sm  table-responsive">
                             <thead>
                                 <tr>
                                     <th class="col-md-11">Nombre</th>
@@ -139,7 +137,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="container">
-                                        <table class="table table-bordered table-striped table-sm" v-if="arrayCajasModal.length">
+                                        <table class="table table-bordered table-striped table-sm table-responsive" v-if="arrayCajasModal.length">
                                             <tr>
                                                 <th>Nombre</th>
                                             </tr>
@@ -147,7 +145,7 @@
                                                 <td v-text="cajamodal.nom_caja"></td>
                                             </tr>
                                         </table>
-                                        <table class="table table-bordered table-striped table-sm" v-else>
+                                        <table class="table table-bordered table-striped table-sm table-responsive" v-else>
                                             <tr>
                                                 <th>Nombre</th>
                                             </tr>
@@ -199,7 +197,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-sm">
+                                    <table class="table table-bordered table-striped table-sm table-responsive">
                                         
                                             <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                         
