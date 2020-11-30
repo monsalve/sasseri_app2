@@ -144,7 +144,7 @@
             <aside class="menu-sidebar d-none d-lg-block">
                 <div class="logo">
                     <a href="#">
-                        <img src="../img/logo.png" alt="Sasseri" />
+                        <img src="img/logo.png" alt="Sasseri" />
                     </a>
                 </div>
                 <div class="menu-sidebar__content js-scrollbar1">
@@ -322,8 +322,8 @@
 
                 <!-- MAIN CONTENT-->
                 <div class="main-content">
-                    <div class="section__content section__content--p30">
-                        <div class="container-fluid">
+                    <div class="section__content section__content--p10">
+                        <div>
                             <div class="row">
                                 <div class="col-md-12">
                                 @yield('contenido')
