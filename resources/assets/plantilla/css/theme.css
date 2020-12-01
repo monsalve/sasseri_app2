@@ -5880,11 +5880,11 @@ section {
 
 .switch-success>.switch-input:checked~.switch-label {
     background: #28a745 !important;
-    border-color: #1e7e34;
+    border-color: #86a510;
 }
 
 .switch-success>.switch-input:checked~.switch-handle {
-    border-color: #1e7e34;
+    border-color: #86a510;
 }
 
 .switch-success-outline>.switch-input:checked~.switch-label {

@@ -1,211 +1,203 @@
 <template>
-        <main class="main">
-            <div>
-                <!-- Ejemplo de tabla Listado -->
-                <div class="card" v-show="position==1">
+    <main class="main">
+        <div>
+            <!-- Ejemplo de tabla Listado -->
+            <div class="card" v-show="position==1">
+                <div class="card-header"> <!-- header -->
+                    <div class="row mb-1">
+                        
+                        <div class="col-9">
+                            <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success  fa fa-search btn-buscar float-right" type="submit">
+                            </button>
+                        </div>
+                        
+                    </div>
+                    <div class="row">                            
+                        <div class="col-12">
+                            <div class="form-group">
+                            <select class="mul-select" multiple="true">
+                                <option value="entradas">Entradas</option>
+                                <option value="ensaladas">Ensaladas</option>
+                                <option value="platos fuertes">Platos fuertes</option>
+                                <option value="postres">Postres</option>
+                                <option value="bebidas">Bebidas</option>
+                                <option value="salsas">Salsas</option>
+                                <option value="aperitivos">Aperitivos</option>
+                            </select>
+                        </div> 
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">  
+                                <p class="badge badge-primary precio-prod">$ 2000000</p>
+                                <div class="card rounded" style="width: 9rem;">
+                                    <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sancocho de verduras</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                <p class="badge badge-primary precio-prod">$ 2000000</p>
+                                <div class="card rounded" style="width: 9rem;">
+                                    <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sancocho de verduras</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                <p class="badge badge-primary precio-prod">$ 2000000</p>
+                                <div class="card rounded" style="width: 9rem;">
+                                    <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sancocho de verduras</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                 <div class="card" style="width: 9rem;">
+                                    <img src="http://img2.wikia.nocookie.net/__cb20100805212045/panamanianrecipes/images/a/a8/Sancocho.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sopa de hueso</p>
+                                </div>
+                                </div>
+                            </div> 
+
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div v-show="position==2">
+                
+                <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            
-                            <div class="col-9">
-                                <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+                            <div class="col-8">
+                                <button class="btn btn-secondary" @click="position=1">Productos</button>
                             </div>
-                            <div class="col-3">
-                                <button class="btn btn-outline-success mt-1" type="submit">Buscar
-
+                            <div class="col-3 pr-1">
+                                <button class=" btn btn-danger "><i class="fa fa-plus-trash"></i>Descartar
                                 </button>
                             </div>
                             
-                        </div>
-                        <div class="row">                            
-                            <div class="col-12">
-                                <div class="form-group">
-                                <select class="mul-select" multiple="true">
-                                    <option value="Cambodia">Cambodia</option>
-                                    <option value="Khmer">Khmer</option>
-                                    <option value="Thiland">Thiland</option>
-                                    <option value="Koren">Koren</option>
-                                    <option value="China">China</option>
-                                    <option value="English">English</option>
-                                    <option value="USA">USA</option>
-                                </select>
-                            </div> 
-                            </div>
-                            
-                        </div>
+                        </div>                                
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
+                                <div class="input-group mb-3">
+                                    <div class="col-1">
+                                        <h3><i class="fa fa-user"></i></h3>
+                                    </div>
+                                    <div class="col-9">CRISTHIAM MONSALVE</div>
+                                    <div class="col-1">
+                                        <h3 style="cursor:pointer" class="text-primary" @click="position=3"><i class="fa fa-plus-circle" href="#59981A"></i></h3>
                                     </div>
                                 </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">  
-                                    <div class="thumbnail">
-                                        <h6 class="precio-prod"><span class="badge  badge-primary">$ 5.000</span></h6>
-                                        <img data-src="img/logo.png" class="img-thumbnail" alt="100x100" style="width: 100px; height: 100px;" src="img/logo.png" data-holder-rendered="true">
-                                        
-                                        <div class="caption">
-                                            Corrientazo
-                                        </div>
-                                    </div>
-                                </div>
-                                
                             </div>
-                            
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card" v-show="position==2">
-                    <div class="row mt-1">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <button class="btn btn-secondary" @click="position=1">Productos</button>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Mezas</label>
                                         </div>
-                                        <div class="col-3">
-                                            <button type="button" class="btn btn-outline-primary" style="margin-left: -69px;">
-                                                Descartar
-                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"       xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected>Ubicacion...</option>
+                                            <option value="1">meza 1</option>
+                                            <option value="2">meza 2</option>
+                                        </select>
                                     </div>
-                                    <div class="row">                            
-                                        <div class="col-12">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="input-group mb-3">
-                                                
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-default">Cliente</span>
-                                                </div>
-                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                            </div>
-                                            
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <label class="input-group-text" for="inputGroupSelect01">Mezas</label>
-                                                </div>
-                                                <select class="custom-select" id="inputGroupSelect01">
-                                                    <option selected>Ubicacion...</option>
-                                                    <option value="1">meza 1</option>
-                                                    <option value="2">meza 2</option>
-                                                    <option value="3">meza 3</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-1">
-                                            <div class="col-12">
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                                </div>                                            
                             </div>
-                                VISTA DE FACTURA 
-                               
+                            <div class="row mt-1">
+                                <div class="col-12">
+                                    <div class="row border-bottom">
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-12"><small class="text-muted">Ensaladas</small></div>
+                                            </div>    
+                                            <div class="row">
+                                                <div class="col-12"><small > $ 10000 | IVA = $ 1200</small></div>
+                                            </div>    
+                                        </div>
+                                        <div class="col-2 row"><p class="text-right">2</p></div>
+                                        <div class="col-4 float-right"><p class="text-right"> $ 11200 </p></div>
+                                        <div class="col-1 row">
+                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
+                                        </div>
+                                    </div>
+                                    <div class="row border-bottom">
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-12"><small class="text-muted">Bebidas</small></div>
+                                            </div>    
+                                            <div class="row">
+                                                <div class="col-12"><small > $ 3000 | IVA = $ 500</small></div>
+                                            </div>    
+                                        </div>
+                                        <div class="col-2 row"><p class="text-right">4</p></div>
+                                        <div class="col-4 float-right"><p class="text-right"> $ 3500 </p></div>
+                                        <div class="col-1 row">
+                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
+                                        </div>
+                                    </div>
+                                    <div class="row border-bottom">
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-12"><small class="text-muted">Postres</small></div>
+                                            </div>    
+                                            <div class="row">
+                                                <div class="col-12"><small > $ 1800 | IVA = $ 200</small></div>
+                                            </div>    
+                                        </div>
+                                        <div class="col-2 row"><p class="text-right">1</p></div>
+                                        <div class="col-4 float-right"><p class="text-right"> $ 2000 </p></div>
+                                        <div class="col-1 row">
+                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="row mt-1">
+                                <div class="col-8">
+                                    <b>Subtotal</b>
+                                </div>
+                                <div class="col-4 text-righ">
+                                    $ 40000
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-8">
+                                    <b>IVA</b>
+                                </div>
+                                <div class="col-4 text-righ">
+                                    $ 40000
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-12">
-                        <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button">Facturar</a>
-                    </div>
+                </div>      
+                
+            </div>
+            <div v-show="position==3">
+                listado clientes
+            </div>
+            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%">
+                <div class="col-12">
+                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
             </div>
-            
-        </main>
+        </div>
+        
+    </main>
 </template>
 
 <script>
@@ -1828,14 +1820,18 @@
     }
 </script>
 <style> 
+   
     .mul-select  {
          width: 100%;
     }
     .precio-prod{
-            position: relative;
-            float: right;
-            top: em;
-            right: 4px;
+        position: absolute;
+        float: right;
+        top: 74px;
+        right: 33px;
+        font-size: 95%;
+        z-index: 2;
+        min-width: 85px;
     }
     .modal-content{
         width: 100% !important;
