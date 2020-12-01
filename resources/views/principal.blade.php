@@ -342,8 +342,7 @@
             </section>
 
             <footer class="app-footer">
-                <span><a href="http://www.fractalagencia.com/">Fractal Agencia Digital</a> &copy; 2020</span>
-                <span class="ml-auto">Desarrollado por <a href="http://www.fractalagencia.com/">Fractal Agencia Digital</a></span>
+                <span><a href="http://www.fractalagencia.com/">Fractal Agencia Digital</a> &copy; 2020</span>                
             </footer>
 
 

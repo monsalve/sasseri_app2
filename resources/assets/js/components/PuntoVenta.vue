@@ -80,11 +80,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-8">
                                 <button class="btn btn-secondary" @click="position=1">Productos</button>
                             </div>
-                            <div class="col-2">
-                                <button type="button" class=" btn btn-success fa fa-trash">
+                            <div class="col-3 pr-1">
+                                <button class=" btn btn-danger "><i class="fa fa-plus-trash"></i>Descartar
                                 </button>
                             </div>
                             
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-9">CRISTHIAM MONSALVE</div>
                                     <div class="col-1">
-                                        <h3 style="cursor:pointer" @click="position=3"><i class="fa fa-plus-circle" href="#59981A"></i></h3>
+                                        <h3 style="cursor:pointer" class="text-primary" @click="position=3"><i class="fa fa-plus-circle" href="#59981A"></i></h3>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                                         <div class="col-2 row"><p class="text-right">2</p></div>
                                         <div class="col-4 float-right"><p class="text-right"> $ 11200 </p></div>
                                         <div class="col-1 row">
-                                            <h3><i class="fa fa-times-circle"></i></h3>
+                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
                                         </div>
                                     </div>
                                     <div class="row border-bottom">
@@ -146,7 +146,7 @@
                                         <div class="col-2 row"><p class="text-right">4</p></div>
                                         <div class="col-4 float-right"><p class="text-right"> $ 3500 </p></div>
                                         <div class="col-1 row">
-                                            <h3><i class="fa fa-times-circle"></i></h3>
+                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
                                         </div>
                                     </div>
                                     <div class="row border-bottom">
@@ -161,7 +161,7 @@
                                         <div class="col-2 row"><p class="text-right">1</p></div>
                                         <div class="col-4 float-right"><p class="text-right"> $ 2000 </p></div>
                                         <div class="col-1 row">
-                                            <h3><i class="fa fa-times-circle"></i></h3>
+                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -190,9 +190,9 @@
             <div v-show="position==3">
                 listado clientes
             </div>
-            <div class="row mt-1">
+            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%">
                 <div class="col-12">
-                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button">Facturar</a>
+                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
             </div>
         </div>
