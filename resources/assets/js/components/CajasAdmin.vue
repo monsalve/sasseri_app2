@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm  table-responsive">
+                        <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th class="col-md-11">Nombre</th>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="container">
-                                        <table class="table table-bordered table-striped table-sm table-responsive" v-if="arrayCajasModal.length">
+                                        <table class="table table-bordered table-striped table-sm table-responsive table-earning" v-if="arrayCajasModal.length">
                                             <tr>
                                                 <th>Nombre</th>
                                             </tr>
@@ -145,7 +145,7 @@
                                                 <td v-text="cajamodal.nom_caja"></td>
                                             </tr>
                                         </table>
-                                        <table class="table table-bordered table-striped table-sm table-responsive" v-else>
+                                        <table class="table table-bordered table-striped table-sm table-responsive table-earning" v-else>
                                             <tr>
                                                 <th>Nombre</th>
                                             </tr>
@@ -196,8 +196,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-sm table-responsive">
+                                <div>
+                                    <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                                         
                                             <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                         

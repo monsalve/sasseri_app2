@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-responsive table-sm table-earning">
                             <thead>
                                 <tr>
                                     <th>IMG</th>

@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm table-responsive">
+                        <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                             <thead>
                                 <tr>  
                                     <th>IMG</th>                                  
@@ -506,7 +506,7 @@
                             <!--<ul>
                                 <li v-for="novedades in arrayNovedades" :key="novedades.id" v-text="novedades.nombre"></li>
                             </ul>-->
-                            <table class="table table-bordered table-striped table-sm  table-respnonsive" style="display: block;border: none;overflow-y: auto;height: 30em;">
+                            <table class="table table-bordered table-striped table-sm  table-respnonsive table-earning">
                                 <thead>
                                     <th style="width: 28%;">Nombre</th>
                                     <th style="width: 45%; max-width: 45%;">Observacion</th>

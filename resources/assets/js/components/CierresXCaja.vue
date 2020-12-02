@@ -1,9 +1,6 @@
 <template>
     <main class="main">
         <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-        </ol>
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
@@ -33,7 +30,7 @@
                             <input v-else disabled type="date" v-model="fec_hasta" class="form-control col-md-9 float-right">
                         </div>
                     </div>
-                    <table v-if="tipoAccion!=3" class="table table-bordered table-striped table-sm table-responsive">
+                    <table v-if="tipoAccion!=3" class="table table-bordered table-striped table-sm table-responsive table-earning">
                         <thead>
                             <tr>
                                 <th class="col-md-19">Nombre</th>
