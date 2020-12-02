@@ -55,16 +55,16 @@
                                 <a class="js-arrow" href="#"><i class="icon-wrench"></i>Configuración</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
                                     <li @click="menu=6" class="">
-                                        <a href="#"><i class="icon-user"></i> Empresa</a>
+                                        <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
                                     </li>
                                     <li @click="menu=12" class="">
-                                        <a href="#"><i class="icon-user"></i> Mesas</a>
+                                        <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
                                     </li>
                                     <li @click="menu=27" class="">
-                                        <a href="#"><i class="icon-user"></i> IVAs</a>
+                                        <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
                                     </li>
                                     <li @click="menu=29" class="">
-                                        <a href="#"><i class="icon-user"></i> Cajas</a>
+                                        <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
                                     </li>
 
                                 </ul>
@@ -75,28 +75,28 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
                                     <li @click="menu=15" class="">
-                                        <a href="#"><i class="icon-user"></i> Articulo</a>
+                                        <a href="#"><i class="fa fa-table"></i></i> Articulo</a>
                                     </li>
                                     <li @click="menu=17" class="">
-                                        <a href="#"><i class="icon-user"></i> Entradas</a>
+                                        <a href="#"><i class="fa fa-share"></i></i> Entradas</a>
                                     </li>
                                     <li @click="menu=18" class="">
-                                        <a href="#"><i class="icon-user"></i> Salidas</a>
+                                        <a href="#"><i class="fa fa-reply"></i> Salidas</a>
                                     </li>
                                     <li @click="menu=19" class="">
-                                        <a href="#"><i class="icon-user"></i> Stock</a>
+                                        <a href="#"><i class="fa fa-archive"></i> Stock</a>
                                     </li>
                                     <li @click="menu=22" class="">
-                                        <a href="#"><i class="icon-user"></i> Presentación</a>
+                                        <a href="#"><i class="fa fa-circle"></i> Presentación</a>
                                     </li>
                                     <li @click="menu=23" class="">
-                                        <a href="#"><i class="icon-user"></i> Unidad de medida</a>
+                                        <a href="#"><i class="fa fa-flask"></i> Unidad de medida</a>
                                     </li>
                                     <li @click="menu=24" class="">
-                                        <a href="#"><i class="icon-user"></i> Concentración</a>
+                                        <a href="#"><i class="fa fa-tint"></i> Concentración</a>
                                     </li>
                                     <li @click="menu=25" class="">
-                                        <a href="#"><i class="icon-user"></i> Categoría</a>
+                                        <a href="#"><i class="fa fa-level-down"></i> Categoría</a>
                                     </li>
                                 </ul>
                             </li>
@@ -106,10 +106,10 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
                                     <li @click="menu=35" class="">
-                                        <a href="#"><i class="icon-user"></i> Gestión de cajas</a>
+                                        <a href="#"><i class="fa fa-list-ol"></i> Gestión de cajas</a>
                                     </li>
                                     <li @click="menu=30" class="">
-                                        <a href="#"><i class="icon-user"></i> Cierre de caja</a>
+                                        <a href="#"><i class="fa fa-times-circle"></i> Cierre de caja</a>
                                     </li>
                                 </ul>
                             </li>
@@ -119,10 +119,10 @@
                                 </a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
                                     <li @click="menu=33" class="">
-                                        <a href="#"><i class="icon-user"></i> Cuentas por cobrar</a>
+                                        <a href="#"><i class="fa fa-money"></i> Cuentas por cobrar</a>
                                     </li>
                                     <li @click="menu=34" class="">
-                                        <a href="#"><i class="icon-user"></i> Cuentas por pagar</a>
+                                        <a href="#"><i class="fa fa-money"></i> Cuentas por pagar</a>
                                     </li>
                                 </ul>
                             </li>
@@ -162,16 +162,16 @@
                                             <i class="icon-wrench"></i>Configuración</a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                                             <li @click="menu=6" class="">
-                                                <a href="#"><i class="icon-user"></i> Empresa</a>
+                                                <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
                                             </li>
                                             <li @click="menu=12" class="">
-                                                <a href="#"><i class="icon-user"></i> Mesas</a>
+                                                <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
                                             </li>
                                             <li @click="menu=27" class="">
-                                                <a href="#"><i class="icon-user"></i> IVAs</a>
+                                                <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
                                             </li>
                                             <li @click="menu=29" class="">
-                                                <a href="#"><i class="icon-user"></i> Cajas</a>
+                                                <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
                                             </li>
 
                                         </ul>
@@ -182,28 +182,28 @@
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                                             <li @click="menu=15" class="">
-                                                <a href="#"><i class="icon-user"></i> Articulo</a>
+                                                <a href="#"><i class="fa fa-table"></i></i> Articulo</a>
                                             </li>
                                             <li @click="menu=17" class="">
-                                                <a href="#"><i class="icon-user"></i> Entradas</a>
+                                                <a href="#"><i class="fa fa-share"></i></i> Entradas</a>
                                             </li>
                                             <li @click="menu=18" class="">
-                                                <a href="#"><i class="icon-user"></i> Salidas</a>
+                                                <a href="#"><i class="fa fa-reply"></i> Salidas</a>
                                             </li>
                                             <li @click="menu=19" class="">
-                                                <a href="#"><i class="icon-user"></i> Stock</a>
+                                                <a href="#"><i class="fa fa-archive"></i> Stock</a>
                                             </li>
                                             <li @click="menu=22" class="">
-                                                <a href="#"><i class="icon-user"></i> Presentación</a>
+                                                <a href="#"><i class="fa fa-circle"></i> Presentación</a>
                                             </li>
                                             <li @click="menu=23" class="">
-                                                <a href="#"><i class="icon-user"></i> Unidad de medida</a>
+                                                <a href="#"><i class="fa fa-flask"></i> Unidad de medida</a>
                                             </li>
                                             <li @click="menu=24" class="">
-                                                <a href="#"><i class="icon-user"></i> Concentración</a>
+                                                <a href="#"><i class="fa fa-tint"></i> Concentración</a>
                                             </li>
                                             <li @click="menu=25" class="">
-                                                <a href="#"><i class="icon-user"></i> Categoría</a>
+                                                <a href="#"><i class="fa fa-level-down"></i> Categoría</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -213,10 +213,10 @@
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                                             <li @click="menu=35" class="">
-                                                <a href="#"><i class="icon-user"></i> Gestión de cajas</a>
+                                                <a href="#"><i class="fa fa-list-ol"></i> Gestión de cajas</a>
                                             </li>
                                             <li @click="menu=30" class="">
-                                                <a href="#"><i class="icon-user"></i> Cierre de caja</a>
+                                                <a href="#"><i class="fa fa-times-circle"></i> Cierre de caja</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -226,10 +226,10 @@
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                                             <li @click="menu=33" class="">
-                                                <a href="#"><i class="icon-user"></i> Cuentas por cobrar</a>
+                                                <a href="#"><i class="fa fa-money"></i> Cuentas por cobrar</a>
                                             </li>
                                             <li @click="menu=34" class="">
-                                                <a href="#"><i class="icon-user"></i> Cuentas por pagar</a>
+                                                <a href="#"><i class="fa fa-money"></i> Cuentas por pagar</a>
                                             </li>
                                         </ul>
                                     </li>

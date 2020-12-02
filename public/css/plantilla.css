@@ -17143,7 +17143,7 @@ a:hover{
 }
 .badge{
     padding: 5px;
-    width: 100%;
+    /* width: 80px; */
 }
 .bg-dark{
     color: #fff;
@@ -17215,6 +17215,9 @@ a:hover{
 }
 .menu-sidebar .navbar__list .navbar__sub-list li a:hover{ 
     color: #fff;
+}
+header.bg-gray-light{
+    box-shadow: 1px 1px 5px #191919;
 }
 .navbar-mobile__list .list-unstyled>li>a{}
 .js-arrow:hover{
