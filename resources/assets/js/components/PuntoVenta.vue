@@ -193,10 +193,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-success fa fa-plus"></button>
+                                <button @click="position=4" class="btn btn-success fa fa-plus"></button>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-success fa fa-undo"></button>
+                                <button @click="position=2" class="btn btn-primary fa fa-undo"></button>
                             </div>
                             <div class="col-6 pr-1">
                                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
@@ -205,42 +205,137 @@
                     </div>
 
                     <div class="card-body">                        
-                            <div class="row">                                
-                                <div class="col-8">
-                                    Margarita Arango Salasar
-                                </div>
-                                <div class="col-4">
-                                    $ 56788
-                                </div> 
-                                   <!-- <div class="list-group list-group-flush">
-                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Margarita Arango Salasar <span class="badge badge-primary badge-pill ">$ 1000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-action text-muted">Milton Farias Alvarado <span class="badge badge-primary badge-pill">$ 5000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Gregorio Santander <span class="badge badge-primary badge-pill">$ 1000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-action text-muted">Pintas Revelo Chiaspud <span class="badge badge-primary badge-pill">$ 3000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Efrain Carmelo Lisboa <span class="badge badge-primary badge-pill">$ 2000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-action text-muted">Daineris Targeri Tisoy <span class="badge badge-primary badge-pill">$ 6000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Marco Luisa Balvoa <span class="badge badge-primary badge-pill">$ 13000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-action text-muted">Gerardo Puticio Chingadas <span class="badge badge-primary badge-pill">$ 7000</span></li>
-
-                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Bhaldor Canabi Chingona <span class="badge badge-primary badge-pill">$ 8000</span></li>
-                                    </div> --> 
-                                  
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Margarita Arango Salasar
                             </div>
-                        
-                    </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Milton Farias Alvarado 
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Gregorio Santander Soscue
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Pintas Revelo Chiaspud
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Efrain Carmelo Lisboa 
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Daineris Targeri Tisoy
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Marco Luisa Balvoa
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>   
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-8">
+                                Gerardo Petro Chergas
+                            </div>
+                            <div class="col-4">
+                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                            </div> 
+                        </div>
+                    </div>                    
                 </div>      
             </div>
+            <div v-show="position==4"> <!-- agregar clientes -->
+            
+                <div class="card">
 
-            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%"> <!-- botn de facturar -->
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-3">
+                                <button  class="btn btn-success fa fa-save"></button>
+                            </div>
+                            <div class="col-8">
+                                <button @click="position=2" class="btn btn-primary fa fa-undo"></button>
+                            </div>
+                        </div>                                
+                    </div>
+
+                    <div class="card-body">                                                       
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Tipo de documento</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Cedula Ciudadania</option>
+                                <option>Cedula Extrangera</option>
+                                <option>Tarjeta Identidad</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputDocument">Documento</label>
+                                <input type="num" class="form-control" id="exampleInputDocument" aria-describedby="documentHelp" placeholder="document">
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="exampleInputNombre1">Nombre 1</label>
+                                    <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                                <div class="col">
+                                    <label for="exampleInputNombre2">Nombre 2</label>
+                                    <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="exampleInputApellido1">Apellido 1</label>
+                                    <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                                <div class="col">
+                                    <label for="exampleInputApellido2">Apellido 2</label>
+                                    <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPhone">Celular</label>
+                                <input type="num" class="form-control" id="exampleInputPhone" aria-describedby="phoneHelp" placeholder="57+">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Correo electronico</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@example.com">
+                            </div>
+                        </form> 
+                    </div>                    
+                </div> 
+            </div>
+            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%"> <!-- boton de facturar -->
                 <div class="col-12">
-                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
+                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
             </div>
         </div>  
@@ -1867,7 +1962,17 @@
     }
 </script>
 <style> 
-   
+    h3.ocultar{
+        display: none !important;
+    }
+    h3.ocultar:hover, h3.ocultar:hover{
+        display: block !important;
+    }
+    div.resaltar:hover, div.active:hover, div>h3.resaltar:hover, div>h3.active:hover  {
+       color: #fff!important;
+       background-color: #343a40!important;
+       display: block !important;
+    }
     .mul-select  {
          width: 100%;
     }
