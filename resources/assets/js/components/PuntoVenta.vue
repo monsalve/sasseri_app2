@@ -1,9 +1,9 @@
 <template>
     <main class="main">
         <div>
-            <!-- Ejemplo de tabla Listado -->
-            <div class="card" v-show="position==1">
-                <div class="card-header"> <!-- header -->
+           
+            <div class="card" v-show="position==1">  <!-- listado de productos de factura -->
+                <div class="card-header"> 
                     <div class="row mb-1">
                         
                         <div class="col-9">
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div v-show="position==2">
+            <div v-show="position==2">  <!-- listado de facturacion -->
                 
                 <div class="card">
                     <div class="card-header">
@@ -187,16 +187,63 @@
                 </div>      
                 
             </div>
-            <div v-show="position==3">
-                listado clientes
+            <div v-show="position==3"> <!-- listado de clientes -->
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-3">
+                                <button class="btn btn-success fa fa-plus"></button>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-success fa fa-undo"></button>
+                            </div>
+                            <div class="col-6 pr-1">
+                               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                            </div> 
+                        </div>                                
+                    </div>
+
+                    <div class="card-body">                        
+                            <div class="row">                                
+                                <div class="col-8">
+                                    Margarita Arango Salasar
+                                </div>
+                                <div class="col-4">
+                                    $ 56788
+                                </div> 
+                                   <!-- <div class="list-group list-group-flush">
+                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Margarita Arango Salasar <span class="badge badge-primary badge-pill ">$ 1000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-action text-muted">Milton Farias Alvarado <span class="badge badge-primary badge-pill">$ 5000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Gregorio Santander <span class="badge badge-primary badge-pill">$ 1000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-action text-muted">Pintas Revelo Chiaspud <span class="badge badge-primary badge-pill">$ 3000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Efrain Carmelo Lisboa <span class="badge badge-primary badge-pill">$ 2000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-action text-muted">Daineris Targeri Tisoy <span class="badge badge-primary badge-pill">$ 6000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Marco Luisa Balvoa <span class="badge badge-primary badge-pill">$ 13000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-action text-muted">Gerardo Puticio Chingadas <span class="badge badge-primary badge-pill">$ 7000</span></li>
+
+                                        <li href="#" class="list-group-item list-group-item-dark text-muted">Bhaldor Canabi Chingona <span class="badge badge-primary badge-pill">$ 8000</span></li>
+                                    </div> --> 
+                                  
+                            </div>
+                        
+                    </div>
+                </div>      
             </div>
-            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%">
+
+            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%"> <!-- botn de facturar -->
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
             </div>
-        </div>
-        
+        </div>  
     </main>
 </template>
 
