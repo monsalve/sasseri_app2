@@ -194,75 +194,8 @@ strong {
 
 /* ----- Title ----- */
 
-.title--sbold {
-    font-weight: 600;
-}
-
-.title-1 {
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 30px;
-}
-
-.title-2 {
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 1;
-}
-
-.title-3 {
-    text-transform: capitalize;
-    font-weight: 400;
-    font-size: 24px;
-    color: #333;
-}
-
-.title-3 i {
-    margin-right: 13px;
-    vertical-align: baseline;
-}
-
-.title-4 {
-    font-weight: 500;
-    font-size: 30px;
-    color: #393939;
-}
-
-.title-5 {
-    text-transform: capitalize;
-    font-size: 22px;
-    font-weight: 500;
-    color: #393939;
-}
-
-.title-6 {
-    font-size: 24px;
-    font-weight: 500;
-    color: #fff;
-}
-
-.heading-title {
-    font-size: 24px;
-    font-weight: 500;
-    color: #333;
-    text-transform: capitalize;
-    margin-bottom: 10px;
-}
-
 
 /* ----- Links ----- */
-
-a {
-    display: inline-block;
-}
-
-a:hover,
-a:focus,
-a:active {
-    text-decoration: none;
-    outline: none;
-}
 
 a:hover,
 a {
@@ -284,35 +217,6 @@ a {
 
 /* ----- Section----- */
 
-section {
-    position: relative;
-}
-
-.section__content {
-    position: relative;
-    margin: 0 auto;
-    z-index: 1;
-}
-
-.section__content--w1830 {
-    max-width: 1830px;
-}
-
-.section__content--p30 {
-    padding: 0 30px;
-}
-
-@media (max-width: 991px) {
-    .section__content--p30 {
-        padding: 0;
-    }
-}
-
-.section__content--p35 {
-    padding: 0 35px;
-}
-
-
 /* ----- Page Wrapper----- */
 
 
@@ -326,70 +230,6 @@ section {
 
 
 /*Page Objects*/
-
-.page-wrapper {
-    overflow: hidden;
-   
-    padding-bottom: 8vh;
-}
-
-@media (max-width: 991px) {
-    .page-wrapper {
-        overflow: auto;
-      
-        padding-bottom: 12vh;
-    }
-}
-
-.page-container {
- 
-    
-}
-
-@media (max-width: 991px) {
-    .page-container {
-        position: relative;
-        top: 88px;
-        padding-left: 0;
-    }
-}
-
-.page-container2 {
-  
-    
-}
-
-@media (max-width: 991px) {
-    .page-container2 {
-        position: relative;
-        padding-left: 0;
-    }
-}
-
-.page-container3 {
-    background: #f7f7f7;
-}
-
-.main-content {
-    padding-top: 116px;
-    min-height: 100vh;
-}
-
-@media (max-width: 991px) {
-    .main-content {
-        padding-top: 50px;
-        padding-bottom: 100px;
-    }
-}
-
-.page-content--bgf7 {
-    background: #f7f7f7;
-}
-
-.page-content--bge5 {
-    background: #e5e5e5;
-    height: 100vh;
-}
 
 .login-wrap {
     max-width: 540px;
@@ -420,7 +260,7 @@ section {
 }
 
 .login-checkbox>label>a {
-    color: #ff2e44;
+  
 }
 
 @media (max-width: 991px) {
@@ -440,61 +280,20 @@ section {
 }
 
 .login-content {
-    background: #fff;
-    padding: 30px 30px 20px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
 }
 
 .social-login-content {
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
-    padding: 20px 0px;
+ 
 }
 
 .register-link {
-    padding-top: 15px;
-    text-align: center;
-    font-size: 14px;
+  
 }
 
 .register-link>p>a {
-    color: #ff2e44;
+ 
 }
 
-.fontawesome-list-wrap {
-    background: #fff;
-    border: 1px solid #C9CDD7;
-    padding: 20px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}
-
-.fontawesome-list__title {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #C9CDD7;
-    margin-bottom: 20px;
-    margin-top: 30px;
-}
-
-.fa-hover a {
-    color: #666;
-    font-size: 15px;
-}
-
-.fa-hover a i {
-    margin-right: 10px;
-}
-
-.fa-hover a:hover {
-    color: #333;
-}
-
-.main-content--pb30 {
-    padding-bottom: 30px;
-}
 
 
 /*-----------------------------------------------------*/
@@ -1483,7 +1282,7 @@ section {
 }
 
 .account-item>.content {
-    margin-left: 45px;
+    /* margin-left: 45px; */
     padding: 9px 0;
     padding-left: 12px;
 }
@@ -1710,7 +1509,6 @@ section {
 .navbar-sidebar .navbar__list li a {
     display: block;
     color: #555;
-    padding: 15px 0;
 }
 
 .navbar-sidebar .navbar__list li a i {
@@ -1730,7 +1528,7 @@ section {
 }
 
 .header-mobile {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     right: 0;
@@ -1811,10 +1609,9 @@ section {
     display: none;
     position: absolute;
     width: 100%;
-    top: 88px;
+    top: 130px;
     z-index: 20;
 }
-
 .header-mobile .navbar-mobile .navbar-mobile__list {
     background: #f8f8f8;
 }
@@ -4329,7 +4126,7 @@ section {
 }
 
 .table-earning thead th {
-    background: #333;
+    background: #08537c;
     font-size: 16px;
     color: #fff;
     vertical-align: middle;
@@ -13252,6 +13049,9 @@ section {
 .bg-white {
     background: #fff;
 }
+.bg-gray-light{
+    background-color: #cacbc7 !important;
+}
 
 .bg-overlay {
     position: absolute;
@@ -13342,13 +13142,25 @@ section {
     outline: none;
     font-size: 14px;
 }
+a:hover{
+    text-decoration: none;
+}
+.badge{
+    padding: 5px;
+    width: 100%;
+}
+.bg-dark{
+    color: #fff;
+}
 .logo img{
     width: 180px;
 }
 .main-content{
     padding-top: 3rem;
 }
-.header-mobile .header-mobile__bar{background-color: #fff;}
+.header-mobile .header-mobile__bar{
+    background-color: #fff;
+}
 .menu-sidebar .logo{
     background-color: #fff;
     box-shadow: none;
@@ -13383,10 +13195,46 @@ section {
 	border-radius: 4px;
 	background-color: #000;
 }
+.navbar-sidebar{
+    padding: 1rem;
+}
+.list-unstyled li a{
+    padding: 0 0.5rem;
+}
+.menu-sidebar .navbar__list .navbar__sub-list li{
+    padding: 0 0.5rem;
+}
+.menu-sidebar .navbar__list .navbar__sub-list li:hover{   
+    background-color: #08537c;
+}
+.navbar-sidebar .navbar__list li a{
+    padding: 0.5rem;
+}
+.header-mobile .navbar-mobile .navbar-mobile__list li a:hover{
+    color: #fff;
+}
+.navbar-sidebar .navbar__list li a:hover, .navbar-mobile__list li a:hover{
+    background-color: #08537c;
+    color: #fff;
+}
+.menu-sidebar .navbar__list .navbar__sub-list li a:hover{ 
+    color: #fff;
+}
+.navbar-mobile__list .list-unstyled>li>a{}
+.js-arrow:hover{
+    color: #fff;
+    background-color: #08537c;
+}
 @media (max-width:991px){
-    .header-button{margin-top: 0;}
+    .header-button{
+        margin-top: 0;
+    }
     .header-desktop{
         height: 3rem;
+    }
+    .hamburger span i{
+        font-size: 20px;
+        color: #22527d;
     }
     .header-mobile .hamburger{
         z-index: 5;

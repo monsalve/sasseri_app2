@@ -1,9 +1,5 @@
 <template>
     <main class="main">
-        <!-- Breadcrumb -->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
-        </ol>
         <div class="container-fluid">
             <!-- Ejemplo de tabla Listado -->
             <div class="card">
@@ -47,7 +43,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-sm  table-responsive">
+                        <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th>Usuario</th>
@@ -281,7 +277,7 @@
                     </div>
                     <div class="form-group row border">
                         <div class="table-responsive col-md-12">
-                            <table class="table table-bordered table-striped table-sm  table-responsive">
+                            <table class="table table-bordered table-striped table-sm  table-responsive  table-earning">
                                 <thead>
                                     <tr>
                                         <th class="col-md-1">Opciones</th>
@@ -418,7 +414,7 @@
                     </div>
                     <div class="form-group row border">
                         <div class="table-responsive col-md-12">
-                            <table class="table table-bordered table-striped table-sm  table-responsive">
+                            <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                                 <thead>
                                     <tr>
                                         <th class="col-md-3">Artículo</th>
@@ -541,8 +537,8 @@
                                 <button v-else type="button" class="btn btn-secondary" @click="tipo_vista_articulo=2"><i class="fa fa-th-large"></i></button>
                             </div>
                         </div>
-                        <div v-if="tipo_vista_articulo==1" class="table-responsive" style="display: block;height: 35em;max-height: 35em;overflow-y: auto;">
-                            <table class="table table-bordered table-striped table-sm  table-responsive">
+                        <div v-if="tipo_vista_articulo==1" class="table-responsive">
+                            <table class="table table-bordered table-striped table-sm  table-responsive  table-earning">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -701,8 +697,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm  table-responsive">
+                            <div>
+                                <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                     
                                         <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                     
@@ -775,7 +771,7 @@
                         <!--<ul>
                             <li v-for="novedades in arrayNovedades" :key="novedades.id" v-text="novedades.nombre"></li>
                         </ul>-->
-                        <table v-if="tipoAccion3==0" class="table table-bordered table-striped table-sm  table-responsive" style="display: block;border: none;overflow-y: auto;height: 26.2em;">
+                        <table v-if="tipoAccion3==0" class="table table-bordered table-striped table-sm  table-responsive table-earning">
                             <thead>
                                 <th class="col-md-4">Nombre</th>
                                 <th>Observacion</th>

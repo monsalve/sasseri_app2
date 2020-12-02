@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm  table-responsive ">
+                        <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th class="col-md-11">Nombre</th>

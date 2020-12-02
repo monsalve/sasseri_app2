@@ -145,7 +145,7 @@
                             </div>  
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm  table-responsive">
+                            <table class="table table-bordered table-striped table-sm  table-responsive table-earning ">
                                 <thead>
                                     <tr>
                                         <th>#</th>

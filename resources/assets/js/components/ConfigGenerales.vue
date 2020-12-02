@@ -33,7 +33,7 @@
                                 </div>-->
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm table-responsive">
+                        <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -95,8 +95,8 @@
                     </div>
                 </div>
                 <!-- Fin ejemplo de tabla Listado -->
-                <div class="card" v-if="superAdmin==0">
-                    <div class="card-header">
+                <div class="card border-success" v-if="superAdmin==0">
+                    <div class="card-header bg-dark">
                         <i class="fa fa-align-justify"></i> Configuraciones generales
                         <!--<button v-if="permisosUser.crear && !arrayConfigGenerales.length" type="button" @click="abrirModal('configgenerales','registrar')" class="btn btn-primary" title="Nuevo">
                             <i class="icon-plus"></i>&nbsp;Nuevo
@@ -106,7 +106,7 @@
                         </button>-->
                     </div>
                     <div class="card-body">
-                        <div class="container" v-for="(configgenerales, index) in arrayConfigGenerales">
+                        <div class="container" v-for="(configgenerales, index) in arrayConfigGenerales" :key="index">
                             <div class="row">
                                 <div class="col-md-8 float-left">
                                     <div class="col-md-12 mb-2"><h4 v-text="configgenerales.nombre"></h4></div>

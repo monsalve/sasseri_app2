@@ -75,8 +75,8 @@
                                 
                         </div>
                         <br>
-                        <div class="table-responsive ">
-                            <table class="table table-bordered table-striped table-sm  table-responsive">
+                        <div>
+                            <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -263,8 +263,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm  table-responsive">
+                            <div>
+                                <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                                     
                                         <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                     
@@ -361,8 +361,8 @@
                         </div>
                          <div class="row justify-content-center ">
                                 <div class="col-md-6 ">
-                        <div class="table-responsive" style="overflow-y: auto;max-height: 16em !important;display: block;border: none;">
-                            <table class="table table-bordered table-striped table-sm  table-responsive" >
+                        <div>
+                            <table class="table table-bordered table-striped table-sm  table-responsive table-earning" >
                                 <thead>
                                     <tr>
                                         <th>#</th>
