@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm table-responsive">
+                        <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th class="col-md-7">Nombre</th>
@@ -233,7 +233,7 @@
                                     <div class="col-md-9 float-right">
                                         <select class="form-control" v-model="id_cajero" disabled>
                                             <option value="0">Seleccione</option>
-                                            <option v-for="(cajero, index) in arrayCajeros" :value="cajero.id" v-text="cajero.nombre"></option>
+                                            <option v-for="(cajero, index) in arrayCajeros" :value="cajero.id" v-text="cajero.nombre" :key="index"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -241,7 +241,7 @@
                         </div>
                         <div v-else class="modal-body">
                             <div  v-if="tipoAccionCierre==3" class="row container">
-                                <table class="table table-bordered table-striped table-sm">
+                                <table class="table table-bordered table-striped table-sm table-earning">
                                     <thead>
                                         <tr>
                                             <th class="col-md-10">Nombre</th>

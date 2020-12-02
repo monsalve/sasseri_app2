@@ -29,46 +29,41 @@
                 <div class="header-mobile__bar">
                     <div class="container-fluid">
                         <div class="header-mobile-inner">
-                            <a class="logo" href="index.html">
-                            <img src="img/logo.png" alt="Sasseri" />
+                            <a class="logo col-sm-12" href="index.html">
+                                <img src="img/logo.png" alt="Sasseri" />
                             </a>
-                            <button class="hamburger hamburger--slider" type="button">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
+                            
                         </div>
                     </div>
                 </div>
                 <nav class="navbar-mobile">
                     <div class="container-fluid">
                         <ul class="navbar-mobile__list list-unstyled">                        
-                            <li @click="menu=999991" class="nav-item">
+                            <li @click="menu=999991" class="">
                                 <a href="#"><i class="icon-user"></i> Usuarios</a>
                             </li>
-                            <li @click="menu=10" class="nav-item">
+                            <li @click="menu=10" class="">
                                 <a href="#"><i class="icon-user"></i> Terceros</a>
                             </li>
-                            <li @click="menu=40" class="nav-item">
-                                <a href="#"><i class="icon-user"></i> Punto de venta</a>
+                            <li @click="menu=40" class="">
+                                <a href="#"><i class="icon-screen-desktop"></i> Punto de venta</a>
                             </li>
-                            <li @click="menu=14" class="nav-item">
-                                <a href="#"><i class="icon-user"></i> Facturación</a>
+                            <li @click="menu=14" class="">
+                                <a href="#"><i class="icon-calculator"></i> Facturación</a>
                             </li>
                             <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="fas fa-tachometer-alt"></i>Configuración</a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li @click="menu=6" class="nav-item">
+                                <a class="js-arrow" href="#"><i class="icon-wrench"></i>Configuración</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
+                                    <li @click="menu=6" class="">
                                         <a href="#"><i class="icon-user"></i> Empresa</a>
                                     </li>
-                                    <li @click="menu=12" class="nav-item">
+                                    <li @click="menu=12" class="">
                                         <a href="#"><i class="icon-user"></i> Mesas</a>
                                     </li>
-                                    <li @click="menu=27" class="nav-item">
+                                    <li @click="menu=27" class="">
                                         <a href="#"><i class="icon-user"></i> IVAs</a>
                                     </li>
-                                    <li @click="menu=29" class="nav-item">
+                                    <li @click="menu=29" class="">
                                         <a href="#"><i class="icon-user"></i> Cajas</a>
                                     </li>
 
@@ -76,57 +71,57 @@
                             </li>
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-tachometer-alt"></i>Almacén
+                                    <i class="icon-bag"></i>Almacén
                                 </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li @click="menu=15" class="nav-item">
+                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
+                                    <li @click="menu=15" class="">
                                         <a href="#"><i class="icon-user"></i> Articulo</a>
                                     </li>
-                                    <li @click="menu=17" class="nav-item">
+                                    <li @click="menu=17" class="">
                                         <a href="#"><i class="icon-user"></i> Entradas</a>
                                     </li>
-                                    <li @click="menu=18" class="nav-item">
+                                    <li @click="menu=18" class="">
                                         <a href="#"><i class="icon-user"></i> Salidas</a>
                                     </li>
-                                    <li @click="menu=19" class="nav-item">
+                                    <li @click="menu=19" class="">
                                         <a href="#"><i class="icon-user"></i> Stock</a>
                                     </li>
-                                    <li @click="menu=22" class="nav-item">
+                                    <li @click="menu=22" class="">
                                         <a href="#"><i class="icon-user"></i> Presentación</a>
                                     </li>
-                                    <li @click="menu=23" class="nav-item">
+                                    <li @click="menu=23" class="">
                                         <a href="#"><i class="icon-user"></i> Unidad de medida</a>
                                     </li>
-                                    <li @click="menu=24" class="nav-item">
+                                    <li @click="menu=24" class="">
                                         <a href="#"><i class="icon-user"></i> Concentración</a>
                                     </li>
-                                    <li @click="menu=25" class="nav-item">
+                                    <li @click="menu=25" class="">
                                         <a href="#"><i class="icon-user"></i> Categoría</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-tachometer-alt"></i>Cajas
+                                    <i class="icon-basket"></i>Cajas
                                 </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li @click="menu=35" class="nav-item">
+                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
+                                    <li @click="menu=35" class="">
                                         <a href="#"><i class="icon-user"></i> Gestión de cajas</a>
                                     </li>
-                                    <li @click="menu=30" class="nav-item">
+                                    <li @click="menu=30" class="">
                                         <a href="#"><i class="icon-user"></i> Cierre de caja</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
-                                    <i class="fas fa-tachometer-alt"></i>Cartera
+                                    <i class="icon-wallet"></i>Cartera
                                 </a>
-                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                    <li @click="menu=33" class="nav-item">
+                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
+                                    <li @click="menu=33" class="">
                                         <a href="#"><i class="icon-user"></i> Cuentas por cobrar</a>
                                     </li>
-                                    <li @click="menu=34" class="nav-item">
+                                    <li @click="menu=34" class="">
                                         <a href="#"><i class="icon-user"></i> Cuentas por pagar</a>
                                     </li>
                                 </ul>
@@ -139,7 +134,7 @@
             <!-- END HEADER MOBILE-->
 
             <section id="wrapper">
-                <div class="container row" style="margin:auto;">
+                <div class="container-fluid row p-0" style="margin:auto;">
                     <!-- MENU SIDEBAR-->
                     <aside class="menu-sidebar d-none d-lg-block col-lg-3">
                         <div class="logo">
@@ -149,33 +144,33 @@
                         </div>
                         <div class="menu-sidebar__content js-scrollbar1">
                             <nav class="navbar-sidebar">
-                            <ul class="list-unstyled navbar__list">
+                                <ul class="list-unstyled navbar__list">
                                     <li @click="menu=999991" class="">
                                         <a href="#"><i class="icon-user"></i> Usuarios</a>
                                     </li>
-                                    <li @click="menu=10" class="nav-item">
+                                    <li @click="menu=10" class="">
                                         <a href="#"><i class="icon-user"></i> Terceros</a>
                                     </li>
-                                    <li @click="menu=40" class="nav-item">
+                                    <li @click="menu=40" class="">
                                         <a href="#"><i class="icon-screen-desktop"></i> Punto de venta</a>
                                     </li>
-                                    <li @click="menu=14" class="nav-item">
+                                    <li @click="menu=14" class="">
                                         <a href="#"><i class="icon-calculator"></i> Facturación</a>
                                     </li>
                                     <li class="has-sub">
                                         <a class="js-arrow" href="#">
                                             <i class="icon-wrench"></i>Configuración</a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=6" class="nav-item">
+                                            <li @click="menu=6" class="">
                                                 <a href="#"><i class="icon-user"></i> Empresa</a>
                                             </li>
-                                            <li @click="menu=12" class="nav-item">
+                                            <li @click="menu=12" class="">
                                                 <a href="#"><i class="icon-user"></i> Mesas</a>
                                             </li>
-                                            <li @click="menu=27" class="nav-item">
+                                            <li @click="menu=27" class="">
                                                 <a href="#"><i class="icon-user"></i> IVAs</a>
                                             </li>
-                                            <li @click="menu=29" class="nav-item">
+                                            <li @click="menu=29" class="">
                                                 <a href="#"><i class="icon-user"></i> Cajas</a>
                                             </li>
 
@@ -186,28 +181,28 @@
                                             <i class="icon-bag"></i>Almacén
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=15" class="nav-item">
+                                            <li @click="menu=15" class="">
                                                 <a href="#"><i class="icon-user"></i> Articulo</a>
                                             </li>
-                                            <li @click="menu=17" class="nav-item">
+                                            <li @click="menu=17" class="">
                                                 <a href="#"><i class="icon-user"></i> Entradas</a>
                                             </li>
-                                            <li @click="menu=18" class="nav-item">
+                                            <li @click="menu=18" class="">
                                                 <a href="#"><i class="icon-user"></i> Salidas</a>
                                             </li>
-                                            <li @click="menu=19" class="nav-item">
+                                            <li @click="menu=19" class="">
                                                 <a href="#"><i class="icon-user"></i> Stock</a>
                                             </li>
-                                            <li @click="menu=22" class="nav-item">
+                                            <li @click="menu=22" class="">
                                                 <a href="#"><i class="icon-user"></i> Presentación</a>
                                             </li>
-                                            <li @click="menu=23" class="nav-item">
+                                            <li @click="menu=23" class="">
                                                 <a href="#"><i class="icon-user"></i> Unidad de medida</a>
                                             </li>
-                                            <li @click="menu=24" class="nav-item">
+                                            <li @click="menu=24" class="">
                                                 <a href="#"><i class="icon-user"></i> Concentración</a>
                                             </li>
-                                            <li @click="menu=25" class="nav-item">
+                                            <li @click="menu=25" class="">
                                                 <a href="#"><i class="icon-user"></i> Categoría</a>
                                             </li>
                                         </ul>
@@ -217,10 +212,10 @@
                                             <i class="icon-basket"></i>Cajas
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=35" class="nav-item">
+                                            <li @click="menu=35" class="">
                                                 <a href="#"><i class="icon-user"></i> Gestión de cajas</a>
                                             </li>
-                                            <li @click="menu=30" class="nav-item">
+                                            <li @click="menu=30" class="">
                                                 <a href="#"><i class="icon-user"></i> Cierre de caja</a>
                                             </li>
                                         </ul>
@@ -230,10 +225,10 @@
                                             <i class="icon-wallet"></i>Cartera
                                         </a>
                                         <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=33" class="nav-item">
+                                            <li @click="menu=33" class="">
                                                 <a href="#"><i class="icon-user"></i> Cuentas por cobrar</a>
                                             </li>
-                                            <li @click="menu=34" class="nav-item">
+                                            <li @click="menu=34" class="">
                                                 <a href="#"><i class="icon-user"></i> Cuentas por pagar</a>
                                             </li>
                                         </ul>
@@ -245,14 +240,20 @@
                     <!-- END MENU SIDEBAR-->
 
                     <!-- PAGE CONTAINER-->
-                    <div class="page-container col-lg-9">
+                    <div class="page-container col-lg-9 p-0">
                         <section id="main">
                             <!-- HEADER DESKTOP-->
-                            <header class="header-desktop3 col-lg-12 bg-light">
-                                <div class="section__content section__content--p30">
+                            <header class="col-lg-12 bg-gray-light">
+                                <div class="section__content section__content--p30x">
                                     <div class="container-fluid">
                                         <div class="header-wrap2">                                
                                             <div class="header-button">
+                                                <button class="hamburger hamburger--slider d-lg-none" type="button">
+                                                    <span class="hamburger-box">
+                                                        <i class="fa fa-align-justify"></i>
+                                                        <!-- <span class="hamburger-inner"></span> -->
+                                                    </span>
+                                                </button>
                                                 <div class="noti-wrap">                                      
                                                     <div class="noti__item js-item-menu">
                                                         <i class="zmdi zmdi-notifications"></i>
@@ -322,7 +323,7 @@
 
                             <!-- MAIN CONTENT-->
                             <div class="main-content">
-                                <div class="section__content section__content--p10">
+                                <div class="section__contentx section__content--p10">
                                     <div>
                                         <div class="row">
                                             <div class="col-md-12">

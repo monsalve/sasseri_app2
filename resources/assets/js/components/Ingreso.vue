@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm  table-responsive">
+                            <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                 <thead>
                                     <tr>
                                         <th>Usuario</th>
@@ -274,7 +274,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm  table-responsive">
+                                <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                     <thead>
                                         <tr>
                                             <th class="col-md-1">Opciones</th>
@@ -411,7 +411,7 @@
                         </div>
                         <div class="form-group row border">
                             <div class="table-responsive col-md-12">
-                                <table class="table table-bordered table-striped table-sm  table-responsive">
+                                <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                     <thead>
                                         <tr>
                                             <th class="col-md-3">Artículo</th>
@@ -534,7 +534,7 @@
                                 </div>
                             </div>
                             <div v-if="tipo_vista_articulo==1" class="table-responsive" style="display: block;height: 35em;max-height: 35em;overflow-y: auto;">
-                                <table class="table table-bordered table-striped table-sm  table-responsive">
+                                <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                     <thead>
                                         <tr>
                                             <th>Código</th>
@@ -691,7 +691,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm  table-responsive">
+                                <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                     <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
                                     <tr v-for="tercero in arrayTerceros" :key="tercero.id">
                                         <td v-text="tercero.num_documento"></td>

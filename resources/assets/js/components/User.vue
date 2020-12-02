@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-sm">
+                        <table class="table table-bordered table-striped table-sm table-earning table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -71,7 +71,7 @@
                                 </tr>                                
                             </tbody>
                         </table>
-                        <nav>
+                        <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item" v-if="pagination.current_page > 1">
                                     <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1,buscar,criterio)">Ant</a>
