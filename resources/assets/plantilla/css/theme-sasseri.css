@@ -75,11 +75,29 @@ table .table-earning tbody td{
 }
 .sidebar.toggled .nav-item .collapse .collapse-inner {
 	box-shadow: 0 .15rem 5px 0 rgb(58, 59, 69);
-	border-radius: .35rem;
+	border-radius:0;
 	background: #fff;
 	z-index: 20;
 	position: relative;
 }
 .sidebar.toggled .nav-item .collapse {
 	left: calc(4rem + 1.5rem / 2);	
+}
+.form-control{
+    border-radius: 0;
+}
+.btn{
+    border-radius: 0;
+}
+.modal-content{
+    margin-top: 2rem;
+}
+select {
+    color: #a7a7a7;
+}
+select option:first-child {
+    color: #a7a7a7;
+}
+select option {
+    color: #333;
 }

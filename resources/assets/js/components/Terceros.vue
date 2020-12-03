@@ -119,7 +119,7 @@
                                     </div>
                                     <label class="form-control-label col-md-2" for="text-input">Dig. Verificación</label>
                                     <div  class="col-md-1">
-                                        <input type="checkbox" style="margin-left: -70px;" v-model="digito_verif" class="form-control" v-bind:class="{ 'is-invalid': hasError.digito_verif==1 }">
+                                        <input type="checkbox" v-model="digito_verif" class="form-check-input" v-bind:class="{ 'is-invalid': hasError.digito_verif==1 }">
                                     </div>
                                     <label class="form-control-label col-md-1" for="text-imput">Foto</label>
                                     <div class="col-md-2">
