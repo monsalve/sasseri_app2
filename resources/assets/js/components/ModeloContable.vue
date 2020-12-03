@@ -105,7 +105,7 @@
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width: 1100px !important;margin-left: -10%;">
+                    <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
                             <button type="button" class="close" @click="cerrarModal()" aria-label="Close">
@@ -134,21 +134,21 @@
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Cuenta compra <span style="color:red;" v-show="idCuentaProductos==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaProductos" v-bind:class="{ 'is-invalid' : hasError.idCuentaProductos==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaProductos" v-bind:class="{ 'is-invalid' : hasError.idCuentaProductos==1}">
                                             <button type="button" @click="abrirModalCuentas('productos')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Cuenta Salida <span style="color:red;" v-show="idCuentaSalidaProductos==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaSalidaProductos"v-bind:class="{ 'is-invalid' : hasError.idCuentaSalidaProductos==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaSalidaProductos"v-bind:class="{ 'is-invalid' : hasError.idCuentaSalidaProductos==1}">
                                             <button type="button" @click="abrirModalCuentas('salida_productos')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Saldos iniciales <span style="color:red;" v-show="idCuentaSaldosIniciales==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaSaldosIniciales" v-bind:class="{ 'is-invalid' : hasError.idCuentaSaldosIniciales==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaSaldosIniciales" v-bind:class="{ 'is-invalid' : hasError.idCuentaSaldosIniciales==1}">
                                             <button type="button" @click="abrirModalCuentas('saldos_iniciales')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>
@@ -157,21 +157,21 @@
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Cuenta Donaciones <span style="color:red;" v-show="idCuentaDonaciones==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaDonaciones" v-bind:class="{ 'is-invalid' : hasError.idCuentaDonaciones==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaDonaciones" v-bind:class="{ 'is-invalid' : hasError.idCuentaDonaciones==1}">
                                             <button type="button" @click="abrirModalCuentas('donaciones')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Cuenta devoluciones ventas <span style="color:red;" v-show="idCuentaDevolucionesVentas==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaDevolucionesVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesVentas==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaDevolucionesVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesVentas==1}">
                                             <button type="button" @click="abrirModalCuentas('devoluciones_ventas')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Cuenta devoluciones compras <span style="color:red;" v-show="idCuentaDevolucionesCompras==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaDevolucionesCompras" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesCompras==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaDevolucionesCompras" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesCompras==1}">
                                             <button type="button" @click="abrirModalCuentas('devoluciones_compras')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
                                     <div class="form-group col-md-4">
                                         <label class="col-md-3 form-control-label float-left">Cuenta impuesto al consumo en ventas <span style="color:red;" v-show="idCuentaImpuestoConsumoVentas==''">(*)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaImpuestoConsumoVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaImpuestoConsumoVentas==1}">
+                                            <input type="text" readonly class="form-control" v-model="cuentaImpuestoConsumoVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaImpuestoConsumoVentas==1}">
                                             <button type="button" @click="abrirModalCuentas('impuesto_consumo_ventas')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                         </div>
                                     </div>

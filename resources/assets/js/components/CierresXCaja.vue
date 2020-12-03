@@ -171,13 +171,13 @@
                             <div class="col-md-12">
                                 <label class="col-md-1 float-left">Caja</label>
                                 <div class="float-right col-md-11">
-                                    <select v-if="tipoAccion==1" class="form-control float-right" v-model="id_caja" style="width: 95.7% !important;">
+                                    <select v-if="tipoAccion==1" class="form-control float-right" v-model="id_caja">
                                         <option></option>
-                                        <option v-for="(caja, index) in arrayCajas" :value="caja.id" v-text="caja.nombre"></option>
+                                        <option v-for="(caja, index) in arrayCajas" :value="caja.id" v-text="caja.nombre" :key="index"></option>
                                     </select>
-                                    <select v-else disabled class="form-control float-right" v-model="id_caja" style="width: 95.7% !important;">
+                                    <select v-else disabled class="form-control float-right" v-model="id_caja">
                                         <option></option>
-                                        <option v-for="(caja, index) in arrayCajas" :value="caja.id" v-text="caja.nombre"></option>
+                                        <option v-for="(caja, index) in arrayCajas" :value="caja.id" v-text="caja.nombre" :key="index"></option>
                                     </select>
                                 </div>
                             </div>

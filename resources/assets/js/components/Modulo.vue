@@ -138,7 +138,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-1 form-control-label float-left" for="text-input">Nombre (*)</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" v-model="nombre" style="width: 96%;" class="form-control float-right" placeholder="Nombre del modulo">
+                                            <input type="text" v-model="nombre" class="form-control float-right" placeholder="Nombre del modulo">
                                         </div>
                                     </div>
                                 </div>

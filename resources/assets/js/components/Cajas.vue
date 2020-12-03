@@ -202,7 +202,7 @@
                                     <div class="col-md-9 float-right">
                                         <select class="form-control" v-model="id_cajero">
                                             <option value="0">Seleccione</option>
-                                            <option v-for="(cajero, index) in arrayCajeros" :value="cajero.id" v-text="cajero.nombre"></option>
+                                            <option v-for="(cajero, index) in arrayCajeros" :key="index" :value="cajero.id" v-text="cajero.nombre"></option>
                                         </select>
                                     </div>
                                 </div>

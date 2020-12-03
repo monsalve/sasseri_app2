@@ -98,7 +98,7 @@
             </div>
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document" style="max-width: 1000px !important">
+                <div class="modal-dialog modal-primary modal-lg" role="document">
                     <div class="modal-content" >
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -317,7 +317,7 @@
 
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal2}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document" style="max-width: 1000px !important">
+                <div class="modal-dialog modal-primary modal-lg" role="document">
                     <div class="modal-content" >
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -476,7 +476,7 @@
                                     <div class="col-md-12">
                                         <label class="form-control-label col-md-1 flota-left">Nombre</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" class="form-control float-right" v-model="novedad" style="width: 96%;">
+                                            <input type="text" class="form-control float-right" v-model="novedad">
                                         </div>
                                     </div>
                                 </div>
@@ -508,10 +508,10 @@
                             </ul>-->
                             <table class="table table-bordered table-striped table-sm  table-respnonsive table-earning">
                                 <thead>
-                                    <th style="width: 28%;">Nombre</th>
-                                    <th style="width: 45%; max-width: 45%;">Observacion</th>
+                                    <th>Nombre</th>
+                                    <th>Observacion</th>
                                     <th>Link</th>
-                                    <th style="width: 10%;">Opciones</th>
+                                    <th>Opciones</th>
                                 </thead>
                                 <tbody v-if="arrayNovedades.length">
                                     <tr v-for="novedades in arrayNovedades" :key="novedades.id">

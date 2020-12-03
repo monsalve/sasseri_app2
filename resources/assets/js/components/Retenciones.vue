@@ -128,7 +128,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" v-model="retencion" style="width: 96%;" class="form-control float-right" placeholder="Nombre de la empresa">
+                                            <input type="text" v-model="retencion" class="form-control float-right" placeholder="Nombre de la empresa">
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +137,7 @@
                                     <div class="form-group col-md-6">
                                         <label class="col-md-3 form-control-label float-left">Cuenta <span style="color:red;" v-show="cuenta==''">(*Seleccione)</span></label>
                                         <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuenta">
+                                            <input type="text" readonly class="form-control" v-model="cuenta">
                                             <button type="button" @click="abrirModal('retenciones','buscar')" class="btn btn-primary">...</button>
                                         </div>
                                     </div>

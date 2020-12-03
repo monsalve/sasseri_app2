@@ -13142,6 +13142,10 @@ a {
     outline: none;
     font-size: 14px;
 }
+.mostrar{
+    width: 100%;
+    overflow: auto;
+}
 a:hover{
     text-decoration: none;
 }

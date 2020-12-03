@@ -1,513 +1,793 @@
 <template>
-            <main class="main">
-            <!-- Breadcrumb -->
-            
-            <div class="container-fluid">
-                <!-- Ejemplo de tabla Listado -->
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Artículos
-                        <button v-if="permisosUser.crear" type="button" @click="abrirModal('articulo','registrar')" class="btn btn-primary">
-                            <i class="icon-plus"></i>&nbsp;Nuevo
-                        </button>
-                        <button v-else type="button" class="btn btn-secondary">
-                            <i class="icon-plus"></i>&nbsp;Nuevo
+    <main class="main">
+        <div class="container-fluid">
+            <!-- Ejemplo de tabla Listado -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Artículos
+                    <button v-if="permisosUser.crear" type="button" @click="abrirModal('articulo','registrar')" class="btn btn-primary">
+                        <i class="icon-plus"></i>&nbsp;Nuevo
+                    </button>
+                    <button v-else type="button" class="btn btn-secondary">
+                        <i class="icon-plus"></i>&nbsp;Nuevo
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input v-if="permisosUser.leer" type="text" v-model="buscar" @keyup="listarArticulo(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                <input v-else disabled type="text" class="form-control" placeholder="Texto a buscar">
+
+                                <!--<button v-if="permisosUser.leer" type="submit" @click="listarArticulo(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <button v-else type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> Buscar</button>-->
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped table-responsive table-sm table-earning">
+                        <thead>
+                            <tr>
+                                <th>IMG</th>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio Venta</th>
+                                <th>Stock</th>
+                                <th>Descripción</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody v-if="permisosUser.leer">
+                            <tr v-for="articulo in arrayArticulo" :key="articulo.id">
+                                <td>
+                                    <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" height="40" width="40">
+
+                                    <img v-else :src="`${ruta}/Empresas/${articulo.img}`" height="40" width="40">
+                                </td>
+                                <td v-text="articulo.codigo"></td>
+                                <!--<td v-text="articulo.nombre"></td>-->
+                                <td>
+                                    <span v-text="articulo.nombre"></span>
+                                    <span v-if="articulo.id_presentacion!=null" v-text="' - '+articulo.nom_presentacion"></span>
+                                    <span v-else> - N/A presentacion</span>
+                                    <span v-if="articulo.talla!=null && articulo.talla!='' && articulo.talla!='null'" v-text="' - '+articulo.talla"></span>
+                                    <span v-else> - N/A talla</span>
+                                </td>
+                                <td v-text="articulo.nombre_categoria"></td>
+                                <td v-text="articulo.precio_venta"></td>
+                                <td v-text="articulo.stock"></td>
+                                <td v-text="articulo.descripcion"></td>
+                                <td>
+                                    <div v-if="articulo.tipo_articulo==1">
+                                        <span>Suministro</span>
+                                    </div>
+                                    <div v-else-if="articulo.tipo_articulo==2">
+                                        <span>Servicio</span>
+                                    </div>
+                                    <div v-else-if="articulo.tipo_articulo==3">
+                                        <span>Producto simple</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div v-if="articulo.condicion">
+                                        <span class="badge badge-success">Activo</span>
+                                    </div>
+                                    <div v-else>
+                                        <span class="badge badge-danger">Desactivado</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <template>
+                                        <button v-if="permisosUser.actualizar && articulo.condicion" type="button" @click="abrirModal('articulo','actualizar',articulo)" class="btn btn-warning btn-sm" title="Actualizar">
+                                            <i class="icon-pencil"></i>
+                                        </button>
+                                        <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar">
+                                            <i class="icon-pencil"></i>
+                                        </button>
+                                    </template>
+
+                                    <template v-if="permisosUser.anular">
+                                        <button v-if="articulo.condicion" type="button" class="btn btn-danger btn-sm" @click="desactivarArticulo(articulo.id)" title="Anular">
+                                            <i class="icon-trash"></i>
+                                        </button>
+                                        <button v-else type="button" class="btn btn-info btn-sm" @click="activarArticulo(articulo.id)" title="Anular">
+                                            <i class="icon-check"></i>
+                                        </button>
+                                    </template>
+                                    <template v-else>
+                                        <button v-if="articulo.condicion" type="button" class="btn btn-secondary btn-sm" title="Anular">
+                                            <i class="icon-trash"></i>
+                                        </button>
+                                        <button v-else type="button" class="btn btn-secondary btn-sm" title="Anular">
+                                            <i class="icon-check"></i>
+                                        </button>
+                                    </template>
+
+                                    <template>
+                                        <button type="button" class="btn btn-info btn-sm" @click="abrirModalStock('ver', articulo.id)" title="Ver stock">
+                                            <i class="fa fa-archive"></i>
+                                        </button>
+                                    </template>
+                                    
+                                    <template>
+                                        <button v-if="permisosUser.actualizar && articulo.condicion" @click="abrirModal('articulo','productos_asociados',articulo)" type="button" class="btn btn-success btn-sm" title="Presentación asociada">
+                                            <i class="fa fa-align-justify"></i>
+                                        </button>
+                                        <button v-else type="button" class="btn btn-secondary btn-sm" title="Presentación asociada">
+                                            <i class="fa fa-align-justify"></i>
+                                        </button>
+                                    </template>
+                                </td>
+                            </tr>                                
+                        </tbody>
+                        <tbody v-else>
+                            <tr><td colspan="9">No hay registros para mostrar</td></tr>
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item" v-if="pagination.current_page > 1">
+                                <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1,buscar,criterio)">Ant</a>
+                            </li>
+                            <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                                <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar,criterio)" v-text="page"></a>
+                            </li>
+                            <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                                <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar,criterio)">Sig</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- Fin ejemplo de tabla Listado -->
+        </div>
+        <!--Inicio del modal agregar/actualizar-->
+        <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal==1}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" v-text="tituloModal"></h4>
+                        <button type="button" class="close" @click="cerrarModal()" aria-label="Close">
+                            <span aria-hidden="true" title="Cerrar">×</span>
                         </button>
                     </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input v-if="permisosUser.leer" type="text" v-model="buscar" @keyup="listarArticulo(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <input v-else disabled type="text" class="form-control" placeholder="Texto a buscar">
-
-                                    <!--<button v-if="permisosUser.leer" type="submit" @click="listarArticulo(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                                    <button v-else type="submit" class="btn btn-secondary"><i class="fa fa-search"></i> Buscar</button>-->
+                    <div class="modal-body">
+                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
+                                <div class="col-md-11 float-right">
+                                    <input type="text" v-model="nombre" v-bind:class="{ 'is-invalid': hasError.nombre==1 }" class="form-control float-right" placeholder="Nombre de artículo">
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-responsive table-sm table-earning">
-                            <thead>
-                                <tr>
-                                    <th>IMG</th>
-                                    <th>Código</th>
-                                    <th>Nombre</th>
-                                    <th>Categoría</th>
-                                    <th>Precio Venta</th>
-                                    <th>Stock</th>
-                                    <th>Descripción</th>
-                                    <th>Tipo</th>
-                                    <th>Estado</th>
-                                    <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody v-if="permisosUser.leer">
-                                <tr v-for="articulo in arrayArticulo" :key="articulo.id">
-                                    <td>
-                                        <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" height="40" width="40">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-control-label col-md-3 float-left" for="text-input">Modelo contable</label>
+                                <div class="col-md-9 float-right form-inline">
+                                    <select class="form-control col-md-10 float-left custom-select" v-model="idcategoria" v-bind:class="{ 'is-invalid': hasError.idcategoria==1 }">
+                                        <option value="0" disabled>Seleccione</option>
+                                        <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                    </select>
+                                    <span class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('modelo_contable')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label col-md-3 float-left" for="text-input">Centro de costos</label>
+                                <div class="col-md-9 float-right form-inline">
+                                    <select class="form-control col-md-10 float-left custom-select" v-model="idcategoria2" v-bind:class="{ 'is-invalid': hasError.idcategoria2==1 }">
+                                        <option value="0" disabled>Seleccione</option>
+                                        <option value="." disabled>.</option>
+                                        <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                    </select>
+                                    <span v-if="modalCrear==0" class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('categoria2')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
 
-                                        <img v-else :src="`${ruta}/Empresas/${articulo.img}`" height="40" width="40">
-                                    </td>
-                                    <td v-text="articulo.codigo"></td>
-                                    <!--<td v-text="articulo.nombre"></td>-->
-                                    <td>
-                                        <span v-text="articulo.nombre"></span>
-                                        <span v-if="articulo.id_presentacion!=null" v-text="' - '+articulo.nom_presentacion"></span>
-                                        <span v-else> - N/A presentacion</span>
-                                        <span v-if="articulo.talla!=null && articulo.talla!='' && articulo.talla!='null'" v-text="' - '+articulo.talla"></span>
-                                        <span v-else> - N/A talla</span>
-                                    </td>
-                                    <td v-text="articulo.nombre_categoria"></td>
-                                    <td v-text="articulo.precio_venta"></td>
-                                    <td v-text="articulo.stock"></td>
-                                    <td v-text="articulo.descripcion"></td>
-                                    <td>
-                                        <div v-if="articulo.tipo_articulo==1">
-                                            <span>Suministro</span>
-                                        </div>
-                                        <div v-else-if="articulo.tipo_articulo==2">
-                                            <span>Servicio</span>
-                                        </div>
-                                        <div v-else-if="articulo.tipo_articulo==3">
-                                            <span>Producto simple</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div v-if="articulo.condicion">
-                                            <span class="badge badge-success">Activo</span>
-                                        </div>
-                                        <div v-else>
-                                            <span class="badge badge-danger">Desactivado</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <template>
-                                            <button v-if="permisosUser.actualizar && articulo.condicion" type="button" @click="abrirModal('articulo','actualizar',articulo)" class="btn btn-warning btn-sm" title="Actualizar">
-                                                <i class="icon-pencil"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar">
-                                                <i class="icon-pencil"></i>
-                                            </button>
-                                        </template>
+                                    <span v-if="modalCrear==1" class="btn btn-secondary form-control col-md-2 float-right" title="Nuevo (Deshabilidado)"><i class="fa fa-plus-circle"></i></span>
+                                </div>
+                            </div>
+                            <div style="display:none;" :class="{'col-md-12 mostrar-crear' : modalCrear==1}">
+                                <div class="col-md-10 float-left">
+                                    <div class="form-group col-md-6 float-left">
+                                        <span v-text="tituloModalCrear" class="form-control-label col-md-4 float-left"></span>
+                                        <input type="text" class="form-control col-md-8 float-right" v-model="nombre_crear">
+                                    </div>
+                                    <div class="col-md-6 float-left">
+                                        <span class="form-control-label col-md-4 float-left">Descripción</span>
+                                        <input type="text" class="form-control col-md-8 float-right" v-model="descripcion_crear">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <button type="button" class="btn btn-primary" @click="crearExtras('categoria')" title="Guardar"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Precio Venta</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="number" v-model="precio_venta" :min="1" @blur="function(){ if(precio_venta<1) precio_venta=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.precio_venta==1 }">                                        
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label v-if="tipo_articulo!=2" class="col-md-3 form-control-label float-left" for="text-input">Stock</label>
+                                <div v-if="tipo_articulo!=2" class="col-md-9 float-right">
+                                    <input type="number" v-model="stock" :min="1" @blur="function(){ if(stock<1) stock=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.stock==1 }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Cod. interno</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="cod_invima" class="form-control" placeholder="Código invima" v-bind:class="{ 'is-invalid': hasError.cod_invima==1 }">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Lote</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="lote" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.lote==1 }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6" v-if="tipo_articulo!=2 && tipo_articulo!=3">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Fec. vence</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="date" v-model="fec_vence" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.fec_vence==1 }">                                        
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6" v-else>
+                            </div>
+                            <div v-if="tipo_articulo!=2" class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Cant. minima</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="number" v-model="minimo" :min="1" @blur="(function(){
+                                        if(minimo<1) minimo=1;})" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.minimo==1 }">
+                                </div>
+                            </div>
+                            <div v-else class="form-group col-md-6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label col-md-3 float-left" for="text-input">Tipo artículo</label>
+                                <div class="col-md-9 float-right">
+                                    <select class="form-control custom-select" v-model="tipo_articulo" v-bind:class="{ 'is-invalid': hasError.tipo_articulo==1 }">
+                                        <option value="0" disabled>Seleccione</option>
+                                        <option value="1">Suministro</option>
+                                        <option value="2">Servicio</option>
+                                        <option value="3">Producto simple</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6" v-if="tipo_articulo!=2">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Talla</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="talla" class="form-control" placeholder="Talla del producto" v-bind:class="{ 'is-invalid': hasError.talla==1 }"> 
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6" v-else>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Und. medida</label>
+                                <div class="col-md-9 float-right form-inline">
+                                    <select class="form-control col-md-10 float-left custom-select" v-model="id_und_medida" v-bind:class="{ 'is-invalid': hasError.id_und_medida==1 }">
+                                        <option value="0" disabled>Seleccione</option>
+                                        <option v-for="id_und_medida in arrayUndMedida" :key="id_und_medida.id" :value="id_und_medida.id" v-text="id_und_medida.nombre"></option>
+                                    </select> 
+                                    <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                    <span v-if="modalCrear==2" class="btn btn-secondary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="email-input">Descripción</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                </div>
+                            </div>
+                            <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==2}">
+                                <div class="col-md-10 float-left">
+                                    <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                    <input type="text" class="form-control col-md-9 float-right" v-model="nombre_crear">
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <button type="button" class="btn btn-primary" @click="crearExtras('und_medida')" title="Guardar"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                </div>
+                            </div>
+                            <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==3}">
+                                <div class="col-md-10 float-left">
+                                    <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                    <input type="text" class="col-md-9 form-control float-right" v-model="nombre_crear">
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <button type="button" class="btn btn-primary" @click="crearExtras('concentracion')" title="Guardar"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Presentación</label>
+                                <div class="col-md-9 float-right form-inline">
+                                    <select class="form-control col-md-10 float-left custom-select" v-model="id_presentacion" v-bind:class="{ 'is-invalid': hasError.id_presentacion==1 }">
+                                        <option value="0" disabled>Seleccione</option>
+                                        <option v-for="id_presentacion in arrayPresentacion" :key="id_presentacion.id" :value="id_presentacion.id" v-text="id_presentacion.nombre"></option>
+                                    </select> 
+                                    <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('presentacion')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                    <span v-if="modalCrear==4" class="btn btn-secondary col-md-2 float-right" title="Nuevo (Deshabilitar)"><i class="fa fa-plus-circle"></i></span>
+                                </div>                   
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras" v-bind:class="{ 'is-invalid': hasError.codigo==1 }"> 
+                                </div>
 
-                                        <template v-if="permisosUser.anular">
-                                            <button v-if="articulo.condicion" type="button" class="btn btn-danger btn-sm" @click="desactivarArticulo(articulo.id)" title="Anular">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-info btn-sm" @click="activarArticulo(articulo.id)" title="Anular">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button v-if="articulo.condicion" type="button" class="btn btn-secondary btn-sm" title="Anular">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Anular">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
+                                <!--<label class="col-md-3 form-control-label float-left" for="text-input">Concentración</label>
+                                <div class="col-md-9 float-right">
+                                    <select class="form-control col-md-10 float-left" v-model="id_concentracion">
+                                        <option value="0" disabled>Seleccione</option>
+                                        <option v-for="id_concentracion in arrayConcentracion" :key="id_concentracion.id" :value="id_concentracion.id" v-text="id_concentracion.nombre"></option>
+                                    </select> 
+                                    <span class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('concentracion')"><i class="fa fa-plus-circle"></i></span>
+                                </div>-->
+                            </div>
+                            <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==4}">
+                                <div class="col-md-10 float-left">
+                                    <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                    <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
+                                </div>
+                                <div class="col-md-2 float-right">
+                                    <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" titlte="Gaurdar"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left">Marca</label>
+                                <div class="col-md-9 float-left">
+                                    <input type="text" v-model="marca" class="form-control" v-bind:class="{ 'is-invalid': hasError.marca==1 }">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left">Linea</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="linea" class="form-control" v-bind:class="{ 'is-invalid': hasError.linea==1 }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left">Imagen</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="file" id="img" name="img" ref="inputFileImg"  @change="cargarImg" class="form-control" v-bind:class="{ 'is-invalid': hasError.img==1 }">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
+                                <div class="col-md-9 float-right">
+                                    <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras"> 
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <barcode :value="codigo" :options="{ format: 'EAN-13' }" >Generando código de barras...</barcode>
+                            </div>
+                        </div>-->
+                            <div v-show="errorArticulo" class="form-group row div-error">
+                                <div class="text-center text-error">
+                                    <div v-for="error in errorMostrarMsjArticulo" :key="error" v-text="error">
 
-                                        <template>
-                                            <button type="button" class="btn btn-info btn-sm" @click="abrirModalStock('ver', articulo.id)" title="Ver stock">
-                                                <i class="fa fa-archive"></i>
-                                            </button>
-                                        </template>
-                                        
-                                        <template>
-                                            <button v-if="permisosUser.actualizar && articulo.condicion" @click="abrirModal('articulo','productos_asociados',articulo)" type="button" class="btn btn-success btn-sm" title="Presentación asociada">
-                                                <i class="fa fa-align-justify"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Presentación asociada">
-                                                <i class="fa fa-align-justify"></i>
-                                            </button>
-                                        </template>
-                                    </td>
-                                </tr>                                
-                            </tbody>
-                            <tbody v-else>
-                                <tr><td colspan="9">No hay registros para mostrar</td></tr>
-                            </tbody>
-                        </table>
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item" v-if="pagination.current_page > 1">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1,buscar,criterio)">Ant</a>
-                                </li>
-                                <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina(page,buscar,criterio)" v-text="page"></a>
-                                </li>
-                                <li class="page-item" v-if="pagination.current_page < pagination.last_page">
-                                    <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1,buscar,criterio)">Sig</a>
-                                </li>
-                            </ul>
-                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
+                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarArticulo()">Guardar</button>
+                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarArticulo()">Actualizar</button>
+                        
+                        <button type="button" class="btn btn-success" @click="abrirModal('articulo','tarifarios')">Tarifarios</button>
                     </div>
                 </div>
-                <!-- Fin ejemplo de tabla Listado -->
+                <!-- /.modal-content -->
             </div>
-            <!--Inicio del modal agregar/actualizar-->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal==1}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModal"></h4>
-                            <button type="button" class="close" @click="cerrarModal()" aria-label="Close">
-                              <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <!-- /.modal-dialog -->
+        </div>
+        <!--Fin del modal-->
+
+        <!-- Inicio modal stock -->
+        <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal2}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" v-text="tituloModalStock"></h4>
+                        <button type="button" class="close" @click="cerrarModalStock()" aria-label="Close">
+                            <span aria-hidden="true" title="Cerrar">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
                             <div class="row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-5">
+                                    <label class="col-md-4 float-left">Fec. Inicia</label>
+                                    <div class="col-md-8 float-right">
+                                        <input type="date" class="form-control" v-model="fecIni">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="col-md-4 float-left">Fec. Finaliza</label>
+                                    <div class="col-md-8 float-right">
+                                        <input type="date" class="form-control" v-model="fecFin">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" @click="listarStock(1,idArticuloStock)" class="btn btn-primary">
+                                        <i class="fa fa-search"></i> Buscar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <table class="table table-bordered table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Fec. crea</th>
+                                            <th>Ingreso</th>
+                                            <th>Egreso</th>
+                                            <th>Cantidad</th>
+                                            <th>Sumatoria</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="stock in arrayStock" :key="stock.id">
+                                            <td v-text="stock.fec_crea"></td>
+                                            
+                                            <td v-if="stock.tipo_movimiento==1 || stock.tipo_movimiento==2" v-text="stock.cantidad"></td>
+                                            <td v-else>0</td>
+
+                                            <td v-if="stock.tipo_movimiento==3 || stock.tipo_movimiento==4" v-text="stock.cantidad"></td>
+                                            <td v-else>0</td>
+
+                                            <td v-text="stock.cantidad"></td>
+                                            <td v-text="stock.sumatoria"></td>
+                                        </tr>                                
+                                    </tbody>
+                                </table>
+                                <nav>
+                                    <ul class="pagination">
+                                        <li class="page-item" v-if="pagination_stock.current_page_stock > 1">
+                                            <a class="page-link" href="#" @click.prevent="cambiarPaginaStock(pagination_stock.current_page_stock - 1,idArticuloStock)">Ant</a>
+                                        </li>
+                                        <li class="page-item" v-for="page_stock in pagesNumberStock" :key="page_stock" :class="[page_stock == isActived ? 'active' : '']">
+                                            <a class="page-link" href="#" @click.prevent="cambiarPaginaStock(page_stock,idArticuloStock)" v-text="page_stock"></a>
+                                        </li>
+                                        <li class="page-item" v-if="pagination_stock.current_page_stock < pagination_stock.last_page_stock">
+                                            <a class="page-link" href="#" @click.prevent="cambiarPaginaStock(pagination_stock.current_page_stock + 1,idArticuloStock)">Sig</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="cerrarModalStock()">Cerrar</button>
+                        <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarArticulo()">Guardar</button>
+                        <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarArticulo()">Actualizar</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- Fin modal stock -->
+
+        <!-- Inicio modal tarifarios -->
+        <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal3}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" v-text="tituloModal3"></h4>
+                        <button type="button" class="close" @click="cerrarModalTarifario()" aria-label="Close">
+                            <span aria-hidden="true" title="Cerrar">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <table class="table table-bordered table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th class="col-md-3">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(tarifario, index) in arrayTarifarios" :key="index">
+                                            <td v-text="tarifario.nombre"></td>
+                                            <td style="text-align: right;">
+                                                <input type="number" v-if="tipoAccionModal3==2" v-model="tarifario.valor" :min="1" @blur="(function(){if(tarifario.valor<1) tarifario.valor=1;})">
+                                                <span v-if="tipoAccionModal3==1" v-text="tarifario.valor"></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="cerrarModalTarifario()">Cerrar</button>
+                        <button type="button"  v-if="tipoAccionModal3==2" class="btn btn-primary" @click="tipoAccionModal3=1, modal3=0">Guardar</button>
+                        <button type="button"  v-if="tipoAccionModal3==1" class="btn btn-success" @click="tipoAccionModal3=2">Editar</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- Fin modal tarifarios -->
+
+        <!--MODALES CREAR CATETORIA 1 Y CUENTAS-->
+        <!--Inicio del modal agregar/actualizar-->
+        <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal4}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" v-text="tituloModal4"></h4>
+                        <button type="button" class="close" @click="cerrarModal4()" aria-label="Close">
+                            <span aria-hidden="true" title="Cerrar">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <div class="form-group row">
+                                <div class="col-md-12">
                                     <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
                                     <div class="col-md-11 float-right">
-                                        <input type="text" v-model="nombre" v-bind:class="{ 'is-invalid': hasError.nombre==1 }" class="form-control float-right" placeholder="Nombre de artículo" style="width: 95.7% !important;">
+                                        <input type="text" v-model="nombreModeloContable" class="form-control float-right" placeholder="Nombre del modelo contable" v-bind:class="{ 'is-invalid' : hasError.nombreModeloContable==1}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label class="col-md-1 form-control-label float-left" for="email-input">Descripción</label>
+                                    <div class="col-md-11 float-right">
+                                        <textarea v-model="descripcionModeloContable" class="form-control float-right"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label class="form-control-label col-md-3 float-left" for="text-input">Modelo contable</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="idcategoria" v-bind:class="{ 'is-invalid': hasError.idcategoria==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
-                                        </select>
-                                        <span class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('modelo_contable')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Cuenta compra <span v-show="idCuentaProductos==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaProductos" v-bind:class="{ 'is-invalid' : hasError.idCuentaProductos==1}">
+                                        <button type="button" @click="abrirModalCuentas('productos')" title="Agragar cuenta" class="btn btn-primary">...</button>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-control-label col-md-3 float-left" for="text-input">Centro de costos</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="idcategoria2" v-bind:class="{ 'is-invalid': hasError.idcategoria2==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option value="." disabled>.</option>
-                                            <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Cuenta Salida <span v-show="idCuentaSalidaProductos==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaSalidaProductos" v-bind:class="{ 'is-invalid' : hasError.idCuentaSalidaProductos==1}">
+                                        <button type="button" @click="abrirModalCuentas('salida_productos')" title="Agragar cuenta" class="btn btn-primary">...</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Saldos iniciales <span style="color:red;" v-show="idCuentaSaldosIniciales==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaSaldosIniciales" v-bind:class="{ 'is-invalid' : hasError.idCuentaSaldosIniciales==1}">
+                                        <button type="button" @click="abrirModalCuentas('saldos_iniciales')" title="Agragar cuenta" class="btn btn-primary">...</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Cuenta Donaciones <span style="color:red;" v-show="idCuentaDonaciones==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaDonaciones" v-bind:class="{ 'is-invalid' : hasError.idCuentaDonaciones==1}">
+                                        <button type="button" @click="abrirModalCuentas('donaciones')" title="Agragar cuenta" class="btn btn-primary">...</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Cuenta devoluciones ventas <span style="color:red;" v-show="idCuentaDevolucionesVentas==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaDevolucionesVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesVentas==1}">
+                                        <button type="button" @click="abrirModalCuentas('devoluciones_ventas')" title="Agragar cuenta" class="btn btn-primary">...</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Cuenta devoluciones compras <span style="color:red;" v-show="idCuentaDevolucionesCompras==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaDevolucionesCompras" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesCompras==1}">
+                                        <button type="button" @click="abrirModalCuentas('devoluciones_compras')" title="Agragar cuenta" class="btn btn-primary">...</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Cuenta impuesto al consumo en ventas <span style="color:red;" v-show="idCuentaImpuestoConsumoVentas==''">(*)</span></label>
+                                    <div class="form-inline col-md-9 float-right">
+                                        <input type="text" readonly class="form-control" v-model="cuentaImpuestoConsumoVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaImpuestoConsumoVentas==1}">
+                                        <button type="button" @click="abrirModalCuentas('impuesto_consumo_ventas')" title="Agragar cuenta" class="btn btn-primary">...</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Iva Compras<span style="color:red;" v-show="idIvaCompras==0">(*)</span></label>
+                                    <div class="col-md-9 float-right">
+                                        <select class="form-control" v-model="idIvaCompras" v-bind:class="{ 'is-invalid' : hasError.idIvaCompras==1}">
+                                            <option value="0">Seleccione</option>
+                                            <option v-for="(iva, index) in arrayIvasCompras" :key="index" :value="iva.id" v-text="iva.nombre"></option>
                                         </select>
-                                        <span v-if="modalCrear==0" class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('categoria2')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Iva Ventas<span style="color:red;" v-show="idIvaVentas==0">(*)</span></label>
+                                    <div class="col-md-9 float-right">
+                                        <select class="form-control" v-model="idIvaVentas" v-bind:class="{ 'is-invalid' : hasError.idIvaVentas==1}">
+                                            <option value="0">Seleccione</option>
+                                            <option v-for="(iva, index) in arrayIvasVentas" :key="index" :value="iva.id" v-text="iva.nombre"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Iva Devolucion En Compras<span style="color:red;" v-show="idIvaDevolucionCompras==0">(*)</span></label>
+                                    <div class="col-md-9 float-right">
+                                        <select class="form-control" v-model="idIvaDevolucionCompras" v-bind:class="{ 'is-invalid' : hasError.idIvaDevolucionCompras==1}">
+                                            <option value="0">Seleccione</option>
+                                            <option v-for="(iva, index) in arrayIvasDevolucionCompras" :key="index" :value="iva.id" v-text="iva.nombre"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="col-md-3 form-control-label float-left">Iva Devolucion En Ventas<span style="color:red;" v-show="idIvaDevolucionVentas==0">(*)</span></label>
+                                    <div class="col-md-9 float-right">
+                                        <select class="form-control" v-model="idIvaDevolucionVentas" v-bind:class="{ 'is-invalid' : hasError.idIvaDevolucionVentas==1}">
+                                            <option value="0">Seleccione</option>
+                                            <option v-for="(iva, index) in arrayIvasDevolucionVentas" :key="index" :value="iva.id" v-text="iva.nombre"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="errorModeloContable" class="form-group row div-error">
+                                <div class="text-center text-error">
+                                    <div v-for="error in errorMostrarMsjModeloContable" :key="error" v-text="error">
 
-                                        <span v-if="modalCrear==1" class="btn btn-secondary form-control col-md-2 float-right" title="Nuevo (Deshabilidado)"><i class="fa fa-plus-circle"></i></span>
-                                    </div>
-                                </div>
-                                <div style="display:none;" :class="{'col-md-12 mostrar-crear' : modalCrear==1}">
-                                    <div class="col-md-10 float-left">
-                                        <div class="form-group col-md-6 float-left">
-                                            <span v-text="tituloModalCrear" class="form-control-label col-md-4 float-left"></span>
-                                            <input type="text" class="form-control col-md-8 float-right" v-model="nombre_crear">
-                                        </div>
-                                        <div class="col-md-6 float-left">
-                                            <span class="form-control-label col-md-4 float-left">Descripción</span>
-                                            <input type="text" class="form-control col-md-8 float-right" v-model="descripcion_crear">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('categoria')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Precio Venta</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" v-model="precio_venta" :min="1" @blur="function(){ if(precio_venta<1) precio_venta=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.precio_venta==1 }">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label v-if="tipo_articulo!=2" class="col-md-3 form-control-label float-left" for="text-input">Stock</label>
-                                    <div v-if="tipo_articulo!=2" class="col-md-9 float-right">
-                                        <input type="number" v-model="stock" :min="1" @blur="function(){ if(stock<1) stock=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.stock==1 }">
-                                    </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="cerrarModal4()">Cerrar</button>
+                        <button type="button" class="btn btn-primary" @click="registrarModeloContable()">Guardar</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!--Fin del modal-->
+
+        <!-- Modal busqueda cuentas-->
+        <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal5}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" v-text="tituloModal5"></h4>
+                        <button type="button" class="close" @click="cerrarModalCuentas()" aria-label="Close">
+                            <span aria-hidden="true" title="Cerrar">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div style="max-width: 120px !important;" class="col-md-2   ">
+                                <label style='margin-top: 3px; '><b>Cuenta</b></label>                                
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="cta_busq" v-model="cta_busq" @keyup="buscarCuentaB()">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Cod. interno</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="cod_invima" class="form-control" placeholder="Código invima" v-bind:class="{ 'is-invalid': hasError.cod_invima==1 }">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Lote</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="lote" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.lote==1 }">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6" v-if="tipo_articulo!=2 && tipo_articulo!=3">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Fec. vence</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="date" v-model="fec_vence" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.fec_vence==1 }">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-else>
-                                </div>
-                                <div v-if="tipo_articulo!=2" class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Cant. minima</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" v-model="minimo" :min="1" @blur="(function(){
-                                            if(minimo<1) minimo=1;})" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.minimo==1 }">
-                                    </div>
-                                </div>
-                                <div v-else class="form-group col-md-6">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="form-control-label col-md-3 float-left" for="text-input">Tipo artículo</label>
-                                    <div class="col-md-9 float-right">
-                                        <select class="form-control custom-select" v-model="tipo_articulo" v-bind:class="{ 'is-invalid': hasError.tipo_articulo==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option value="1">Suministro</option>
-                                            <option value="2">Servicio</option>
-                                            <option value="3">Producto simple</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-if="tipo_articulo!=2">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Talla</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="talla" class="form-control" placeholder="Talla del producto" v-bind:class="{ 'is-invalid': hasError.talla==1 }"> 
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-else>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Und. medida</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="id_und_medida" v-bind:class="{ 'is-invalid': hasError.id_und_medida==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="id_und_medida in arrayUndMedida" :key="id_und_medida.id" :value="id_und_medida.id" v-text="id_und_medida.nombre"></option>
-                                        </select> 
-                                        <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                        <span v-if="modalCrear==2" class="btn btn-secondary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Descripción</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
-                                    </div>
-                                </div>
-                                <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==2}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="form-control col-md-9 float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('und_medida')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                                <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==3}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="col-md-9 form-control float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('concentracion')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-sm">
+                                
+                                    <tr><th>Codigo</th><th>Cuenta</th><th>-</th></tr>
+                                
+                                    <tr v-for="cuentas in arrayCuentasBusq" :key="cuentas.id">
+                                        <td v-text="cuentas.codigo"></td>
+                                        <td v-text="cuentas.nombre"></td>
+                                        <td>
+                                            <button type="button" style=" margin-right: -8px;" @click="cargarCuentaB(cuentas, tipoCuenta)" class="btn btn-success btn-sm" title='Ver formato'>
+                                                <i class="icon-check"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fin del modal-->
+
+        <!-- Modal productos asociados-->
+        <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal6}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" v-text="tituloModal6"></h4>
+                        <button v-if="tipoAccion6==0" @click="selectPresentacion(),tipoAccion6=1" class="btn btn-default">Nuevo</button>
+                        <button type="button" class="close" @click="cerrarModal6()" aria-label="Close">
+                            <span aria-hidden="true" title="Cerrar">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form v-if="tipoAccion6==1" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <div class="form-group row">
+                                <div class="col-md-6">
                                     <label class="col-md-3 form-control-label float-left" for="text-input">Presentación</label>
                                     <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="id_presentacion" v-bind:class="{ 'is-invalid': hasError.id_presentacion==1 }">
+                                        <select class="form-control col-md-10 float-left custom-select" v-model="idPresentacionAsociada" v-bind:class="{ 'is-invalid' : hasError.idPresentacionAsociada==1 }">
                                             <option value="0" disabled>Seleccione</option>
                                             <option v-for="id_presentacion in arrayPresentacion" :key="id_presentacion.id" :value="id_presentacion.id" v-text="id_presentacion.nombre"></option>
                                         </select> 
-                                        <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('presentacion')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                        <span v-if="modalCrear==4" class="btn btn-secondary col-md-2 float-right" title="Nuevo (Deshabilitar)"><i class="fa fa-plus-circle"></i></span>
-                                    </div>                   
+                                        <span v-if="modalCrear!=4" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('presentacion')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                        <span v-else class="btn btn-secondary col-md-2 float-right"  title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="col-md-6">
                                     <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
                                     <div class="col-md-9 float-right">
-                                        <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras" v-bind:class="{ 'is-invalid': hasError.codigo==1 }"> 
-                                    </div>
-
-                                    <!--<label class="col-md-3 form-control-label float-left" for="text-input">Concentración</label>
-                                    <div class="col-md-9 float-right">
-                                        <select class="form-control col-md-10 float-left" v-model="id_concentracion">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="id_concentracion in arrayConcentracion" :key="id_concentracion.id" :value="id_concentracion.id" v-text="id_concentracion.nombre"></option>
-                                        </select> 
-                                        <span class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('concentracion')"><i class="fa fa-plus-circle"></i></span>
-                                    </div>-->
-                                </div>
-                                <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==4}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" titlte="Gaurdar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                        <input type="text" v-model="codigoPresentacionAsociada" class="form-control" v-bind:class="{ 'is-invalid' : hasError.codigoPresentacionAsociada==1 }">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left">Marca</label>
-                                    <div class="col-md-9 float-left">
-                                        <input type="text" v-model="marca" class="form-control" v-bind:class="{ 'is-invalid': hasError.marca==1 }">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label class="col-md-3 form-control-label float-left" for="text-input">Unidades</label>
+                                    <div class="col-md-9 float-right">
+                                        <input type="number" v-model="unidadesPresentacionAsociada" class="form-control" v-bind:class="{ 'is-invalid' : hasError.unidadesPresentacionAsociada==1 }">
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left">Linea</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="linea" class="form-control" v-bind:class="{ 'is-invalid': hasError.linea==1 }">
-                                    </div>
+                                <div class="col-md-6">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left">Imagen</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="file" id="img" name="img" ref="inputFileImg"  @change="cargarImg" class="form-control" v-bind:class="{ 'is-invalid': hasError.img==1 }">
-                                    </div>
+                            <!--<div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==4}">
+                                <div class="col-md-10 float-left">
+                                    <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                    <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
                                 </div>
-                                <div class="form-group col-md-6">
-                                </div>
-                            </div>
-                            <!--<div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras"> 
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <barcode :value="codigo" :options="{ format: 'EAN-13' }" >Generando código de barras...</barcode>
+                                <div class="col-md-2 float-right">
+                                    <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" title="Guardar"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-secondary" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
                                 </div>
                             </div>-->
-                                <div v-show="errorArticulo" class="form-group row div-error">
-                                    <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjArticulo" :key="error" v-text="error">
-
-                                        </div>
-                                    </div>
+                            <div class="row pb-3" v-if="modalCrear==4">
+                                <div class="col-md-10 float-left">
+                                    <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                    <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
                                 </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarArticulo()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarArticulo()">Actualizar</button>
-                            
-                            <button type="button" class="btn btn-success" @click="abrirModal('articulo','tarifarios')">Tarifarios</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!--Fin del modal-->
-
-            <!-- Inicio modal stock -->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal2}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModalStock"></h4>
-                            <button type="button" class="close" @click="cerrarModalStock()" aria-label="Close">
-                              <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="form-group col-md-5">
-                                        <label class="col-md-4 float-left">Fec. Inicia</label>
-                                        <div class="col-md-8 float-right">
-                                            <input type="date" class="form-control" v-model="fecIni">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label class="col-md-4 float-left">Fec. Finaliza</label>
-                                        <div class="col-md-8 float-right">
-                                            <input type="date" class="form-control" v-model="fecFin">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button type="submit" @click="listarStock(1,idArticuloStock)" class="btn btn-primary">
-                                            <i class="fa fa-search"></i> Buscar
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <table class="table table-bordered table-striped table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Fec. crea</th>
-                                                <th>Ingreso</th>
-                                                <th>Egreso</th>
-                                                <th>Cantidad</th>
-                                                <th>Sumatoria</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="stock in arrayStock" :key="stock.id">
-                                                <td v-text="stock.fec_crea"></td>
-                                                
-                                                <td v-if="stock.tipo_movimiento==1 || stock.tipo_movimiento==2" v-text="stock.cantidad"></td>
-                                                <td v-else>0</td>
-
-                                                <td v-if="stock.tipo_movimiento==3 || stock.tipo_movimiento==4" v-text="stock.cantidad"></td>
-                                                <td v-else>0</td>
-
-                                                <td v-text="stock.cantidad"></td>
-                                                <td v-text="stock.sumatoria"></td>
-                                            </tr>                                
-                                        </tbody>
-                                    </table>
-                                    <nav>
-                                        <ul class="pagination">
-                                            <li class="page-item" v-if="pagination_stock.current_page_stock > 1">
-                                                <a class="page-link" href="#" @click.prevent="cambiarPaginaStock(pagination_stock.current_page_stock - 1,idArticuloStock)">Ant</a>
-                                            </li>
-                                            <li class="page-item" v-for="page_stock in pagesNumberStock" :key="page_stock" :class="[page_stock == isActived ? 'active' : '']">
-                                                <a class="page-link" href="#" @click.prevent="cambiarPaginaStock(page_stock,idArticuloStock)" v-text="page_stock"></a>
-                                            </li>
-                                            <li class="page-item" v-if="pagination_stock.current_page_stock < pagination_stock.last_page_stock">
-                                                <a class="page-link" href="#" @click.prevent="cambiarPaginaStock(pagination_stock.current_page_stock + 1,idArticuloStock)">Sig</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                <div class="col-md-2 float-right">
+                                    <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" title="Guardar"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModalStock()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarArticulo()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarArticulo()">Actualizar</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- Fin modal stock -->
-
-            <!-- Inicio modal tarifarios -->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal3}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width:80% !important;margin-left: 22% !important;">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModal3"></h4>
-                            <button type="button" class="close" @click="cerrarModalTarifario()" aria-label="Close">
-                              <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
+                            <div class="row">
+                                <div class="container">
                                     <table class="table table-bordered table-striped table-sm">
                                         <thead>
                                             <tr>
@@ -516,353 +796,71 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(tarifario, index) in arrayTarifarios">
+                                            <tr v-for="(tarifario, index) in arrayTarifarios" :key="index">
                                                 <td v-text="tarifario.nombre"></td>
-                                                <td style="text-align: right;">
-                                                    <input type="number" v-if="tipoAccionModal3==2" style="text-align: right;" v-model="tarifario.valor" :min="1" @blur="(function(){if(tarifario.valor<1) tarifario.valor=1;})">
-                                                    <span v-if="tipoAccionModal3==1" v-text="tarifario.valor"></span>
-                                                </td>
+                                                <td style="text-align: right;"><input type="number" style="text-align: right;" v-model="tarifario.valor" :min="0" @blur="function(){ if(tarifario.valor<0){tarifario.valor=0;}}"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModalTarifario()">Cerrar</button>
-                            <button type="button"  v-if="tipoAccionModal3==2" class="btn btn-primary" @click="tipoAccionModal3=1, modal3=0">Guardar</button>
-                            <button type="button"  v-if="tipoAccionModal3==1" class="btn btn-success" @click="tipoAccionModal3=2">Editar</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- Fin modal tarifarios -->
-
-            <!--MODALES CREAR CATETORIA 1 Y CUENTAS-->
-            <!--Inicio del modal agregar/actualizar-->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal4}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width: 1100px !important;margin-left: -10%;">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModal4"></h4>
-                            <button type="button" class="close" @click="cerrarModal4()" aria-label="Close">
-                              <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
-                                        <div class="col-md-11 float-right">
-                                            <input type="text" v-model="nombreModeloContable" class="form-control float-right" placeholder="Nombre del modelo contable" v-bind:class="{ 'is-invalid' : hasError.nombreModeloContable==1}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label class="col-md-1 form-control-label float-left" for="email-input">Descripción</label>
-                                        <div class="col-md-11 float-right">
-                                            <textarea v-model="descripcionModeloContable" class="form-control float-right"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Cuenta compra <span style="color:red;" v-show="idCuentaProductos==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaProductos" v-bind:class="{ 'is-invalid' : hasError.idCuentaProductos==1}">
-                                            <button type="button" @click="abrirModalCuentas('productos')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Cuenta Salida <span style="color:red;" v-show="idCuentaSalidaProductos==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaSalidaProductos" v-bind:class="{ 'is-invalid' : hasError.idCuentaSalidaProductos==1}">
-                                            <button type="button" @click="abrirModalCuentas('salida_productos')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Saldos iniciales <span style="color:red;" v-show="idCuentaSaldosIniciales==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaSaldosIniciales" v-bind:class="{ 'is-invalid' : hasError.idCuentaSaldosIniciales==1}">
-                                            <button type="button" @click="abrirModalCuentas('saldos_iniciales')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Cuenta Donaciones <span style="color:red;" v-show="idCuentaDonaciones==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaDonaciones" v-bind:class="{ 'is-invalid' : hasError.idCuentaDonaciones==1}">
-                                            <button type="button" @click="abrirModalCuentas('donaciones')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Cuenta devoluciones ventas <span style="color:red;" v-show="idCuentaDevolucionesVentas==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaDevolucionesVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesVentas==1}">
-                                            <button type="button" @click="abrirModalCuentas('devoluciones_ventas')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Cuenta devoluciones compras <span style="color:red;" v-show="idCuentaDevolucionesCompras==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaDevolucionesCompras" v-bind:class="{ 'is-invalid' : hasError.idCuentaDevolucionesCompras==1}">
-                                            <button type="button" @click="abrirModalCuentas('devoluciones_compras')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Cuenta impuesto al consumo en ventas <span style="color:red;" v-show="idCuentaImpuestoConsumoVentas==''">(*)</span></label>
-                                        <div class="form-inline col-md-9 float-right">
-                                            <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuentaImpuestoConsumoVentas" v-bind:class="{ 'is-invalid' : hasError.idCuentaImpuestoConsumoVentas==1}">
-                                            <button type="button" @click="abrirModalCuentas('impuesto_consumo_ventas')" title="Agragar cuenta" class="btn btn-primary">...</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Iva Compras<span style="color:red;" v-show="idIvaCompras==0">(*)</span></label>
-                                        <div class="col-md-9 float-right">
-                                            <select class="form-control" v-model="idIvaCompras" v-bind:class="{ 'is-invalid' : hasError.idIvaCompras==1}">
-                                                <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasCompras" :value="iva.id" v-text="iva.nombre"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Iva Ventas<span style="color:red;" v-show="idIvaVentas==0">(*)</span></label>
-                                        <div class="col-md-9 float-right">
-                                            <select class="form-control" v-model="idIvaVentas" v-bind:class="{ 'is-invalid' : hasError.idIvaVentas==1}">
-                                                <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasVentas" :value="iva.id" v-text="iva.nombre"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Iva Devolucion En Compras<span style="color:red;" v-show="idIvaDevolucionCompras==0">(*)</span></label>
-                                        <div class="col-md-9 float-right">
-                                            <select class="form-control" v-model="idIvaDevolucionCompras" v-bind:class="{ 'is-invalid' : hasError.idIvaDevolucionCompras==1}">
-                                                <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasDevolucionCompras" :value="iva.id" v-text="iva.nombre"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="col-md-3 form-control-label float-left">Iva Devolucion En Ventas<span style="color:red;" v-show="idIvaDevolucionVentas==0">(*)</span></label>
-                                        <div class="col-md-9 float-right">
-                                            <select class="form-control" v-model="idIvaDevolucionVentas" v-bind:class="{ 'is-invalid' : hasError.idIvaDevolucionVentas==1}">
-                                                <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasDevolucionVentas" :value="iva.id" v-text="iva.nombre"></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-show="errorModeloContable" class="form-group row div-error">
-                                    <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjModeloContable" :key="error" v-text="error">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModal4()">Cerrar</button>
-                            <button type="button" class="btn btn-primary" @click="registrarModeloContable()">Guardar</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!--Fin del modal-->
-
-            <!-- Modal busqueda cuentas-->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal5}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModal5"></h4>
-                            <button type="button" class="close" @click="cerrarModalCuentas()" aria-label="Close">
-                                <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
                             <div class="form-group row">
-                                <div style="max-width: 120px !important;" class="col-md-2   ">
-                                    <label style='margin-top: 3px; '><b>Cuenta</b></label>                                
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-secondary" @click="tipoAccion6=0">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" @click="registrarProductosAsociados()">Guardar</button>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="cta_busq" v-model="cta_busq" @keyup="buscarCuentaB()">
+                            </div>
+                            <!--<div v-show="errorProductosAsociados" class="form-group row div-error">
+                                <div class="text-center text-error">
+                                    <div v-for="error in errorMostrarMsjProductosAsociados" :key="error" v-text="error">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-sm">
-                                    
-                                        <tr><th>Codigo</th><th>Cuenta</th><th>-</th></tr>
-                                    
-                                        <tr v-for="cuentas in arrayCuentasBusq" :key="cuentas.id">
-                                            <td v-text="cuentas.codigo"></td>
-                                            <td v-text="cuentas.nombre"></td>
-                                            <td>
-                                                <button type="button" style=" margin-right: -8px;" @click="cargarCuentaB(cuentas, tipoCuenta)" class="btn btn-success btn-sm" title='Ver formato'>
-                                                    <i class="icon-check"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                </table>
-                            </div>
+                            </div>-->
+
+                        </form>
+
+                        <div v-if="tipoAccion6==0">
+                            <table class="table table-bordered table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+                                        <th>Presentación</th>
+                                        <th>Tarifario</th>
+                                        <th>Valor</th>
+                                        <th class="col-md-3">Unidades</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-if="arrayPresentacionesAsociadas.length">
+                                    <tr v-for="presentacionAsociada in arrayPresentacionesAsociadas" :key="presentacionAsociada.id">
+                                        <td v-text="presentacionAsociada.codigo_articulo"></td>
+                                        <td v-text="presentacionAsociada.nom_articulo"></td>
+                                        <td v-text="presentacionAsociada.nom_presentacion"></td>
+                                        <td v-text="presentacionAsociada.nom_tarifario"></td>
+                                        <td v-text="presentacionAsociada.valor"></td>
+                                        <td v-text="presentacionAsociada.unidades"></td>
+                                        <td>
+                                            <button type="button" v-if="presentacionAsociada.estado" class="btn btn-danger btn-sm" @click="desactivarPresentacionAsociada(presentacionAsociada.id)"><i class="icon-trash"></i></button>
+                                            <button type="button" v-else class="btn btn-secondary btn-sm"><i class="icon-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr colspan="7">No hay registros para mostrar</tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!--Fin del modal-->
-
-            <!-- Modal productos asociados-->
-            <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal6}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width: 750px !important;">
-                        <div class="modal-header">
-                            <h4 class="modal-title" v-text="tituloModal6"></h4>
-                            <button v-if="tipoAccion6==0" @click="selectPresentacion(),tipoAccion6=1" class="btn btn-default">Nuevo</button>
-                            <button type="button" class="close" @click="cerrarModal6()" aria-label="Close">
-                              <span aria-hidden="true" title="Cerrar">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form v-if="tipoAccion6==1" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="col-md-3 form-control-label float-left" for="text-input">Presentación</label>
-                                        <div class="col-md-9 float-right form-inline">
-                                            <select class="form-control col-md-10 float-left custom-select" v-model="idPresentacionAsociada" v-bind:class="{ 'is-invalid' : hasError.idPresentacionAsociada==1 }">
-                                                <option value="0" disabled>Seleccione</option>
-                                                <option v-for="id_presentacion in arrayPresentacion" :key="id_presentacion.id" :value="id_presentacion.id" v-text="id_presentacion.nombre"></option>
-                                            </select> 
-                                            <span v-if="modalCrear!=4" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('presentacion')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                            <span v-else class="btn btn-secondary col-md-2 float-right"  title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
-                                        <div class="col-md-9 float-right">
-                                            <input type="text" v-model="codigoPresentacionAsociada" class="form-control" v-bind:class="{ 'is-invalid' : hasError.codigoPresentacionAsociada==1 }">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="col-md-3 form-control-label float-left" for="text-input">Unidades</label>
-                                        <div class="col-md-9 float-right">
-                                            <input type="number" v-model="unidadesPresentacionAsociada" class="form-control" v-bind:class="{ 'is-invalid' : hasError.unidadesPresentacionAsociada==1 }">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                                <!--<div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==4}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-secondary" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>-->
-                                <div class="row pb-3" v-if="modalCrear==4">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="container">
-                                        <table class="table table-bordered table-striped table-sm">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th class="col-md-3">Valor</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr v-for="(tarifario, index) in arrayTarifarios">
-                                                    <td v-text="tarifario.nombre"></td>
-                                                    <td style="text-align: right;"><input type="number" style="text-align: right;" v-model="tarifario.valor" :min="0" @blur="function(){ if(tarifario.valor<0){tarifario.valor=0;}}"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="btn btn-secondary" @click="tipoAccion6=0">Cancelar</button>
-                                        <button type="button" class="btn btn-primary" @click="registrarProductosAsociados()">Guardar</button>
-                                    </div>
-                                </div>
-                                <!--<div v-show="errorProductosAsociados" class="form-group row div-error">
-                                    <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjProductosAsociados" :key="error" v-text="error">
-                                        </div>
-                                    </div>
-                                </div>-->
-
-                            </form>
-
-                            <div v-if="tipoAccion6==0">
-                                <table class="table table-bordered table-striped table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Nombre</th>
-                                            <th>Presentación</th>
-                                            <th>Tarifario</th>
-                                            <th>Valor</th>
-                                            <th class="col-md-3">Unidades</th>
-                                            <th>Opciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody v-if="arrayPresentacionesAsociadas.length">
-                                        <tr v-for="presentacionAsociada in arrayPresentacionesAsociadas" :key="presentacionAsociada.id">
-                                            <td v-text="presentacionAsociada.codigo_articulo"></td>
-                                            <td v-text="presentacionAsociada.nom_articulo"></td>
-                                            <td v-text="presentacionAsociada.nom_presentacion"></td>
-                                            <td v-text="presentacionAsociada.nom_tarifario"></td>
-                                            <td v-text="presentacionAsociada.valor"></td>
-                                            <td v-text="presentacionAsociada.unidades"></td>
-                                            <td>
-                                                <button type="button" v-if="presentacionAsociada.estado" class="btn btn-danger btn-sm" @click="desactivarPresentacionAsociada(presentacionAsociada.id)"><i class="icon-trash"></i></button>
-                                                <button type="button" v-else class="btn btn-secondary btn-sm"><i class="icon-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody v-else>
-                                        <tr colspan="7">No hay registros para mostrar</tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="cerrarModal6()">Cerrar</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="cerrarModal6()">Cerrar</button>
                     </div>
-                    <!-- /.modal-content -->
                 </div>
+                <!-- /.modal-content -->
             </div>
-            <!--Fin del modal-->
-        </main>
+        </div>
+        <!--Fin del modal-->
+    </main>
 </template>
 
 <script>
@@ -2142,31 +2140,4 @@
         }
     }
 </script>
-<style>    
-    .modal-content{
-        width: 130% !important;
-        position: absolute !important;
-    }
-    .mostrar{
-        display: list-item !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        background-color: #3c29297a !important;
-    }
-    .div-error{
-        display: flex;
-        justify-content: center;
-    }
-    .text-error{
-        color: red !important;
-        font-weight: bold;
-    }
 
-    .mostrar-crear{
-        display: inline !important;
-    }
-    .modal-content2{
-        width: 130% !important;
-        position: absolute !important;
-    }
-</style>

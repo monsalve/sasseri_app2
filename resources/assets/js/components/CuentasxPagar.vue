@@ -20,9 +20,9 @@
                                 <div class="form-group row">
                                 <label class="col-md-3 form-control-label float-left" for="email-input">Tercero</label>
                                     <div class="form-inline  float-right col-md-9">
-                                        <input type="text" readonly class="form-control" style="width: 70%;"   v-model="tercero_filtro" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" >
+                                        <input type="text" readonly class="form-control" v-model="tercero_filtro" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" >
                                         <button type="button" @click="abrirModal('cuentasxpagar','tercerofiltro')" class="btn btn-primary">...</button>
-                                        <button type="button" @click="quitar()" class="btn btn-danger" style="padding: -0.1% 4% 3.1% 4%;">
+                                        <button type="button" @click="quitar()" class="btn btn-danger">
                                             <i class="icon-trash"></i>
                                         </button>
                                     </div>
@@ -184,7 +184,7 @@
                                     <div class="form-group row">
                                     <label class="col-md-1 form-control-label float-left" for="email-input">Tercero</label>
                                         <div class="form-inline  float-right col-md-11">
-                                            <input type="text" readonly class="form-control" style="width: 55%;" :class="{'is-invalid':NoTercero}"  v-model="tercero">
+                                            <input type="text" readonly class="form-control" :class="{'is-invalid':NoTercero}"  v-model="tercero">
                                             <button type="button" @click="abrirModal('cuentasxpagar','tercero')" class="btn btn-primary">...</button>
                                             <button type="button" @click="quitar()" class="btn btn-danger" style="padding: -0.1% 4% 3.1% 4%;">
                                                 <i class="icon-trash"></i>
@@ -964,7 +964,7 @@
         position: absolute !important;
     }
     .modal-width{
-        width: 1000px !important;
+        /* width: 1000px !important; */
         position: absolute !important;
     }
     .mostrar{

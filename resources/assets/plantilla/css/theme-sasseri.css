@@ -1,0 +1,85 @@
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.625;
+    color: #666;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+a{
+    color: #333;
+}
+.topbar{
+    background-color: #cacbc7;
+    height: 2.5rem;
+}
+#alertsDropdown i{
+    color: #08537c;
+}
+#accordionSidebar{
+    border-right: 2px solid #93bf1f;
+
+}
+.sidebar .sidebar-brand{
+    padding: 0 1rem;
+}
+#userDropdown span{
+    color: #08537c;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.sidebar .nav-item .nav-link[data-toggle="collapse"]::after {
+
+    width: 1rem;
+    text-align: center;
+    float: right;
+    vertical-align: 0;
+    border: 0;
+    font-weight: 900;
+    content: "\f107";
+    font-family: FontAwesome;
+  
+}
+.fa{
+    font-family: FontAwesome;
+}
+.fa-chevron-left::before{
+    font-family: FontAwesome;
+}
+.sidebar #sidebarToggle::after{
+    font-family: FontAwesome;
+}
+.sidebar.toggled #sidebarToggle::after{
+    font-family: FontAwesome;
+}
+
+.bg-dark{
+    color: #fff;
+}
+
+table.table-earning thead th{
+    background-color: #08537c;
+    color: #fff;
+    padding: .5rem;
+}
+table .table-earning tbody td{
+    color: #333;
+    padding: .5rem;
+}
+.sidebar.toggled .nav-item .collapse, .sidebar.toggled .nav-item .collapsing {
+	margin: 0;
+	z-index: 10;
+}
+.sidebar.toggled .nav-item .collapse .collapse-inner {
+	box-shadow: 0 .15rem 5px 0 rgb(58, 59, 69);
+	border-radius: .35rem;
+	background: #fff;
+	z-index: 20;
+	position: relative;
+}
+.sidebar.toggled .nav-item .collapse {
+	left: calc(4rem + 1.5rem / 2);	
+}

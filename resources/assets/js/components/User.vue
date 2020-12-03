@@ -104,7 +104,7 @@
                                     <div class="form-group col-md-12 float-left">
                                         <label class="col-md-1 form-control-label" for="text-input">Nombre(*)</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" v-model="nombre" class="form-control float-right" style="width: 96%;" placeholder="Nombre de la persona">
+                                            <input type="text" v-model="nombre" class="form-control float-right" placeholder="Nombre de la persona">
                                         </div>
                                     </div>
                                 </div>
