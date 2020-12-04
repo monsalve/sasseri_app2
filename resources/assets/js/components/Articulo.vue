@@ -157,243 +157,242 @@
                         </div>
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
-                                    <div class="col-md-11 float-right">
-                                        <input type="text" v-model="nombre" v-bind:class="{ 'is-invalid': hasError.nombre==1 }" class="form-control float-right" placeholder="Nombre de artículo" style="width: 95.7% !important;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="form-control-label col-md-3 float-left" for="text-input">Modelo contable</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="idcategoria" v-bind:class="{ 'is-invalid': hasError.idcategoria==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
-                                        </select>
-                                        <span class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('modelo_contable')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-control-label col-md-3 float-left" for="text-input">Centro de costos</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="idcategoria2" v-bind:class="{ 'is-invalid': hasError.idcategoria2==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option value="." disabled>.</option>
-                                            <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
-                                        </select>
-                                        <span v-if="modalCrear==0" class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('categoria2')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-
-                                        <span v-if="modalCrear==1" class="btn btn-secondary form-control col-md-2 float-right" title="Nuevo (Deshabilidado)"><i class="fa fa-plus-circle"></i></span>
-                                    </div>
-                                </div>
-                                <div style="display:none;" :class="{'col-md-12 mostrar-crear' : modalCrear==1}">
-                                    <div class="col-md-10 float-left">
-                                        <div class="form-group col-md-6 float-left">
-                                            <span v-text="tituloModalCrear" class="form-control-label col-md-4 float-left"></span>
-                                            <input type="text" class="form-control col-md-8 float-right" v-model="nombre_crear">
-                                        </div>
-                                        <div class="col-md-6 float-left">
-                                            <span class="form-control-label col-md-4 float-left">Descripción</span>
-                                            <input type="text" class="form-control col-md-8 float-right" v-model="descripcion_crear">
+                                <div class="form-row">
+                                    
+                                    <div class="form-group row col-12">
+                                        <label class="col-md-2 col-form-label" for="text-input">Nombre</label>
+                                        <div class="col-md-10">
+                                            <input type="text" v-model="nombre" v-bind:class="{ 'is-invalid': hasError.nombre==1 }" class="form-control" placeholder="Nombre de artículo" style="width: 95.7% !important;">
                                         </div>
                                     </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('categoria')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Precio Venta</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" v-model="precio_venta" :min="1" @blur="function(){ if(precio_venta<1) precio_venta=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.precio_venta==1 }">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label v-if="tipo_articulo!=2" class="col-md-3 form-control-label float-left" for="text-input">Stock</label>
-                                    <div v-if="tipo_articulo!=2" class="col-md-9 float-right">
-                                        <input type="number" v-model="stock" :min="1" @blur="function(){ if(stock<1) stock=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.stock==1 }">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Cod. interno</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="cod_invima" class="form-control" placeholder="Código invima" v-bind:class="{ 'is-invalid': hasError.cod_invima==1 }">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Lote</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="lote" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.lote==1 }">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6" v-if="tipo_articulo!=2 && tipo_articulo!=3">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Fec. vence</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="date" v-model="fec_vence" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.fec_vence==1 }">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-else>
-                                </div>
-                                <div v-if="tipo_articulo!=2" class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Cant. minima</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" v-model="minimo" :min="1" @blur="(function(){
-                                            if(minimo<1) minimo=1;})" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.minimo==1 }">
-                                    </div>
-                                </div>
-                                <div v-else class="form-group col-md-6">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="form-control-label col-md-3 float-left" for="text-input">Tipo artículo</label>
-                                    <div class="col-md-9 float-right">
-                                        <select class="form-control custom-select" v-model="tipo_articulo" v-bind:class="{ 'is-invalid': hasError.tipo_articulo==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option value="1">Suministro</option>
-                                            <option value="2">Servicio</option>
-                                            <option value="3">Producto simple</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-if="tipo_articulo!=2">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Talla</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="talla" class="form-control" placeholder="Talla del producto" v-bind:class="{ 'is-invalid': hasError.talla==1 }"> 
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6" v-else>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Und. medida</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="id_und_medida" v-bind:class="{ 'is-invalid': hasError.id_und_medida==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="id_und_medida in arrayUndMedida" :key="id_und_medida.id" :value="id_und_medida.id" v-text="id_und_medida.nombre"></option>
-                                        </select> 
-                                        <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                        <span v-if="modalCrear==2" class="btn btn-secondary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Descripción</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
-                                    </div>
-                                </div>
-                                <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==2}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="form-control col-md-9 float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('und_medida')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                                <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==3}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="col-md-9 form-control float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('concentracion')" title="Guardar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Presentación</label>
-                                    <div class="col-md-9 float-right form-inline">
-                                        <select class="form-control col-md-10 float-left custom-select" v-model="id_presentacion" v-bind:class="{ 'is-invalid': hasError.id_presentacion==1 }">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="id_presentacion in arrayPresentacion" :key="id_presentacion.id" :value="id_presentacion.id" v-text="id_presentacion.nombre"></option>
-                                        </select> 
-                                        <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('presentacion')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
-                                        <span v-if="modalCrear==4" class="btn btn-secondary col-md-2 float-right" title="Nuevo (Deshabilitar)"><i class="fa fa-plus-circle"></i></span>
-                                    </div>                   
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras" v-bind:class="{ 'is-invalid': hasError.codigo==1 }"> 
-                                    </div>
+                                   
+                                    <div class="form-group row col-12">
+                                        <div class="col-md-6 row">
+                                            <label class="col-md-4" for="text-input">Modelo contable</label>
+                                            <select class="form-control col-md-6 custom-select" v-model="idcategoria" v-bind:class="{ 'is-invalid': hasError.idcategoria==1 }">
+                                                <option value="0" disabled>Seleccione</option>
+                                                <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                            </select>
+                                            <span class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('modelo_contable')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                        </div>
+                                        <div class="col-md-6 row">
+                                            <label class="col-md-4" for="text-input">Centro de costos</label>
+                                          
+                                            <select class="form-control col-md-6 custom-select" v-model="idcategoria2" v-bind:class="{ 'is-invalid': hasError.idcategoria2==1 }">
+                                                <option value="0" disabled>Seleccione</option>
+                                                <option value="." disabled>.</option>
+                                                <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                            </select>
+                                            <span v-if="modalCrear==0" class="btn btn-primary form-control col-md-2 float-right" @click="abrirModalCrear('categoria2')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
 
-                                    <!--<label class="col-md-3 form-control-label float-left" for="text-input">Concentración</label>
-                                    <div class="col-md-9 float-right">
-                                        <select class="form-control col-md-10 float-left" v-model="id_concentracion">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="id_concentracion in arrayConcentracion" :key="id_concentracion.id" :value="id_concentracion.id" v-text="id_concentracion.nombre"></option>
-                                        </select> 
-                                        <span class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('concentracion')"><i class="fa fa-plus-circle"></i></span>
+                                            <span v-if="modalCrear==1" class="btn btn-secondary form-control col-md-2 float-right" title="Nuevo (Deshabilidado)"><i class="fa fa-plus-circle"></i></span>
+                                           
+                                        </div>
+                                        <div style="display:none;" :class="{'col-md-12 mostrar-crear' : modalCrear==1}">
+                                            <div class="col-md-10 float-left">
+                                                <div class="form-group col-md-6 float-left">
+                                                    <span v-text="tituloModalCrear" class="form-control-label col-md-4 float-left"></span>
+                                                    <input type="text" class="form-control col-md-8 float-right" v-model="nombre_crear">
+                                                </div>
+                                                <div class="col-md-6 float-left">
+                                                    <span class="form-control-label col-md-4 float-left">Descripción</span>
+                                                    <input type="text" class="form-control col-md-8 float-right" v-model="descripcion_crear">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 float-right">
+                                                <button type="button" class="btn btn-primary" @click="crearExtras('categoria')" title="Guardar"><i class="fa fa-save"></i></button>
+                                                <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Precio Venta</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="number" v-model="precio_venta" :min="1" @blur="function(){ if(precio_venta<1) precio_venta=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.precio_venta==1 }">                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label v-if="tipo_articulo!=2" class="col-md-3 form-control-label float-left" for="text-input">Stock</label>
+                                            <div v-if="tipo_articulo!=2" class="col-md-9 float-right">
+                                                <input type="number" v-model="stock" :min="1" @blur="function(){ if(stock<1) stock=1; }" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.stock==1 }">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Cod. interno</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="cod_invima" class="form-control" placeholder="Código invima" v-bind:class="{ 'is-invalid': hasError.cod_invima==1 }">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Lote</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="lote" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.lote==1 }">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6" v-if="tipo_articulo!=2 && tipo_articulo!=3">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Fec. vence</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="date" v-model="fec_vence" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.fec_vence==1 }">                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6" v-else>
+                                        </div>
+                                        <div v-if="tipo_articulo!=2" class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Cant. minima</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="number" v-model="minimo" :min="1" @blur="(function(){
+                                                    if(minimo<1) minimo=1;})" class="form-control" placeholder="" v-bind:class="{ 'is-invalid': hasError.minimo==1 }">
+                                            </div>
+                                        </div>
+                                        <div v-else class="form-group col-md-6">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-control-label col-md-3 float-left" for="text-input">Tipo artículo</label>
+                                            <div class="col-md-9 float-right">
+                                                <select class="form-control custom-select" v-model="tipo_articulo" v-bind:class="{ 'is-invalid': hasError.tipo_articulo==1 }">
+                                                    <option value="0" disabled>Seleccione</option>
+                                                    <option value="1">Suministro</option>
+                                                    <option value="2">Servicio</option>
+                                                    <option value="3">Producto simple</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6" v-if="tipo_articulo!=2">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Talla</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="talla" class="form-control" placeholder="Talla del producto" v-bind:class="{ 'is-invalid': hasError.talla==1 }"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6" v-else>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6" v-if="tipo_articulo==1 || tipo_articulo==3">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Und. medida</label>
+                                            <div class="col-md-9 float-right form-inline">
+                                                <select class="form-control col-md-10 float-left custom-select" v-model="id_und_medida" v-bind:class="{ 'is-invalid': hasError.id_und_medida==1 }">
+                                                    <option value="0" disabled>Seleccione</option>
+                                                    <option v-for="id_und_medida in arrayUndMedida" :key="id_und_medida.id" :value="id_und_medida.id" v-text="id_und_medida.nombre"></option>
+                                                </select> 
+                                                <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                                <span v-if="modalCrear==2" class="btn btn-secondary col-md-2 float-right" @click="abrirModalCrear('und_medida')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="email-input">Descripción</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
+                                            </div>
+                                        </div>
+                                        <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==2}">
+                                            <div class="col-md-10 float-left">
+                                                <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                                <input type="text" class="form-control col-md-9 float-right" v-model="nombre_crear">
+                                            </div>
+                                            <div class="col-md-2 float-right">
+                                                <button type="button" class="btn btn-primary" @click="crearExtras('und_medida')" title="Guardar"><i class="fa fa-save"></i></button>
+                                                <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                            </div>
+                                        </div>
+                                        <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==3}">
+                                            <div class="col-md-10 float-left">
+                                                <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                                <input type="text" class="col-md-9 form-control float-right" v-model="nombre_crear">
+                                            </div>
+                                            <div class="col-md-2 float-right">
+                                                <button type="button" class="btn btn-primary" @click="crearExtras('concentracion')" title="Guardar"><i class="fa fa-save"></i></button>
+                                                <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Presentación</label>
+                                            <div class="col-md-9 float-right form-inline">
+                                                <select class="form-control col-md-10 float-left custom-select" v-model="id_presentacion" v-bind:class="{ 'is-invalid': hasError.id_presentacion==1 }">
+                                                    <option value="0" disabled>Seleccione</option>
+                                                    <option v-for="id_presentacion in arrayPresentacion" :key="id_presentacion.id" :value="id_presentacion.id" v-text="id_presentacion.nombre"></option>
+                                                </select> 
+                                                <span v-if="modalCrear==0" class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('presentacion')" title="Nuevo"><i class="fa fa-plus-circle"></i></span>
+                                                <span v-if="modalCrear==4" class="btn btn-secondary col-md-2 float-right" title="Nuevo (Deshabilitar)"><i class="fa fa-plus-circle"></i></span>
+                                            </div>                   
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras" v-bind:class="{ 'is-invalid': hasError.codigo==1 }"> 
+                                            </div>
+
+                                            <!--<label class="col-md-3 form-control-label float-left" for="text-input">Concentración</label>
+                                            <div class="col-md-9 float-right">
+                                                <select class="form-control col-md-10 float-left" v-model="id_concentracion">
+                                                    <option value="0" disabled>Seleccione</option>
+                                                    <option v-for="id_concentracion in arrayConcentracion" :key="id_concentracion.id" :value="id_concentracion.id" v-text="id_concentracion.nombre"></option>
+                                                </select> 
+                                                <span class="btn btn-primary col-md-2 float-right" @click="abrirModalCrear('concentracion')"><i class="fa fa-plus-circle"></i></span>
+                                            </div>-->
+                                        </div>
+                                        <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==4}">
+                                            <div class="col-md-10 float-left">
+                                                <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
+                                                <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
+                                            </div>
+                                            <div class="col-md-2 float-right">
+                                                <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" titlte="Gaurdar"><i class="fa fa-save"></i></button>
+                                                <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left">Marca</label>
+                                            <div class="col-md-9 float-left">
+                                                <input type="text" v-model="marca" class="form-control" v-bind:class="{ 'is-invalid': hasError.marca==1 }">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left">Linea</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="linea" class="form-control" v-bind:class="{ 'is-invalid': hasError.linea==1 }">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left">Imagen</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="file" id="img" name="img" ref="inputFileImg"  @change="cargarImg" class="form-control" v-bind:class="{ 'is-invalid': hasError.img==1 }">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                        </div>
+                                    </div>
+                                    <!--<div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
+                                            <div class="col-md-9 float-right">
+                                                <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras"> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <barcode :value="codigo" :options="{ format: 'EAN-13' }" >Generando código de barras...</barcode>
+                                        </div>
                                     </div>-->
-                                </div>
-                                <div style="display:none;" :class="{'form-group col-md-12 mostrar-crear' : modalCrear==4}">
-                                    <div class="col-md-10 float-left">
-                                        <span class="col-md-3 form-control-label float-left" v-text="tituloModalCrear"></span>
-                                        <input type="text" class="col-md-9 form-control-label float-right" v-model="nombre_crear">
-                                    </div>
-                                    <div class="col-md-2 float-right">
-                                        <button type="button" class="btn btn-primary" @click="crearExtras('presentacion')" titlte="Gaurdar"><i class="fa fa-save"></i></button>
-                                        <button type="button" class="btn btn-danger" @click="cerrarModalCrear()" title="Cancelar"><i class="fa fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left">Marca</label>
-                                    <div class="col-md-9 float-left">
-                                        <input type="text" v-model="marca" class="form-control" v-bind:class="{ 'is-invalid': hasError.marca==1 }">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left">Linea</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="linea" class="form-control" v-bind:class="{ 'is-invalid': hasError.linea==1 }">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left">Imagen</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="file" id="img" name="img" ref="inputFileImg"  @change="cargarImg" class="form-control" v-bind:class="{ 'is-invalid': hasError.img==1 }">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                </div>
-                            </div>
-                            <!--<div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="col-md-3 form-control-label float-left" for="text-input">Código</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" v-model="codigo" class="form-control" placeholder="Código de barras"> 
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <barcode :value="codigo" :options="{ format: 'EAN-13' }" >Generando código de barras...</barcode>
-                                </div>
-                            </div>-->
-                                <div v-show="errorArticulo" class="form-group row div-error">
-                                    <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjArticulo" :key="error" v-text="error">
+                                    <div v-show="errorArticulo" class="form-group row div-error">
+                                        <div class="text-center text-error">
+                                            <div v-for="error in errorMostrarMsjArticulo" :key="error" v-text="error">
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -2144,7 +2143,6 @@
 </script>
 <style>    
     .modal-content{
-        width: 130% !important;
         position: absolute !important;
     }
     .mostrar{
@@ -2166,7 +2164,6 @@
         display: inline !important;
     }
     .modal-content2{
-        width: 130% !important;
         position: absolute !important;
     }
 </style>

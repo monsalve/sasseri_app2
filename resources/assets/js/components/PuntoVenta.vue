@@ -37,7 +37,7 @@
                         <div class="row">
                             <div class="col-6">  
                                 <p class="badge badge-primary precio-prod">$ 2000000</p>
-                                <div class="card rounded" style="width: 9rem;">
+                                <div class="card rounded">
                                     <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Sancocho de verduras</p>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-6">  
                                 <p class="badge badge-primary precio-prod">$ 2000000</p>
-                                <div class="card rounded" style="width: 9rem;">
+                                <div class="card rounded">
                                     <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Sancocho de verduras</p>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-6">  
                                 <p class="badge badge-primary precio-prod">$ 2000000</p>
-                                <div class="card rounded" style="width: 9rem;">
+                                <div class="card rounded">
                                     <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Sancocho de verduras</p>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="col-6">  
-                                 <div class="card" style="width: 9rem;">
+                                 <div class="card">
                                     <img src="http://img2.wikia.nocookie.net/__cb20100805212045/panamanianrecipes/images/a/a8/Sancocho.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Sopa de hueso</p>
@@ -333,7 +333,7 @@
                     </div>                    
                 </div> 
             </div>
-            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%"> <!-- boton de facturar -->
+            <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>

@@ -186,7 +186,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 form-control-label">Cuenta de cierre <span style="color:red;" v-show="id_cuenta_cierre==''">(*Seleccione)</span></label>
                                     <div class="form-inline col-md-4">
-                                        <input type="text" readonly class="form-control" style="width: 85%;" v-model="cuenta_cierre">
+                                        <input type="text" readonly class="form-control" v-model="cuenta_cierre">
                                         <button type="button" @click="abrirModal('planCuentas','buscar')" class="btn btn-primary">...</button>
                                     </div>
 
@@ -196,7 +196,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 form-control-label" for="text-input">Tercero cierre</label>
                                     <div class="form-inline col-md-4">
-                                        <input type="text" readonly class="form-control" style="width: 68%;" v-model="tercero">
+                                        <input type="text" readonly class="form-control" v-model="tercero">
                                         <button type="button" @click="abrirModal('planCuentas','tercero')" class="btn btn-primary">...</button>
                                         <button type="button" @click="quitar()" class="btn btn-danger">
                                             <i class="icon-trash"></i>
@@ -206,8 +206,8 @@
                                     <label class="col-md-2 form-control-label">Categoria <span style="color:red;" v-show="id_categoria.length==0">(*Seleccione)</span></label>
                                     <div class="form-inline col-md-4">
                                         <div class="col-md-10 float-left">
-                                            <multiselect v-model="id_categoria" :options="arrayCategoria" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" :custom-label="arrayCategoria.nombre" placeholder="Seleccione alguna" label="nombre" track-by="nombre" :preselect-first="true" style="width:  12.5em !important;margin-left: -10%;">
-                                                <template slot="selection" slot-scope="{ values, search, isOpen }" style="height: 0px !important;"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} seleccionadas</span></template>
+                                            <multiselect v-model="id_categoria" :options="arrayCategoria" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" :custom-label="arrayCategoria.nombre" placeholder="Seleccione alguna" label="nombre" track-by="nombre" :preselect-first="true">
+                                                <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} seleccionadas</span></template>
                                             </multiselect>
                                         </div>
 

@@ -151,7 +151,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" v-model="nombre" style="width: 96%;" class="form-control float-right" placeholder="Nombre de la empresa">
+                                            <input type="text" v-model="nombre" class="form-control float-right" placeholder="Nombre de la empresa">
                                         </div>
                                     </div>
                                 </div>
@@ -496,22 +496,4 @@
         }
     }
 </script>
-<style>    
-    .modal-content{
-        position: absolute !important;
-    }
-    .mostrar{
-        display: list-item !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        background-color: #3c29297a !important;
-    }
-    .div-error{
-        display: flex;
-        justify-content: center;
-    }
-    .text-error{
-        color: red !important;
-        font-weight: bold;
-    }
-</style>
+

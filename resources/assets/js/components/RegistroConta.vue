@@ -144,7 +144,7 @@
                                                 </span>
                                             </template>
                                         </td>
-                                        <td style="width:178px !important">
+                                        <td>
                                             
                                             <button v-if="permisosUser.leer" type="button" style=" margin-right: -8px;" @click="verFormato(registro)" class="btn btn-success btn-sm" title='Ver formato'>
                                                 <i class="icon-eye"></i>

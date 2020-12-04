@@ -1,7 +1,5 @@
-
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <!-- Required meta tags-->
@@ -14,357 +12,330 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Sasseri</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Fontfaces CSS-->
     <link href="css/plantilla.css" rel="stylesheet">
     
 </head>
 
-<body class="animsition">
+<body id="page-top">
     <div id="app">
-        <main>
-          
-            <!-- HEADER MOBILE-->
-            <header class="header-mobile d-block d-lg-none">
-                <div class="header-mobile__bar">
-                    <div class="container-fluid">
-                        <div class="header-mobile-inner">
-                            <a class="logo col-sm-12" href="index.html">
-                                <img src="img/logo.png" alt="Sasseri" />
-                            </a>
-                            
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primaryx sidebar sidebar-darkx accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
+                    <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
+                </a>
+
+                <li @click="menu=999991" class="nav-item">
+                    <a href="#" class="nav-link"><i class="icon-user"></i> <span>Usuarios</span></a>
+                </li>
+                <li @click="menu=10" class="nav-item">
+                    <a href="#" class="nav-link"><i class="icon-user"></i> <span>Terceros</span></a>
+                </li>
+                <li @click="menu=40" class="nav-item">
+                    <a href="#" class="nav-link"><i class="icon-screen-desktop"></i> <span>Punto de venta</span></a>
+                </li>
+                <li @click="menu=14" class="nav-item">
+                    <a href="#" class="nav-link"><i class="icon-calculator"></i><span>Facturación</span> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfig"
+                    aria-expanded="true" aria-controls="collapseConfig" >
+                        <i class="icon-wrench"></i>
+                        <span>Configuración</span>
+                    </a>
+                    <ul  id="collapseConfig" class="collapse" aria-labelledby="headingConfig"
+                    data-parent="#accordionSidebar">
+                        <div class="collapse-inner">
+                            <li @click="menu=6" class="collapse-item">
+                                <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
+                            </li>
+                            <li @click="menu=12" class="collapse-item">
+                                <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
+                            </li>
+                            <li @click="menu=27" class="collapse-item">
+                                <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
+                            </li>
+                            <li @click="menu=29" class="collapse-item">
+                                <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
+                            </li>
                         </div>
-                    </div>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
+                    aria-expanded="true" aria-controls="collapseStock">
+                        <i class="icon-bag"></i><span>Almacén</span>
+                    </a>
+                    <ul id="collapseStock" class="collapse" aria-labelledby="headingStock"
+                    data-parent="#accordionSidebar">
+                        <div class="collapse-inner">
+                            <li @click="menu=15" class="collapse-item">
+                                <a href="#" ><i class="fa fa-table"></i></i> Articulo</a>
+                            </li>
+                            <li @click="menu=17" class="collapse-item">
+                                <a href="#" ><i class="fa fa-share"></i></i> Entradas</a>
+                            </li>
+                            <li @click="menu=18" class="collapse-item">
+                                <a href="#" ><i class="fa fa-reply"></i> Salidas</a>
+                            </li>
+                            <li @click="menu=19" class="collapse-item">
+                                <a href="#" ><i class="fa fa-archive"></i> Stock</a>
+                            </li>
+                            <li @click="menu=22" class="collapse-item">
+                                <a href="#" ><i class="fa fa-circle"></i> Presentación</a>
+                            </li>
+                            <li @click="menu=23" class="collapse-item">
+                                <a href="#" ><i class="fa fa-flask"></i> Unidad de medida</a>
+                            </li>
+                            <li @click="menu=24" class="collapse-item">
+                                <a href="#" ><i class="fa fa-tint"></i> Concentración</a>
+                            </li>
+                            <li @click="menu=25" class="collapse-item">
+                                <a href="#" ><i class="fa fa-level-down"></i> Categoría</a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a 
+                        class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCajas"
+                        aria-expanded="true" aria-controls="collapseCajas"
+                    >
+                        <i class="icon-basket"></i>
+                        <span> Cajas</span>                       
+                    </a>
+                    <ul 
+                        id="collapseCajas" class="collapse" aria-labelledby="headingCajas" data-parent="#accordionSidebar"                   
+                    >
+                        <div class="collapse-inner">
+                            <li @click="menu=35" class="collapse-item">
+                                <a href="#"><i class="fa fa-list-ol"></i> Gestión de cajas</a>
+                            </li>
+                            <li @click="menu=30" class="collapse-item">
+                                <a href="#"><i class="fa fa-times-circle"></i> <span>Cierre de caja</span></a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCartera"
+                    aria-expanded="true" aria-controls="collapseCartera">
+                        <i class="icon-wallet"></i><span>Cartera</span>
+                    </a>
+                    <ul id="collapseCartera" class="collapse" aria-labelledby="headingCartera"
+                    data-parent="#accordionSidebar">
+                        <div class="collapse-inner">
+                            <li @click="menu=33" class="collapse-item">
+                                <a href="#"><i class="fa fa-money"></i> Cuentas por cobrar</a>
+                            </li>
+                            <li @click="menu=34" class="collapse-item">
+                                <a href="#"><i class="fa fa-money"></i> Cuentas por pagar</a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-                <nav class="navbar-mobile">
-                    <div class="container-fluid">
-                        <ul class="navbar-mobile__list list-unstyled">                        
-                            <li @click="menu=999991" class="">
-                                <a href="#"><i class="icon-user"></i> Usuarios</a>
-                            </li>
-                            <li @click="menu=10" class="">
-                                <a href="#"><i class="icon-user"></i> Terceros</a>
-                            </li>
-                            <li @click="menu=40" class="">
-                                <a href="#"><i class="icon-screen-desktop"></i> Punto de venta</a>
-                            </li>
-                            <li @click="menu=14" class="">
-                                <a href="#"><i class="icon-calculator"></i> Facturación</a>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#"><i class="icon-wrench"></i>Configuración</a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
-                                    <li @click="menu=6" class="">
-                                        <a href="#"><i class="icon-user"></i> Empresa</a>
-                                    </li>
-                                    <li @click="menu=12" class="">
-                                        <a href="#"><i class="icon-user"></i> Mesas</a>
-                                    </li>
-                                    <li @click="menu=27" class="">
-                                        <a href="#"><i class="icon-user"></i> IVAs</a>
-                                    </li>
-                                    <li @click="menu=29" class="">
-                                        <a href="#"><i class="icon-user"></i> Cajas</a>
-                                    </li>
 
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="icon-bag"></i>Almacén
-                                </a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
-                                    <li @click="menu=15" class="">
-                                        <a href="#"><i class="icon-user"></i> Articulo</a>
-                                    </li>
-                                    <li @click="menu=17" class="">
-                                        <a href="#"><i class="icon-user"></i> Entradas</a>
-                                    </li>
-                                    <li @click="menu=18" class="">
-                                        <a href="#"><i class="icon-user"></i> Salidas</a>
-                                    </li>
-                                    <li @click="menu=19" class="">
-                                        <a href="#"><i class="icon-user"></i> Stock</a>
-                                    </li>
-                                    <li @click="menu=22" class="">
-                                        <a href="#"><i class="icon-user"></i> Presentación</a>
-                                    </li>
-                                    <li @click="menu=23" class="">
-                                        <a href="#"><i class="icon-user"></i> Unidad de medida</a>
-                                    </li>
-                                    <li @click="menu=24" class="">
-                                        <a href="#"><i class="icon-user"></i> Concentración</a>
-                                    </li>
-                                    <li @click="menu=25" class="">
-                                        <a href="#"><i class="icon-user"></i> Categoría</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="icon-basket"></i>Cajas
-                                </a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
-                                    <li @click="menu=35" class="">
-                                        <a href="#"><i class="icon-user"></i> Gestión de cajas</a>
-                                    </li>
-                                    <li @click="menu=30" class="">
-                                        <a href="#"><i class="icon-user"></i> Cierre de caja</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a class="js-arrow" href="#">
-                                    <i class="icon-wallet"></i>Cartera
-                                </a>
-                                <ul class="list-unstyled navbar__sub-list js-sub-list" style="display:none;">
-                                    <li @click="menu=33" class="">
-                                        <a href="#"><i class="icon-user"></i> Cuentas por cobrar</a>
-                                    </li>
-                                    <li @click="menu=34" class="">
-                                        <a href="#"><i class="icon-user"></i> Cuentas por pagar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- END HEADER MOBILE-->
+            </ul>
+            <!-- End of Sidebar -->
 
-            <section id="wrapper">
-                <div class="container-fluid row p-0" style="margin:auto;">
-                    <!-- MENU SIDEBAR-->
-                    <aside class="menu-sidebar d-none d-lg-block col-lg-3">
-                        <div class="logo">
-                            <a href="#">
-                                <img src="img/logo.png" alt="Sasseri" />
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <!-- Topbar Navbar -->
+                        <div class="p-1 text-center">
+                            <a class="sidebar-brand  d-sm-none align-items-center justify-content-center" href="index.html">
+                                <img style="width:70%;" src="img/logo.png" alt="Sasseri" />
                             </a>
                         </div>
-                        <div class="menu-sidebar__content js-scrollbar1">
-                            <nav class="navbar-sidebar">
-                                <ul class="list-unstyled navbar__list">
-                                    <li @click="menu=999991" class="">
-                                        <a href="#"><i class="icon-user"></i> Usuarios</a>
-                                    </li>
-                                    <li @click="menu=10" class="">
-                                        <a href="#"><i class="icon-user"></i> Terceros</a>
-                                    </li>
-                                    <li @click="menu=40" class="">
-                                        <a href="#"><i class="icon-screen-desktop"></i> Punto de venta</a>
-                                    </li>
-                                    <li @click="menu=14" class="">
-                                        <a href="#"><i class="icon-calculator"></i> Facturación</a>
-                                    </li>
-                                    <li class="has-sub">
-                                        <a class="js-arrow" href="#">
-                                            <i class="icon-wrench"></i>Configuración</a>
-                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=6" class="">
-                                                <a href="#"><i class="icon-user"></i> Empresa</a>
-                                            </li>
-                                            <li @click="menu=12" class="">
-                                                <a href="#"><i class="icon-user"></i> Mesas</a>
-                                            </li>
-                                            <li @click="menu=27" class="">
-                                                <a href="#"><i class="icon-user"></i> IVAs</a>
-                                            </li>
-                                            <li @click="menu=29" class="">
-                                                <a href="#"><i class="icon-user"></i> Cajas</a>
-                                            </li>
+                        <ul class="navbar-nav ml-auto">
 
-                                        </ul>
-                                    </li>
-                                    <li class="has-sub">
-                                        <a class="js-arrow" href="#">
-                                            <i class="icon-bag"></i>Almacén
-                                        </a>
-                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=15" class="">
-                                                <a href="#"><i class="icon-user"></i> Articulo</a>
-                                            </li>
-                                            <li @click="menu=17" class="">
-                                                <a href="#"><i class="icon-user"></i> Entradas</a>
-                                            </li>
-                                            <li @click="menu=18" class="">
-                                                <a href="#"><i class="icon-user"></i> Salidas</a>
-                                            </li>
-                                            <li @click="menu=19" class="">
-                                                <a href="#"><i class="icon-user"></i> Stock</a>
-                                            </li>
-                                            <li @click="menu=22" class="">
-                                                <a href="#"><i class="icon-user"></i> Presentación</a>
-                                            </li>
-                                            <li @click="menu=23" class="">
-                                                <a href="#"><i class="icon-user"></i> Unidad de medida</a>
-                                            </li>
-                                            <li @click="menu=24" class="">
-                                                <a href="#"><i class="icon-user"></i> Concentración</a>
-                                            </li>
-                                            <li @click="menu=25" class="">
-                                                <a href="#"><i class="icon-user"></i> Categoría</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-sub">
-                                        <a class="js-arrow" href="#">
-                                            <i class="icon-basket"></i>Cajas
-                                        </a>
-                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=35" class="">
-                                                <a href="#"><i class="icon-user"></i> Gestión de cajas</a>
-                                            </li>
-                                            <li @click="menu=30" class="">
-                                                <a href="#"><i class="icon-user"></i> Cierre de caja</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-sub">
-                                        <a class="js-arrow" href="#">
-                                            <i class="icon-wallet"></i>Cartera
-                                        </a>
-                                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                            <li @click="menu=33" class="">
-                                                <a href="#"><i class="icon-user"></i> Cuentas por cobrar</a>
-                                            </li>
-                                            <li @click="menu=34" class="">
-                                                <a href="#"><i class="icon-user"></i> Cuentas por pagar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </aside>
-                    <!-- END MENU SIDEBAR-->
-
-                    <!-- PAGE CONTAINER-->
-                    <div class="page-container col-lg-9 p-0">
-                        <section id="main">
-                            <!-- HEADER DESKTOP-->
-                            <header class="col-lg-12 bg-gray-light">
-                                <div class="section__content section__content--p30x">
-                                    <div class="container-fluid">
-                                        <div class="header-wrap2">                                
-                                            <div class="header-button">
-                                                <button class="hamburger hamburger--slider d-lg-none" type="button">
-                                                    <span class="hamburger-box">
-                                                        <i class="fa fa-align-justify"></i>
-                                                        <!-- <span class="hamburger-inner"></span> -->
-                                                    </span>
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                    aria-labelledby="searchDropdown">
+                                    <!-- <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                placeholder="Search for..." aria-label="Search"
+                                                aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
                                                 </button>
-                                                <div class="noti-wrap">                                      
-                                                    <div class="noti__item js-item-menu">
-                                                        <i class="zmdi zmdi-notifications"></i>
-                                                        <span class="quantity">3</span>
-                                                        <div class="notifi-dropdown js-dropdown">
-                                                            <div class="notifi__title">
-                                                                <p>You have 3 Notifications</p>
-                                                            </div>
-                                                            <div class="notifi__item">
-                                                                <div class="bg-c1 img-cir img-40">
-                                                                    <i class="zmdi zmdi-email-open"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p>You got a email notification</p>
-                                                                    <span class="date">April 12, 2018 06:50</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notifi__item">
-                                                                <div class="bg-c2 img-cir img-40">
-                                                                    <i class="zmdi zmdi-account-box"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p>Your account has been blocked</p>
-                                                                    <span class="date">April 12, 2018 06:50</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notifi__item">
-                                                                <div class="bg-c3 img-cir img-40">
-                                                                    <i class="zmdi zmdi-file-text"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p>You got a new file</p>
-                                                                    <span class="date">April 12, 2018 06:50</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notifi__footer">
-                                                                <a href="#">All notifications</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="account-wrap">
-                                                    <div class="account-item clearfix js-item-menu">
-                                                    
-                                                        <div class="content">
-                                                            <a class="js-acc-btn" href="#">{{Auth::user()->usuario}}</a>
-                                                        </div>
-                                                        <div class="account-dropdown js-dropdown">                                               
-                                                            <div class="account-dropdown__footer">
-                                                                
-                                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                                    <i class="zmdi zmdi-power"></i> Cerrar sesión
-                                                                </a>
-                                                            </div>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                {{ csrf_field() }}
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form> -->
                                 </div>
-                            </header>
-                            <!-- HEADER DESKTOP-->
+                            </li>
 
-                            <!-- MAIN CONTENT-->
-                            <div class="main-content">
-                                <div class="section__contentx section__content--p10">
-                                    <div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                            @yield('contenido')
-                                                                    
+                            <!-- Nav Item - Alerts -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter">3+</span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">
+                                        Alerts Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 12, 2019</div>
+                                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-success">
+                                                <i class="fas fa-donate text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 7, 2019</div>
+                                            $290.29 has been deposited into your account!
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">December 2, 2019</div>
+                                            Spending Alert: We've noticed unusually high spending for your account.
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                 </div>
-                            </div>
-                            <!-- END MAIN CONTENT-->
-                            <!-- END PAGE CONTAINER-->                
-                        </section>
+                            </li>
+
+                            <!-- Nav Item - Messages -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                
+                            </li>
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline">{{Auth::user()->usuario}}</span>
+                                    
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        @yield('contenido')
+                        
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-
-            </section>
-
-            <footer class="app-footer">
-                <span><a href="http://www.fractalagencia.com/">Fractal Agencia Digital</a> &copy; 2020</span>                
-            </footer>
-
-
-    </main>
+            </div>
+        </div>
     </div>
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>  
-    <script src="vendor/animsition/animsition.min.js"></script>  
+   
     <!-- Main JS-->
     <script src="js/app.js"></script>
     <script src="js/plantilla.js"></script>
-    <script src="js/main.js"></script>
-    
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js">
-    </script>
-    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/>
-    
-    
-     <!-- <script src="js/app.js"></script> -->
+    <script src="js/main.js"></script>    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"> </script>
+
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
 
 </body>
 
 </html>
-<!-- end document-->

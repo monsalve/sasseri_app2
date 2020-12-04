@@ -559,7 +559,7 @@
                                     <div class="col-md-12">
                                         <label class="form-control-label col-md-1 flota-left">Nombre</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" class="form-control float-right" v-model="evidencia" style="width: 96%;">
+                                            <input type="text" class="form-control float-right" v-model="evidencia">
                                         </div>
                                     </div>
                                 </div>
@@ -1353,8 +1353,7 @@
     }
 </script>
 <style>    
-    .modal-content{
-        width: 100% !important;
+    .modal-content{       
         position: absolute !important;
     }
     .mostrar{
