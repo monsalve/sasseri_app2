@@ -30,6 +30,9 @@
                 <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
                     <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
                 </a>
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
 
                 <li @click="menu=999991" class="nav-item">
                     <a href="#" class="nav-link"><i class="icon-user"></i> <span>Usuarios</span></a>
@@ -190,9 +193,7 @@ $rol_usu = Auth::user()->idrol;
                         </div>
                     </ul>
                 </li>
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+                
 
             </ul>
             <!-- End of Sidebar -->
