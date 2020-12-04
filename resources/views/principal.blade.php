@@ -21,6 +21,10 @@
 </head>
 
 <body class="animsition">
+    <?php 
+$rol_usu = Auth::user()->idrol;
+
+?>
     <div id="app">
         <main>
           
@@ -36,6 +40,8 @@
                         </div>
                     </div>
                 </div>
+        
+            @if($rol_usu==1) 
                 <nav class="navbar-mobile">
                     <div class="container-fluid">
                         <ul class="navbar-mobile__list list-unstyled">                        
@@ -130,6 +136,8 @@
                         </ul>
                     </div>
                 </nav>
+            @endif
+            
             </header>
             <!-- END HEADER MOBILE-->
 
@@ -248,12 +256,17 @@
                                     <div class="container-fluid">
                                         <div class="header-wrap2">                                
                                             <div class="header-button">
+                                            @if($rol_usu==1) 
                                                 <button class="hamburger hamburger--slider d-lg-none" type="button">
                                                     <span class="hamburger-box">
                                                         <i class="fa fa-align-justify"></i>
                                                         <!-- <span class="hamburger-inner"></span> -->
                                                     </span>
                                                 </button>
+                                            @endif
+                                            @if($rol_usu==2) 
+                                                <a href="#" class="btn btn-primary" @click="menu = 40">Facturar</a>
+                                            @endif
                                                 <div class="noti-wrap">                                      
                                                     <div class="noti__item js-item-menu">
                                                         <i class="zmdi zmdi-notifications"></i>
