@@ -207,7 +207,7 @@
                     <div class="card-body">                        
                         <div class="row border-bottom resaltar">                                
                             <div class="col-8">
-                                Margarita Arango Salasar 
+                                Margarita Arango Salasar
                             </div>
                             <div class="col-4">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
