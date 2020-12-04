@@ -106,7 +106,7 @@
                                     <div class="col-md-12">
                                         <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
                                         <div class="col-md-11 float-right">
-                                            <input type="text" v-model="nombre" class="form-control float-right" style="width: 96%;" placeholder="Nombre del iva">
+                                            <input type="text" v-model="nombre" class="form-control float-right" placeholder="Nombre del iva">
                                         </div>
                                     </div>
                                 </div>

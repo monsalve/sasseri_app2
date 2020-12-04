@@ -17,7 +17,7 @@
                 font-size: 11px !important;
                 /*font-family: SourceSansPro;*/
             }
-    
+    /*
             #logo{
                 float: left;
                 margin-top: 0%;
@@ -45,7 +45,7 @@
                 margin-top: 0%;
                 margin-left: 3%;
                 margin-right: 2%;
-                /*text-align: justify;*/
+                text-align: justify;
             }
     
             #encabezado{
@@ -56,7 +56,7 @@
             }
     
             #fact{
-                /*position: relative;*/
+                position: relative;
                 float: right;
                 margin-top: 13px;
                 margin-left: 15px;
@@ -173,7 +173,7 @@
             .table-striped tbody tr:nth-of-type(odd) {
                 background-color: rgba(0, 0, 0, 0.05);
             }
-        </style>
+        </style>*/
 </head>
 <body>
     <header>

@@ -189,7 +189,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(productosTarifario,index) in arrayProductosTarifario">
+                                        <tr v-for="(productosTarifario,index) in arrayProductosTarifario" :key="index" >
                                             <td v-if="productosTarifario.asociado==0" v-text="productosTarifario.nom_articulo+' - '+productosTarifario.nom_presentacion" class="col-md-11"></td>
                                             <td v-else v-text="productosTarifario.nom_articulo+' - '+productosTarifario.nom_presentacion+' (Presentación asociada)'" class="col-md-11"></td>
                                             <td><input type="number" v-model="productosTarifario.valor"></td>

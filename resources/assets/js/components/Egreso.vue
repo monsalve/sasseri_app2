@@ -554,7 +554,7 @@
                                     </tr>
                                 </thead>
                                 <tbody v-if="arrayArticulo.length">
-                                    <tr v-for="(articulo, index) in arrayArticulo">
+                                    <tr v-for="(articulo, index) in arrayArticulo" :key="index" >
                                         <td v-if="articulo.padre==''" v-text="articulo.codigo"></td>
                                         <td v-else></td>
                                         <td>
@@ -597,12 +597,12 @@
                             </table>
                         </div>
                         <div v-if="tipo_vista_articulo==2" class="container" style="display: block;height: 36em;max-height: 36em;overflow-y: auto;">
-                            <div v-for="(articulo, index) in arrayArticulo" @click="abrirModalCantidadArticulo(articulo)" class="col-sm-6 col-md-3 p-sm-2 p-md-1 mosaico" style="height: 43%;">
+                            <div v-for="(articulo, index) in arrayArticulo" :key="index" @click="abrirModalCantidadArticulo(articulo)" class="col-sm-6 col-md-3 p-sm-2 p-md-1 mosaico" >
                                 <div class="border col-md-12" style="height: 100%;">
                                     <div class="text-center py-md-2">
-                                        <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" class="img-responsive img-thumbnail" style="width: 8.5em;height: 8.5em;">
+                                        <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" class="img-responsive img-thumbnail">
 
-                                        <img v-else :src="`${ruta}/Empresas/${articulo.img}`" class="img-responsive img-thumbnail" style="width: 8.5em;height: 8.5em;">
+                                        <img v-else :src="`${ruta}/Empresas/${articulo.img}`" class="img-responsive img-thumbnail">
                                     </div>
                                     <div class="text-center col-md-12">
                                         <h6 v-text="articulo.nombre"></h6>
@@ -629,7 +629,7 @@
         <!-- Modal cantidad por articulo-->
         <div class="modal fade" tabindex="-1" :class="{'mostrar' : modalCantidadArticulo}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-primary modal-lg" role="document">
-                <div class="modal-content" style="width:35em !important;">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" v-text="tituloModalCantidadArticulo"></h4>
                         <button type="button" class="close" @click="cerrarModalCantidadArticulo()" aria-label="Close">
@@ -741,7 +741,7 @@
                                 <div class="col-md-12">
                                     <label class="form-control-label col-md-1 flota-left">Nombre</label>
                                     <div class="col-md-11 float-right">
-                                        <input type="text" class="form-control float-right" v-model="evidencia" style="width: 96%;">
+                                        <input type="text" class="form-control float-right" v-model="evidencia">
                                     </div>
                                 </div>
                             </div>

@@ -376,10 +376,10 @@
                                             <th>Opciones</th>
                                             <th>Artículo</th>
                                             <th>Precio</th>
-                                            <th style="width: 9em;">Cantidad</th>
-                                            <th style="width: 9em;">Descuento</th>
+                                            <th>Cantidad</th>
+                                            <th>Descuento</th>
                                             <th>Iva</th>
-                                            <th style="width: 9em;">Vr sin iva</th>
+                                            <th>Vr sin iva</th>
                                         </tr>
                                     </thead>
                                     <tbody v-if="arrayDetalle.length">
@@ -397,7 +397,7 @@
                                                 $ {{detalle.precio}}
                                             </td>
                                             <!--<td>
-                                                <input v-model="detalle.cantidad" type="number" class="form-control" style="width: 9em; text-align: right;" :min="1" :max="detalle.stock" @blur="if(detalle.cantidad>detalle.stock)
+                                                <input v-model="detalle.cantidad" type="number" class="form-control" :min="1" :max="detalle.stock" @blur="if(detalle.cantidad>detalle.stock)
                                                 detalle.cantidad=detalle.stock">
                                                 <span v-text="'Disponible: '+detalle.stock"></span>
                                             </td>-->
@@ -405,20 +405,20 @@
                                                 {{detalle.cantidad}}
                                             </td>
                                             <td>
-                                                <input v-model="detalle.valor_descuento" v-if="tipoAccion2==1" type="number" value="0" class="form-control" style="width: 9em; text-align: right;" :min="0" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="function(){
+                                                <input v-model="detalle.valor_descuento" v-if="tipoAccion2==1" type="number" value="0" class="form-control" :min="0" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="function(){
                                                         if(detalle.valor_descuento>((detalle.precio*detalle.cantidad)-detalle.valor_iva) || detalle.valor_descuento>0)
                                                         {detalle.valor_descuento=((detalle.precio*detalle.cantidad)-detalle.valor_iva);}
                                                         else{ detalle.valor_descuento=0;}
                                                     }
                                                 ">
 
-                                                <!--<input v-model="detalle.valor_descuento" v-else-if="tipoAccion2==2" type="number" value="0" class="form-control" style="width: 9em; text-align: right;" :min="detalle.valor_descuento2" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="
+                                                <!--<input v-model="detalle.valor_descuento" v-else-if="tipoAccion2==2" type="number" value="0" class="form-control" :min="detalle.valor_descuento2" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="
                                                 if(detalle.valor_descuento>((detalle.precio*detalle.cantidad)-detalle.valor_iva)) 
                                                 detalle.valor_descuento=((detalle.precio*detalle.cantidad)-detalle.valor_iva) || (detalle.valor_descuento<detalle.valor_descuento2)
                                                 detalle.valor_descuento=detalle.valor_descuento2
                                                 ">-->
 
-                                                <input v-model="detalle.valor_descuento" v-else-if="tipoAccion2==2" type="number" value="0" class="form-control" style="width: 9em; text-align: right;" :min="0" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="function(){
+                                                <input v-model="detalle.valor_descuento" v-else-if="tipoAccion2==2" type="number" value="0" class="form-control" :min="0" :max="((detalle.precio*detalle.cantidad)-detalle.valor_iva)" @blur="function(){
                                                     if(detalle.valor_descuento>((detalle.precio*detalle.cantidad)-detalle.valor_iva) || detalle.valor_descuento>0) 
                                                     {detalle.valor_descuento=((detalle.precio*detalle.cantidad)-detalle.valor_iva);}
                                                     else{detalle.valor_descuento=0;}
@@ -446,10 +446,10 @@
                                         <tr style="background-color: #CEECF5; text-align: right;">
                                             <td colspan="6" align="right"><strong>Abono:</strong></td>
                                             <td v-if="tipoAccion2==1"><input v-model="abono" :min="0" :max="calcularTotal" type="number" class="form-control" @blur="
-                                            if(abono>calcularTotal) {abono=calcularTotal;}" style="width: 9em; text-align: right;"></td>
+                                            if(abono>calcularTotal) {abono=calcularTotal;}"></td>
 
                                             <td v-else-if="tipoAccion2==2"><input v-model="abono" :min="abono2" :max="calcularTotal" type="number" class="form-control" @blur="
-                                            if(abono>calcularTotal){ abono=calcularTotal;}else if(abono<abono2){ abono = abono2;}" style="width: 9em; text-align: right;"></td>
+                                            if(abono>calcularTotal){ abono=calcularTotal;}else if(abono<abono2){ abono = abono2;}"></td>
                                         </tr>
                                         <tr style="background-color: #CEECF5; text-align: right;">
                                             <td colspan="6" align="right"><strong>Saldo:</strong></td>
@@ -527,10 +527,10 @@
                                         <tr>
                                             <th>Artículo</th>
                                             <th>Precio</th>
-                                            <th style="width: 9em;">Cantidad</th>
-                                            <th style="width: 9em;">Descuento</th>
+                                            <th>Cantidad</th>
+                                            <th>Descuento</th>
                                             <th>Iva</th>
-                                            <th style="width: 9em;">Vr sin iva</th>
+                                            <th>Vr sin iva</th>
                                         </tr>
                                     </thead>
                                     <tbody v-if="arrayDetalleT.length">
@@ -642,7 +642,7 @@
                                         </tr>
                                     </thead>
                                     <tbody v-if="arrayArticulo.length">
-                                        <tr v-for="(articulo, index) in arrayArticulo">
+                                        <tr v-for="(articulo, index) in arrayArticulo" :key="index">
                                             <td v-if="articulo.padre==''" v-text="articulo.codigo"></td>
                                             <td v-else></td>
                                             <td>
@@ -684,12 +684,12 @@
                                 </table>
                             </div>
                             <div v-if="tipo_vista_articulo==2" class="container" style="display: block;height: 36em;max-height: 36em;overflow-y: auto;">
-                                <div v-for="(articulo, index) in arrayArticulo" @click="abrirModalCantidadArticulo(articulo)" class="col-sm-6 col-md-3 p-sm-2 p-md-1 mosaico" style="height: 43%;">
+                                <div v-for="(articulo, index) in arrayArticulo" :key="index" @click="abrirModalCantidadArticulo(articulo)" class="col-sm-6 col-md-3 p-sm-2 p-md-1 mosaico">
                                     <div class="border col-md-12" style="height: 100%;">
                                         <div class="text-center py-md-2">
-                                            <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" class="img-responsive img-thumbnail" style="width: 8.5em;height: 8.5em;">
+                                            <img v-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" class="img-responsive img-thumbnail">
 
-                                            <img v-else :src="`${ruta}/Empresas/${articulo.img}`" class="img-responsive img-thumbnail" style="width: 8.5em;height: 8.5em;">
+                                            <img v-else :src="`${ruta}/Empresas/${articulo.img}`" class="img-responsive img-thumbnail">
                                         </div>
                                         <div class="text-center col-md-12">
                                             <h6 v-text="articulo.nombre"></h6>
@@ -717,7 +717,7 @@
             <!-- Modal cantidad por articulo-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modalCantidadArticulo}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width:35em !important;">
+                    <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModalCantidadArticulo"></h4>
                             <button type="button" class="close" @click="cerrarModalCantidadArticulo()" aria-label="Close">

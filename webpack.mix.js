@@ -15,7 +15,7 @@ mix.styles([
     'resources/assets/plantilla/css/font-face.css',
     'resources/assets/plantilla/css/font-awesome.min.css',
     // 'resources/assets/plantilla/css/all.min.css',
-    'resources/assets/plantilla/css/fontawesome-all.min.css',
+    // 'resources/assets/plantilla/css/fontawesome-all.min.css',
     'resources/assets/plantilla/css/material-design-iconic-font.min.css',
     'resources/assets/plantilla/css/bootstrap.min.css',
     'resources/assets/plantilla/css/animsition.min.css',
@@ -24,18 +24,19 @@ mix.styles([
     'resources/assets/plantilla/css/hamburgers.min.css',
     'resources/assets/plantilla/css/slick.css',
     'resources/assets/plantilla/css/select2.min.css',
-    'resources/assets/plantilla/css/perfect-scrollbar.css',
+    // 'resources/assets/plantilla/css/perfect-scrollbar.css',
     'resources/assets/plantilla/css/simple-line-icons.min.css',
     'resources/assets/plantilla/css/bootstrap-datetimepicker.min.css',
+    'resources/assets/plantilla/css/sb-admin-2.min.css',
+    'resources/assets/plantilla/css/theme-sasseri.css',
     'node_modules/vue-multiselect/dist/vue-multiselect.min.css',
-    'resources/assets/plantilla/css/theme.css'
+    
+    // 'resources/assets/plantilla/css/theme.css'
     
      
 ], 'public/css/plantilla.css')
 .scripts([
-
-
-    // 'resources/assets/plantilla/js/jquery-3.2.1.min.js',
+    'resources/assets/plantilla/js/jquery.min.js',
     'resources/assets/plantilla/js/popper.min.js',
     'resources/assets/plantilla/js/bootstrap.min.js',
     'resources/assets/plantilla/js/slick.min.js',
@@ -46,6 +47,7 @@ mix.styles([
 
     'resources/assets/plantilla/js/jquery.counterup.min.js',
     'resources/assets/plantilla/js/circle-progress.min.js',
+    'resources/assets/plantilla/js/sb-admin-2.min.js',
     'resources/assets/plantilla/js/perfect-scrollbar.js',
     'resources/assets/plantilla/js/Chart.bundle.min.js',
     'resources/assets/plantilla/js/select2.min.js',

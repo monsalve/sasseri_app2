@@ -35,79 +35,41 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="card text-center">
-                                <div class="card-header bg-success text-white mb-n2" style=" max-height: 30px !important;">
-                                     <span>$ 2000</span>
-                                </div>
-                                <div class="card-body bg-light">
-                                    <img src="http://2.bp.blogspot.com/-_dkdd-RH2jk/T87GIawBH8I/AAAAAAAAACk/mz-R_1BG_n0/s640/marranitas.png">
-                                </div>
-                                <div class="card-footer text-white bg-success white-text">
-                                    <small>papa rellena de carne papa rellena de carne papa rellena de carne </small>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card text-center">
-                                <div class="card-header bg-success text-white" style="max-height: 30px !important;">
-                                     <span>$ 2000</span>
-                                </div>
-                                <div class="card-body bg-light">
-                                    <img src="http://2.bp.blogspot.com/-_dkdd-RH2jk/T87GIawBH8I/AAAAAAAAACk/mz-R_1BG_n0/s640/marranitas.png">
-                                </div>
-                                <div class="card-footer text-white bg-success white-text">
-                                    <small class="mb-0">papa rellena de carne</small>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card text-center">
-                                <div class="card-header bg-success text-white" style="max-height: 30px !important;">
-                                     <span>$ 2000</span>
-                                </div>
-                                <div class="card-body bg-light">
-                                    <img src="http://2.bp.blogspot.com/-_dkdd-RH2jk/T87GIawBH8I/AAAAAAAAACk/mz-R_1BG_n0/s640/marranitas.png">
-                                </div>
-                                <div class="card-footer text-white bg-success white-text">
-                                    <small class="mb-0">papa rellena de carne</small>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card text-center">
-                                <div class="card-header bg-success text-white" style="max-height: 30px !important;">
-                                     <span>$ 2000</span>
-                                </div>
-                                <div class="card-body bg-light">
-                                    <img src="http://2.bp.blogspot.com/-_dkdd-RH2jk/T87GIawBH8I/AAAAAAAAACk/mz-R_1BG_n0/s640/marranitas.png">
-                                </div>
-                                <div class="card-footer text-white bg-success white-text">
-                                    <small class="mb-0">papa rellena de carne</small>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card text-center">
-                                <div class="card-header bg-success text-white" style="max-height: 30px !important;">
-                                     <span>$ 2000</span>
-                                </div>
-                                <div class="card-body bg-light">
-                                    <img src="http://2.bp.blogspot.com/-_dkdd-RH2jk/T87GIawBH8I/AAAAAAAAACk/mz-R_1BG_n0/s640/marranitas.png">
-                                </div>
-                                <div class="card-footer text-white bg-success white-text">
-                                    <small class="mb-0">papa rellena de carne</small>
+                            <div class="col-6">  
+                                <p class="badge badge-primary precio-prod">$ 2000000</p>
+                                <div class="card rounded">
+                                    <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sancocho de verduras</p>
                                 </div>
                                 </div>
                             </div>
                             <div class="col-6">  
-                                 <div class="card" style="width: 9rem;">
+                                <p class="badge badge-primary precio-prod">$ 2000000</p>
+                                <div class="card rounded">
+                                    <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sancocho de verduras</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                <p class="badge badge-primary precio-prod">$ 2000000</p>
+                                <div class="card rounded">
+                                    <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="card-img-top p-2" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Sancocho de verduras</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                 <div class="card">
                                     <img src="http://img2.wikia.nocookie.net/__cb20100805212045/panamanianrecipes/images/a/a8/Sancocho.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <p class="card-text">Sopa de hueso</p>
                                 </div>
                                 </div>
-                            </div>
+                            </div> 
 
                         </div>  
                     </div>
@@ -245,7 +207,7 @@
                     <div class="card-body">                        
                         <div class="row border-bottom resaltar">                                
                             <div class="col-8">
-                                Margarita Arango Salasar
+                                Margarita Arango Salasar 
                             </div>
                             <div class="col-4">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
@@ -371,7 +333,7 @@
                     </div>                    
                 </div> 
             </div>
-            <div class="row mt-1 fixed-bottom mx-auto" style="widht:90%"> <!-- boton de facturar -->
+            <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
@@ -1479,7 +1441,7 @@
                     'id_cierre_caja': me.id_cierre_caja_facturacion,
                     'data': me.arrayDetalle,
                     'tipo_movimiento' : 4,
-                    'sumatoria' : 0,
+                    'sumatoria' : 0
                 }).then(function (response) {
                     me.ocultarDetalle();
                     me.listarFacturacion(1,'','','','','','','');
@@ -1626,7 +1588,7 @@
                                 me.id_tarifario =data['id_tarifario'];
                                 me.estado = data['estado'];
                                 
-                                me.laboratories = data['laboratories'] ?  data['laboratories'] : [];
+
                                 me.arrayArticulo=[];
                                 me.arrayTerceros=[];
                                 me.arrayDetalle=[]
@@ -2017,9 +1979,9 @@
     .precio-prod{
         position: absolute;
         float: right;
-        top: 75px;
-        right: 37px;
-        font-size: 92%;
+        top: 74px;
+        right: 33px;
+        font-size: 95%;
         z-index: 2;
         min-width: 85px;
     }
