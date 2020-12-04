@@ -117,18 +117,18 @@
                                         </select>  
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="email-input">Número documento</label>                                     
+                                        <label for="dni-input">Número documento</label>                                     
                                         <input type="email" v-model="num_documento" class="form-control" placeholder="Número de documento">                                     
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="email-input">Dirección</label>                                        
-                                        <input type="email" v-model="direccion" class="form-control" placeholder="Dirección">
+                                        <label for="address-input">Dirección</label>                                        
+                                        <input type="text" v-model="direccion" class="form-control" placeholder="Dirección">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="email-input">Teléfono</label>                                        
-                                        <input type="email" v-model="telefono" class="form-control" placeholder="Teléfono">
+                                        <input type="tel" v-model="telefono" class="form-control" placeholder="Teléfono">
                                     </div>
                                 </div>
                                 <div class="form-row">
