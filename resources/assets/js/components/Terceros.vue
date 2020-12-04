@@ -98,7 +98,7 @@
             </div>
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-dialog modal-primary modal-dialog-scrollable modal-lg" role="document">
                     <div class="modal-content" >
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -317,7 +317,7 @@
 
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal2}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document">
                     <div class="modal-content" >
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -458,7 +458,7 @@
 
             <!-- Modal de novedades -->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal3}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document" style="max-width: 800px !important">
+                <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document" style="max-width: 800px !important">
                     <div class="modal-content" >
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal3"></h4>

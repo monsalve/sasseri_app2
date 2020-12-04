@@ -1,3 +1,12 @@
+::-webkit-scrollbar {
+    width:5px;
+    background-color: #F5F5F5; 
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #385e8a; 
+}
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -9,6 +18,18 @@ body {
 }
 a{
     color: #333;
+}
+.fa{
+    font-family: FontAwesome;
+}
+.fa-chevron-left::before{
+    font-family: FontAwesome;
+}
+.btn-primary{
+    background-color: #08537c;
+}
+.btn-primary:hover{
+    background-color: #003b5a;
 }
 .topbar{
     background-color: #cacbc7;
@@ -43,12 +64,15 @@ a{
     font-family: FontAwesome;
   
 }
-.fa{
-    font-family: FontAwesome;
+
+.sidebar .nav-item .collapse, .sidebar .nav-item .collapsing{
+    padding-left: 0;
 }
-.fa-chevron-left::before{
-    font-family: FontAwesome;
+.sidebar .nav-item .collapse .collapse-inner, 
+.sidebar .nav-item .collapsing .collapse-inner{
+    width: min-content;
 }
+
 .sidebar #sidebarToggle::after{
     font-family: FontAwesome;
 }
@@ -85,6 +109,7 @@ table .table-earning tbody td{
 }
 .form-control{
     border-radius: 0;
+    font-size: 14px;
 }
 .btn{
     border-radius: 0;
@@ -100,4 +125,7 @@ select option:first-child {
 }
 select option {
     color: #333;
+}
+.mostrar{
+    /* overflow: auto; */
 }
