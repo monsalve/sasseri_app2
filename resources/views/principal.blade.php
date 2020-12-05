@@ -16,7 +16,6 @@
     
 </head>
 
-<<<<<<< HEAD
 <body id="page-top">
     <div id="app">
 
@@ -57,35 +56,6 @@
                         <div class="collapse-inner">
                             <li @click="menu=6" class="collapse-item">
                                 <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
-=======
-<body class="animsition">
-    <?php 
-$rol_usu = Auth::user()->idrol;
-
-?>
-    <div id="app">
-        <main>
-          
-            <!-- HEADER MOBILE-->
-            <header class="header-mobile d-block d-lg-none">
-                <div class="header-mobile__bar">
-                    <div class="container-fluid">
-                        <div class="header-mobile-inner">
-                            <a class="logo col-sm-12" href="index.html">
-                                <img src="img/logo.png" alt="Sasseri" />
-                            </a>
-                            
-                        </div>
-                    </div>
-                </div>
-        
-            @if($rol_usu==1) 
-                <nav class="navbar-mobile">
-                    <div class="container-fluid">
-                        <ul class="navbar-mobile__list list-unstyled">                        
-                            <li @click="menu=999991" class="">
-                                <a href="#"><i class="icon-user"></i> Usuarios</a>
->>>>>>> dev_pv_martin
                             </li>
                             <li @click="menu=12" class="collapse-item">
                                 <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
@@ -153,26 +123,6 @@ $rol_usu = Auth::user()->idrol;
                             <li @click="menu=30" class="collapse-item">
                                 <a href="#"><i class="fa fa-times-circle"></i> <span>Cierre de caja</span></a>
                             </li>
-<<<<<<< HEAD
-=======
-                        
-                        </ul>
-                    </div>
-                </nav>
-            @endif
-            
-            </header>
-            <!-- END HEADER MOBILE-->
-
-            <section id="wrapper">
-                <div class="container-fluid row p-0" style="margin:auto;">
-                    <!-- MENU SIDEBAR-->
-                    <aside class="menu-sidebar d-none d-lg-block col-lg-3">
-                        <div class="logo">
-                            <a href="#">
-                                <img src="img/logo.png" alt="Sasseri" />
-                            </a>
->>>>>>> dev_pv_martin
                         </div>
                     </ul>
                 </li>
@@ -219,7 +169,6 @@ $rol_usu = Auth::user()->idrol;
                         </div>
                         <ul class="navbar-nav ml-auto">
 
-<<<<<<< HEAD
                             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                             <li class="nav-item dropdown no-arrow d-sm-none">
                                 
@@ -235,88 +184,6 @@ $rol_usu = Auth::user()->idrol;
                                                 <button class="btn btn-primary" type="button">
                                                     <i class="fas fa-search fa-sm"></i>
                                                 </button>
-=======
-                    <!-- PAGE CONTAINER-->
-                    <div class="page-container col-lg-9 p-0">
-                        <section id="main">
-                            <!-- HEADER DESKTOP-->
-                            <header class="col-lg-12 bg-gray-light">
-                                <div class="section__content section__content--p30x">
-                                    <div class="container-fluid">
-                                        <div class="header-wrap2">                                
-                                            <div class="header-button">
-                                            @if($rol_usu==1) 
-                                                <button class="hamburger hamburger--slider d-lg-none" type="button">
-                                                    <span class="hamburger-box">
-                                                        <i class="fa fa-align-justify"></i>
-                                                        <!-- <span class="hamburger-inner"></span> -->
-                                                    </span>
-                                                </button>
-                                            @endif
-                                            @if($rol_usu==2) 
-                                                <a href="#" class="btn btn-primary" @click="menu = 40">Facturar</a>
-                                            @endif
-                                                <div class="noti-wrap">                                      
-                                                    <div class="noti__item js-item-menu">
-                                                        <i class="zmdi zmdi-notifications"></i>
-                                                        <span class="quantity">3</span>
-                                                        <div class="notifi-dropdown js-dropdown">
-                                                            <div class="notifi__title">
-                                                                <p>You have 3 Notifications</p>
-                                                            </div>
-                                                            <div class="notifi__item">
-                                                                <div class="bg-c1 img-cir img-40">
-                                                                    <i class="zmdi zmdi-email-open"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p>You got a email notification</p>
-                                                                    <span class="date">April 12, 2018 06:50</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notifi__item">
-                                                                <div class="bg-c2 img-cir img-40">
-                                                                    <i class="zmdi zmdi-account-box"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p>Your account has been blocked</p>
-                                                                    <span class="date">April 12, 2018 06:50</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notifi__item">
-                                                                <div class="bg-c3 img-cir img-40">
-                                                                    <i class="zmdi zmdi-file-text"></i>
-                                                                </div>
-                                                                <div class="content">
-                                                                    <p>You got a new file</p>
-                                                                    <span class="date">April 12, 2018 06:50</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notifi__footer">
-                                                                <a href="#">All notifications</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="account-wrap">
-                                                    <div class="account-item clearfix js-item-menu">
-                                                    
-                                                        <div class="content">
-                                                            <a class="js-acc-btn" href="#">{{Auth::user()->usuario}}</a>
-                                                        </div>
-                                                        <div class="account-dropdown js-dropdown">                                               
-                                                            <div class="account-dropdown__footer">
-                                                                
-                                                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                                    <i class="zmdi zmdi-power"></i> Cerrar sesión
-                                                                </a>
-                                                            </div>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                {{ csrf_field() }}
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
->>>>>>> dev_pv_martin
                                             </div>
                                         </div>
                                     </form> -->
