@@ -41,7 +41,7 @@ mix.styles([
     'resources/assets/plantilla/js/bootstrap.min.js',
     'resources/assets/plantilla/js/slick.min.js',
     'resources/assets/plantilla/js/wow.min.js',
-    // 'resources/assets/plantilla/js/animsition.min.js',
+    'resources/assets/plantilla/js/animsition.min.js',
     'resources/assets/plantilla/js/bootstrap-progressbar.min.js',
     'resources/assets/plantilla/js/jquery.waypoints.min.js',
 

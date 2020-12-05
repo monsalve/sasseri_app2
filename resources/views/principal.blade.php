@@ -331,7 +331,7 @@
     <!-- Main JS-->
     <script src="js/app.js"></script>
     <script src="js/plantilla.js"></script>
-    <script src="js/main.js"></script>    
+    <!-- <script src="js/main.js"></script>     -->
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"> </script>
 
     <!-- <script src="js/demo/chart-area-demo.js"></script>
