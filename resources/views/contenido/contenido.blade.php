@@ -6,20 +6,18 @@
     
 ?>
     @if(Auth::check())
-        @if($rol_usu==2) 
-            <template v-if="menu==0">
-                <br>
-                <h1>Bienvenido al sistema Sasseri</h1>
-            </template>
+        <template v-if="menu==0">
+            <br>
+            <h1>Bienvenido al sistema Sasseri</h1>
+        </template>
+        @if($rol_usu==2)             
             <template v-if="menu==40">
                 <punto_venta :ruta="ruta"></punto_venta>
             </template>
         @endif
 
         @if($rol_usu==1)  
-            <template v-if="menu==0">
-                <h1>Bienvenido</h1>
-            </template>
+            
             
 			<!-- @foreach ($menu_usuario2 as $menu_usu)
 				@if(count($menu_usu['hijos'])>0)
@@ -31,9 +29,7 @@
 				@endif
 			@endforeach -->
 			
-            <template v-if="menu==999981">
-                <punto_venta :ruta="ruta"></punto_venta>
-            </template>
+        @if($rol_usu == 1)   
             <template v-if="menu==999991">
                 <user :ruta="ruta"></user>
             </template>
@@ -54,9 +50,7 @@
                     <cajas :ruta="ruta"></cajas>
                 </template>
                 
-            <template v-if="menu==40">
-                <punto_venta :ruta="ruta"></punto_venta>
-            </template>
+           
             <template v-if="menu==14">
                 <facturacion :ruta="ruta"></facturacion>
             </template>
