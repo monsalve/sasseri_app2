@@ -2,10 +2,23 @@
     @section('contenido')
 <?php
     $menu_usuario2 = Session::get('menu_usu');
+    $rol_usu = Auth::user()->idrol;
+    
 ?>
     @if(Auth::check())
+        @if($rol_usu==2) 
             <template v-if="menu==0">
-                <h1>Escritorio</h1>
+                <br>
+                <h1>Bienvenido al sistema Sasseri</h1>
+            </template>
+            <template v-if="menu==40">
+                <punto_venta :ruta="ruta"></punto_venta>
+            </template>
+        @endif
+
+        @if($rol_usu==1)  
+            <template v-if="menu==0">
+                <h1>Bienvenido</h1>
             </template>
             
 			<!-- @foreach ($menu_usuario2 as $menu_usu)
@@ -101,7 +114,7 @@
             <!-- <template v-if="menu==11">
                 <h1>Ayuda</h1>
             </template> -->
-
+        @endif
             <template v-if="menu==999994">
                 <h1>Acerca de</h1>
             </template>   

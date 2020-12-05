@@ -7,7 +7,7 @@
                     <div class="row mb-1">
                         
                         <div class="col-9">
-                            <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
+                            <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" v-model="buscarA" @keyup="listarArticulo(buscarA,criterioA,buscarCategoriaA)">
                         </div>
                         <div class="col-3">
                             <button class="btn btn-success  fa fa-search btn-buscar float-right" type="submit">
@@ -18,16 +18,16 @@
                     <div class="row">                            
                         <div class="col-12">
                             <div class="form-group">
-                            <select class="mul-select" multiple="true">
-                                <option value="entradas">Entradas</option>
-                                <option value="ensaladas">Ensaladas</option>
-                                <option value="platos fuertes">Platos fuertes</option>
-                                <option value="postres">Postres</option>
-                                <option value="bebidas">Bebidas</option>
-                                <option value="salsas">Salsas</option>
-                                <option value="aperitivos">Aperitivos</option>
-                            </select>
-                        </div> 
+                                <select class="mul-select" multiple="true" placeholder="- Categorias -">
+                                    <option value="entradas">Entradas</option>
+                                    <option value="ensaladas">Ensaladas</option>
+                                    <option value="platos fuertes">Platos fuertes</option>
+                                    <option value="postres">Postres</option>
+                                    <option value="bebidas">Bebidas</option>
+                                    <option value="salsas">Salsas</option>
+                                    <option value="aperitivos">Aperitivos</option>
+                                </select>
+                            </div> 
                         </div>  
                     </div>
                 </div>
@@ -35,136 +35,20 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-4 separa-cards">
+                            <div v-for="(articulo, index) in arrayArticulo" :key="index" class="col-4 separa-cards">
                                 <div class="card text-center mb-1">
                                     <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
+                                        <span class="num text-white "> $ {{articulo.precio_venta}} </span>
                                     </div>
                                     <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
+                                        <img sv-if="`${articulo.img}`!='default.png'" :src="`${ruta}/Empresas/${articulo.id_empresa}_empresa/ImgProductos/${articulo.img}`" class="img-prods">
                                     </div>
                                     <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
+                                        <small class="mb-0 text-white">{{articulo.nombre}}</small>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
-                                    <div class=" txt-price-prod btn-primary">
-                                        <span class="num text-white "> $ 50000 </span>
-                                    </div>
-                                    <div class="card mx-auto">
-                                        <img src="https://tellanto.com/wp-content/uploads/2018/11/Sancocho.jpg" class="img-prods" alt="...">
-                                    </div>
-                                    <div class="txt-nom-prod bg-success">
-                                        <small class="mb-0 text-white">Sancocho de verduras</small>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                         </div>  
                     </div>
@@ -176,7 +60,8 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
-                                <button class="btn btn-secondary" @click="position=1">Productos</button>
+                                <button class="btn btn-info" @click="position=1"><i class="fa fa-arrow-left"></i> Productos 
+                                    </button>
                             </div>
                             <div class="col-3 pr-1">
                                 <button class="btn btn-danger" style="margin-left: -31px;">Descartar
@@ -192,7 +77,7 @@
                                     <div class="col-1">
                                         <h3><i class="fa fa-user"></i></h3>
                                     </div>
-                                    <div class="col-9">CRISTHIAM MONSALVE PANTOJA</div>
+                                    <div class="col-9 nombre-tercero"><small class="text-muted ">CRISTIAM CAMILO MONSALVE PANTOJA</small></div>
                                     <div class="col-1">
                                         <h3 style="cursor:pointer" class="text-primary" @click="position=3"><i class="fa fa-plus-circle" href="#59981A"></i></h3>
                                     </div>
@@ -301,66 +186,66 @@
 
                     <div class="card-body">                        
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Margarita Arango Salasar
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Milton Farias Alvarado 
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Gregorio Santander Soscue
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Pintas Revelo Chiaspud
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Efrain Carmelo Lisboa 
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Daineris Targeri Tisoy
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Marco Luisa Balvoa
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>   
                         <div class="row border-bottom resaltar">                                
-                            <div class="col-8">
+                            <div class="col-10">
                                 Gerardo Petro Chergas
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
                             </div> 
                         </div>
@@ -428,6 +313,12 @@
                     </div>                    
                 </div> 
             </div>
+            <div v-show="position==5">
+                VISTA-FACTURA IMPRIMIR
+            </div>
+            <div v-show="position==6">
+                VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
+            </div>
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
@@ -445,7 +336,7 @@
         props : ['ruta'],
         data (){
             return {
-                position: 1,
+                position: 5,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -2023,12 +1914,14 @@
             },
         },
         mounted() {
-             $(".mul-select").select2({
-                    placeholder: "selecione categoria", //placeholder
-                    tags: true,
-                    tokenSeparators: ['/',',',';'," "] 
-                });
-                console.log( $(".mul-select"));
+            $(".mul-select").select2({
+                placeholder: "- Categorias -", //placeholder
+                tags: true,
+                allowClear: true,
+                tokenSeparators: ['/',',',';'," "] 
+            });
+            //console.log( $(".mul-select"));
+            // $(".mul-select").on("change", function (e) { log("change"); });
             let me= this;
             var d = new Date();
             
@@ -2051,13 +1944,22 @@
             me.fecha = d;
             me.fechaHoraActual = d+' '+h+':'+min+':'+sec;
 
-            me.listarCajas();
-
+            //me.listarCajas();
+            this.listarArticulo(this.buscarA,this.criterioA,this.buscarCategoriaA);
             // me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
         }
     }
 </script>
 <style> 
+    .select2-search__field {
+            width: 100% !important;
+    }
+    .select2-container {
+            width: 100% !important
+    }
+    .nombre-tercero {
+        font-size: 13px !important;
+    }
     .txt-nom-prod {
         line-height: 1 !important;
         min-height: 35px;
