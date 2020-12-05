@@ -6,16 +6,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Sasseri">
-    <meta name="author" content="Incanatoit.com">
+    <meta name="description" content="Software financiero y contable online">
+    <meta name="author" content="fractalagenciadigital.com">
     <meta name="keyword" content="Software financiero y contable online">
     <link rel="shortcut icon" href="img/favicon.png">
     <title>Sasseri</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="css/plantilla.css" rel="stylesheet">
-    
+    <style>
+    .btn-crea-factura {
+        height: 34px;
+    }
+    </style>
 </head>
-
+<?php $rol_usu = Auth::user()->idrol; ?>
 <body id="page-top">
     <div id="app">
 
@@ -23,12 +27,15 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
+        
+        @if($rol_usu==1)  
             <ul class="navbar-nav bg-gradient-primaryx sidebar sidebar-darkx accordion" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
                     <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
                 </a>
+            
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
@@ -146,6 +153,7 @@
                 
 
             </ul>
+        @endif
             <!-- End of Sidebar -->
 
             <!-- Content Wrapper -->
@@ -158,9 +166,14 @@
                     <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
 
                         <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
+                        @if($rol_usu==2)  
+                            <input type="button" class="btn btn-primary btn-crea-factura" value="Crear Facturar" @click="menu=40">
+                        @endif
+                        @if($rol_usu==1)  
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        @endif
                         <!-- Topbar Navbar -->
                         <div class="p-1 text-center">
                             <a class="sidebar-brand  d-sm-none align-items-center justify-content-center" href="index.html">

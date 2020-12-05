@@ -1,18 +1,23 @@
 @extends('principal')
     @section('contenido')
 <?php
-    $menu_usuario2 = Session::get('menu_usu');  
+    $menu_usuario2 = Session::get('menu_usu');
     $rol_usu = Auth::user()->idrol;
+    
 ?>
     @if(Auth::check())
+        <template v-if="menu==0">
+            <br>
+            <h1>Bienvenido al sistema Sasseri</h1>
+        </template>
+        @if($rol_usu==2)             
+            <template v-if="menu==40">
+                <punto_venta :ruta="ruta"></punto_venta>
+            </template>
+        @endif
+
+        @if($rol_usu==1)  
             
-                <template v-if="menu==0">
-                    <br>
-                    <h1>Bienvenido!</h1>
-                </template>
-                <template v-if="menu==40">
-                    <punto_venta :ruta="ruta"></punto_venta>
-                </template>
             
 			<!-- @foreach ($menu_usuario2 as $menu_usu)
 				@if(count($menu_usu['hijos'])>0)
