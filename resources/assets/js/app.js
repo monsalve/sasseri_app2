@@ -77,13 +77,13 @@ const app = new Vue({
     },
 
     mounted() {
-        let me = this;
-        var url = this.ruta + '/permisos/listarPermisosLogueado';
-        axios.get(url).then(function(response) {
-                me.permisosUser = response.data.permisosLogueado;
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
+        // let me = this;
+        // var url = this.ruta + '/permisos/listarPermisosLogueado';
+        // axios.get(url).then(function(response) {
+        //         me.permisosUser = response.data.permisosLogueado;
+        //     })
+        //     .catch(function(error) {
+        //         console.log(error);
+        //     });
     }
 });

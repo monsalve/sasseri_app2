@@ -215,7 +215,7 @@
                                             </div>
                                         </div>                                        
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
                                         <label for="desc-input">Descripción</label>
                                         <input type="text" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">                                        
                                     </div>
@@ -480,7 +480,7 @@
             <!-- Inicio modal tarifarios -->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal3}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
-                    <div class="modal-content" style="width:80% !important;margin-left: 22% !important;">
+                    <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal3"></h4>
                             <button type="button" class="close" @click="cerrarModalTarifario()" aria-label="Close">
