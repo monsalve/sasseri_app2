@@ -16,7 +16,7 @@
             </template>
         @endif
 
-        @if($rol_usu==1)  
+      
             
             
 			<!-- @foreach ($menu_usuario2 as $menu_usu)
