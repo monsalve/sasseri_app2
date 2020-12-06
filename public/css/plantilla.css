@@ -3963,6 +3963,10 @@ a{
 .sidebar .nav-item .collapse .collapse-inner, 
 .sidebar .nav-item .collapsing .collapse-inner{
     width: min-content;
+    background: #fff;
+}
+.page-item.active .page-link{
+    z-index: 0;
 }
 
 .sidebar #sidebarToggle::after{
@@ -3974,6 +3978,12 @@ a{
 
 .bg-dark{
     color: #fff;
+}
+@media (max-width:767.98px){
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }
 
 table.table-earning thead th{
