@@ -16,8 +16,7 @@
             </template>
         @endif
 
-      
-            
+                   
             
 			<!-- @foreach ($menu_usuario2 as $menu_usu)
 				@if(count($menu_usu['hijos'])>0)
