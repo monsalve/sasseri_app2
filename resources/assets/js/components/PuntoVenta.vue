@@ -1,7 +1,6 @@
 <template>
     <main class="main">
         <div>
-
             <div class="card" v-show="position==1">  <!-- listado de productos de factura -->
                 <div class="card-header"> 
                     <div class="row mb-1">
@@ -18,15 +17,14 @@
                     <div class="row">                            
                         <div class="col-12">
                             <div class="form-group">
-                                <select class="mul-select" multiple="true" placeholder="- Categorias -">
-                                    <option value="entradas">Entradas</option>
-                                    <option value="ensaladas">Ensaladas</option>
-                                    <option value="platos fuertes">Platos fuertes</option>
-                                    <option value="postres">Postres</option>
-                                    <option value="bebidas">Bebidas</option>
-                                    <option value="salsas">Salsas</option>
-                                    <option value="aperitivos">Aperitivos</option>
+                       
+                       
+                                <select size="2" class="form-control" multiple  v-model="buscarCategoriaA"  placeholder="- Categorias -" @change="listarArticulo(buscarA,criterioA,buscarCategoriaA)">
+                                    <option value="">- Categorias -</option>
+                                    <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                   
                                 </select>
+
                             </div> 
                         </div>  
                     </div>
@@ -313,7 +311,6 @@
                     </div>                    
                 </div> 
             </div>
-
             <div v-show="position==5"> <!-- tickets imprimir factura -->
                 VISTA-FACTURA IMPRIMIR
                 <div class="card">
@@ -329,68 +326,12 @@
                             </div> 
                         </div>                                  
                     </div>
-
-                    <div class="card-body" style="font-size: 8px;"> 
-                        <div class="text-center">
-                            <h3 class="text-center"><strong>tICKETS FACTURAR 2</strong></h3>
-                            <h2>TICKETS FACTURAR 1</h2>
-                        </div>  
-                        <div class="table-responsive">
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <td><strong>Nombre Producto</strong></td>
-                                        <td class="text-center"><strong>Precio</strong></td>
-                                        <td class="text-center"><strong>Cantidad</strong></td>
-                                        <td class="text-right"><strong>Total</strong></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Leche Alqueria</td>
-                                        <td class="text-center">$2000</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-right">$2000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Leche Entera</td>
-                                        <td class="text-center">$3500</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-right">$10500</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="highrow"></td>
-                                        <td class="highrow"></td>
-                                        <td class="highrow text-center"><strong>Subtotal</strong></td>
-                                        <td class="highrow text-right">$12500</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="emptyrow"></td>
-                                        <td class="emptyrow"></td>
-                                        <td class="emptyrow text-center"><strong>Iva</strong></td>
-                                        <td class="emptyrow text-right">$3000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
-                                        <td class="emptyrow"></td>
-                                        <td class="emptyrow text-center"><strong>Total</strong></td>
-                                        <td class="emptyrow text-right">$15500</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>                     
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Margarita Arango Salasar
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar">$ 2000</h3>
-                            </div> 
-                        </div>
-                    </div>                    
-                </div>  
-            </div>
-
+                    style="font-size: 8px;
+                   
+                </div>                    
+            </div>  
+        </div>
+        <div>
             <div v-show="position==6"> <!-- ticket listado preparcion chef -->
                 VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
                 <div class="card">
@@ -425,8 +366,7 @@
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
-            </div>
-            
+            </div> 
         </div>  
     </main>
 </template>
@@ -482,7 +422,7 @@
                 buscar : '',
                 criterioA:'nombre',
                 buscarA: '',
-                buscarCategoriaA : '',
+                buscarCategoriaA : [],
                 arrayCategoria2 : [],
                 arrayArticulo: [],
                 idarticulo: 0,
@@ -2023,10 +1963,12 @@
                 tokenSeparators: ['/',',',';'," "] 
             });
             //console.log( $(".mul-select"));
-            // $(".mul-select").on("change", function (e) { log("change"); });
+             
             let me= this;
             var d = new Date();
-            
+            $(".mul-select").on("change", function (e) { 
+                me.listarArticulo(me.buscarA,me.criterioA,me.buscarCategoriaA) 
+            });
             var dd = d.getDate();
             var mm = d.getMonth()+1;
             var yyyy = d.getFullYear();
@@ -2045,7 +1987,7 @@
             me.hastaFiltro = d;
             me.fecha = d;
             me.fechaHoraActual = d+' '+h+':'+min+':'+sec;
-
+            this.selectCategoria2();
             //me.listarCajas();
             this.listarArticulo(this.buscarA,this.criterioA,this.buscarCategoriaA);
             // me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
