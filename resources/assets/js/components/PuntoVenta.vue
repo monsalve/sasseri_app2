@@ -313,11 +313,113 @@
                     </div>                    
                 </div> 
             </div>
-            <div v-show="position==5">
+
+            <div v-show="position==5"> <!-- tickets imprimir factura -->
                 VISTA-FACTURA IMPRIMIR
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-3">
+                                <button @click="position=6" class="btn btn-success fa fa-plus"></button>
+                            </div>
+                            <div class="col-3">   
+                            </div>
+                            <div class="col-6 pr-1">  
+                            </div> 
+                        </div>                                  
+                    </div>
+
+                    <div class="card-body" style="font-size: 8px;"> 
+                        <div class="text-center">
+                            <h3 class="text-center"><strong>tICKETS FACTURAR 2</strong></h3>
+                            <h2>TICKETS FACTURAR 1</h2>
+                        </div>  
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <td><strong>Nombre Producto</strong></td>
+                                        <td class="text-center"><strong>Precio</strong></td>
+                                        <td class="text-center"><strong>Cantidad</strong></td>
+                                        <td class="text-right"><strong>Total</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Leche Alqueria</td>
+                                        <td class="text-center">$2000</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-right">$2000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leche Entera</td>
+                                        <td class="text-center">$3500</td>
+                                        <td class="text-center">3</td>
+                                        <td class="text-right">$10500</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highrow"></td>
+                                        <td class="highrow"></td>
+                                        <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                        <td class="highrow text-right">$12500</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow text-center"><strong>Iva</strong></td>
+                                        <td class="emptyrow text-right">$3000</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+                                        <td class="emptyrow"></td>
+                                        <td class="emptyrow text-center"><strong>Total</strong></td>
+                                        <td class="emptyrow text-right">$15500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                     
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-10">
+                                Margarita Arango Salasar
+                            </div>
+                            <div class="col-2">
+                                <h3 class="text-danger ocultar">$ 2000</h3>
+                            </div> 
+                        </div>
+                    </div>                    
+                </div>  
             </div>
-            <div v-show="position==6">
+
+            <div v-show="position==6"> <!-- ticket listado preparcion chef -->
                 VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-3">
+                                <button @click="position=5" class="btn btn-primary fa fa-undo"></button>
+                            </div>
+                            <div class="col-3">
+                                <button @click="position=2" class="btn btn-primary fa fa-list"></button>
+                            </div>
+                            <div class="col-6 pr-1">  
+                            </div> 
+                        </div>                                      
+                    </div>
+                    <div class="card-body">                        
+                        <div class="row border-bottom resaltar">                                
+                            <div class="col-10">
+                                Margarita Arango Salasar
+                            </div>
+                            <div class="col-2">
+                                <h3 class="text-danger ocultar">$ 2000</h3>
+                            </div> 
+                        </div>
+                    </div>                    
+                </div>  
+
+                
             </div>
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
@@ -329,7 +431,7 @@
     </main>
 </template>
 
-<script>
+<script>  
 
     import vSelect from 'vue-select';
     export default {
@@ -1951,6 +2053,28 @@
     }
 </script>
 <style> 
+    .height {
+    min-height: 200px;
+    }
+
+    .iconbig {
+        font-size: 77px;
+        color: #5CB85C;
+    }
+
+    .table > tbody > tr > .emptyrow {
+        border-top: none;
+    }
+
+    .table > thead > tr > .emptyrow {
+        border-bottom: none;
+    }
+
+    .table > tbody > tr > .highrow {
+        border-top: 3px solid;
+    }
+
+
     .select2-search__field {
             width: 100% !important;
     }
