@@ -428,7 +428,10 @@
                                         <td v-if="facturacion.estado==2" class="text-success">Cerrada</td>
                                         <td v-if="facturacion.estado==0" class="text-danger">Cancelada</td>
                                         <td class="centrado">
-                                            <button class="btn-1 btn btn-success rounded-circle">
+                                            <button v-if="facturacion.estado==1" class="btn-1 btn btn-success rounded-circle">
+                                                <i class="fa fa-pencil btn-edit-factura"></i>
+                                            </button>
+                                             <button v-else class="btn-1 btn btn-secondary rounded-circle">
                                                 <i class="fa fa-pencil btn-edit-factura"></i>
                                             </button>
                                         </td>
@@ -446,7 +449,9 @@
                     <a @click="validarFacturacion();" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
                 </div>
                 <div class="col-12" v-if="position==7">
-                    <a @click="position=1;mostrarDetalle()" class="btn btn-block btn-lg active btn-success"  href="#" role="button"><h3 class="text-white">Iniciar Factura</h3></a>
+
+                    <a v-if="no_caja==0" @click="position=1;mostrarDetalle()" class="btn btn-block btn-lg active btn-success"  href="#" role="button"><h3 class="text-white">Iniciar Factura</h3></a>
+                    <a v-else  class="btn btn-block btn-lg active btn-secondary"  href="#" role="button"><h3 class="text-white">No tienes una caja abierta</h3></a>
                 </div>
             </div> 
         </div>  
@@ -461,6 +466,8 @@
         data (){
             return {
                 position: 7,
+                no_caja: 1,
+
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -778,6 +785,7 @@
 
                     if(ban==0 || ban==1)
                     {
+                        me.no_caja = 1;
                         // me.mostrarDetalle('cierres_caja','registrar');
                         Swal.fire({
                             // toast: true,
@@ -793,6 +801,7 @@
                     {
                         if(ban==3)
                         {
+                            me.no_caja = 0;
                             me.id_caja_facturacion = me.arrayCierresXCajas[0]['id'];
                             me.id_cierre_caja_facturacion = me.arrayCierresXCajas[0]['id'];
                             me.nom_caja_cierre_facturacion = me.arrayCierresXCajas[0]['nombre'];
@@ -807,6 +816,7 @@
 
                         if(ban==2)
                         {
+                            me.no_caja = 1;
                             //console.log("entra al ban 2");
                             // me.mostrarDetalle('cierres_caja','listar_cierres',me.arrayCierresXCajas[0]);
                             Swal.fire({
@@ -2036,6 +2046,7 @@
             d = yyyy+'-'+mm+'-'+dd;
             me.fechaActual = d;
             me.hastaFiltro = d;
+            me.desdeFiltro = d;
             me.fecha = d;
             me.fechaHoraActual = d+' '+h+':'+min+':'+sec;
             this.ocultarDetalle();
