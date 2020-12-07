@@ -46,6 +46,37 @@
                     <li @click="menu=10" class="nav-item">
                         <a href="#" class="nav-link"><i class="icon-user"></i> <span>Terceros</span></a>
                     </li>
+                    <li @click="menu=40" class="nav-item">
+                        <a href="#" class="nav-link"><i class="icon-screen-desktop"></i> <span>Punto de venta</span></a>
+                    </li>
+                    <li @click="menu=14" class="nav-item">
+                        <a href="#" class="nav-link"><i class="icon-calculator"></i><span>Facturación</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfig"
+                        aria-expanded="true" aria-controls="collapseConfig" >
+                            <i class="icon-wrench"></i>
+                            <span>Configuración</span>
+                        </a>
+                        <ul  id="collapseConfig" class="collapse" aria-labelledby="headingConfig"
+                        data-parent="#accordionSidebar">
+                            <div class="collapse-inner">
+                                <li @click="menu=6" class="collapse-item">
+                                    <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
+                                </li>
+                                <li @click="menu=12" class="collapse-item">
+                                    <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
+                                </li>
+                                <li @click="menu=27" class="collapse-item">
+                                    <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
+                                </li>
+                                <li @click="menu=29" class="collapse-item">
+                                    <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
+                                </li>
+                            </div>
+
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
                         aria-expanded="true" aria-controls="collapseStock">
@@ -81,38 +112,6 @@
                             </div>
                         </ul>
                     </li>
-                    <li @click="menu=40" class="nav-item">
-                        <a href="#" class="nav-link"><i class="icon-screen-desktop"></i> <span>Punto de venta</span></a>
-                    </li>
-                    <li @click="menu=14" class="nav-item">
-                        <a href="#" class="nav-link"><i class="icon-calculator"></i><span>Facturación</span> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfig"
-                        aria-expanded="true" aria-controls="collapseConfig" >
-                            <i class="icon-wrench"></i>
-                            <span>Configuración</span>
-                        </a>
-                        <ul  id="collapseConfig" class="collapse" aria-labelledby="headingConfig"
-                        data-parent="#accordionSidebar">
-                            <div class="collapse-inner">
-                                <li @click="menu=6" class="collapse-item">
-                                    <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
-                                </li>
-                                <li @click="menu=12" class="collapse-item">
-                                    <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
-                                </li>
-                                <li @click="menu=27" class="collapse-item">
-                                    <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
-                                </li>
-                                <li @click="menu=29" class="collapse-item">
-                                    <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
-                                </li>
-                            </div>
-
-                        </ul>
-                    </li>
-                    
                     <li class="nav-item">
                         <a 
                             class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCajas"
@@ -151,11 +150,9 @@
                             </div>
                         </ul>
                     </li>
-                    
-
                 </ul>
             @endif
-                <!-- End of Sidebar -->
+            <!-- End of Sidebar -->
 
                 <!-- Content Wrapper -->
                 <div id="content-wrapper" class="d-flex flex-column">
@@ -298,21 +295,8 @@
                         </div>
                         <!-- /.container-fluid -->
 
-                    </div>
-                    <!-- End of Main Content -->
-
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; <a target="_blank" href="https://www.fractalagenciadigital.com">Fractal Agencia Digital</a></span>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- End of Footer -->
-
-                </div>
-                <!-- End of Content Wrapper -->
+            </div>
+            <!-- End of Content Wrapper -->
 
             </div>
             <!-- End of Page Wrapper -->
@@ -340,7 +324,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- End of Content Wrapper -->
+
             </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
         </div>
     
         <!-- Main JS-->

@@ -73,16 +73,34 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div v-if="articulo.condicion">
+                                        <!-- <div v-if="articulo.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
-                                            <span class="badge badge-danger">Desactivado</span>
-                                        </div>
+                                            <span class="badge badge-danger">Desactivado</span>                                            
+                                        </div> -->
+
+                                        <template v-if="permisosUser.anular">
+                                            <a href="#" class="btn text-success" v-if="articulo.condicion" @click="desactivarArticulo(articulo.id)" title="Activar">
+                                                <i class="fa fa-check-circle"></i>&nbsp;
+                                            </a>
+                                            <a href="#" class="btn text-danger" v-else @click="activarArticulo(articulo.id)" title="Desactivar">
+                                                <i class="fa fa-times-circle"></i>&nbsp;
+                                            </a>                                           
+                                        </template>
+                                        <template v-else>
+                                            <a href="#" class="btn text-success" v-if="articulo.condicion" title="Activar">
+                                                <i class="fa fa-check-circle"></i>&nbsp;
+                                            </a>
+                                            <a href="#" class="btn text-danger" v-else title="Anular">
+                                                <i class="fa fa-times-circle"></i>&nbsp;
+                                            </a>
+                                        </template>
                                     </td>
                                     <td>
+                                        
                                         <template>
-                                            <button v-if="permisosUser.actualizar && articulo.condicion" type="button" @click="abrirModal('articulo','actualizar',articulo)" class="btn btn-warning btn-sm" title="Actualizar">
+                                            <button v-if="permisosUser.actualizar && articulo.condicion" type="button" @click="abrirModal('articulo','actualizar',articulo)" class="btn btn-success btn-sm" title="Actualizar">
                                                 <i class="icon-pencil"></i>
                                             </button>
                                             <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar">
@@ -90,37 +108,46 @@
                                             </button>
                                         </template>
 
-                                        <template v-if="permisosUser.anular">
-                                            <button v-if="articulo.condicion" type="button" class="btn btn-danger btn-sm" @click="desactivarArticulo(articulo.id)" title="Anular">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-info btn-sm" @click="activarArticulo(articulo.id)" title="Anular">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button v-if="articulo.condicion" type="button" class="btn btn-secondary btn-sm" title="Anular">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Anular">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-
-                                        <template>
-                                            <button type="button" class="btn btn-info btn-sm" @click="abrirModalStock('ver', articulo.id)" title="Ver stock">
-                                                <i class="fa fa-archive"></i>
-                                            </button>
-                                        </template>
                                         
-                                        <template>
-                                            <button v-if="permisosUser.actualizar && articulo.condicion" @click="abrirModal('articulo','productos_asociados',articulo)" type="button" class="btn btn-success btn-sm" title="Presentación asociada">
-                                                <i class="fa fa-align-justify"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Presentación asociada">
-                                                <i class="fa fa-align-justify"></i>
-                                            </button>
-                                        </template>
+                                        <div class="btn-group dropleft">
+                                            <a href="" class="btn-link btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <!-- Dropdown menu links -->
+                                                <template v-if="permisosUser.anular">
+                                                    <a href="#" v-if="articulo.condicion" class="dropdown-item" @click="desactivarArticulo(articulo.id)" title="Anular">
+                                                        <i class="icon-trash"></i>&nbsp;Desactivar
+                                                    </a>
+                                                    <a href="#" v-else class="dropdown-item" @click="activarArticulo(articulo.id)" title="Anular">
+                                                        <i class="icon-check"></i>&nbsp;Activar  
+                                                    </a>
+                                                </template>
+                                                <template v-else>
+                                                    <a href="#" v-if="articulo.condicion" class="dropdown-item" title="Anular">
+                                                        <i class="icon-trash"></i>&nbsp;Desactivar
+                                                    </a>
+                                                    <a href="#" v-else class="dropdown-item" title="Anular">
+                                                        <i class="icon-check"></i>&nbsp;Activar  
+                                                    </a>
+                                                </template>
+
+                                                <template>
+                                                    <a href="#" class="dropdown-item" @click="abrirModalStock('ver', articulo.id)" title="Ver stock">
+                                                    <i class="fa fa-archive"></i>&nbsp;Ver stock  
+                                                    </a>
+                                                </template>
+                                                
+                                                <template>
+                                                    <a href="#" v-if="permisosUser.actualizar && articulo.condicion" @click="abrirModal('articulo','productos_asociados',articulo)" class="dropdown-item" title="Presentación asociada">
+                                                        <i class="fa fa-align-justify"></i>&nbsp;Presentación asociados
+                                                    </a>
+                                                    <a href="#" v-else class="dropdown-item" title="Presentación asociada">
+                                                        <i class="fa fa-align-justify"></i>&nbsp;Presentación asociados
+                                                    </a>
+                                                </template>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>                                
                             </tbody>
@@ -780,7 +807,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(tarifario, index) in arrayTarifarios">
+                                                <tr v-for="(tarifario, index) in arrayTarifarios" :key="index">
                                                     <td v-text="tarifario.nombre"></td>
                                                     <td style="text-align: right;"><input type="number" style="text-align: right;" v-model="tarifario.valor" :min="0" @blur="function(){ if(tarifario.valor<0){tarifario.valor=0;}}"></td>
                                                 </tr>
