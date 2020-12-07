@@ -72,8 +72,6 @@ const app = new Vue({
             'actualizar': 1,
             'anular': 1,
         }
-
-
     },
 
     mounted() {

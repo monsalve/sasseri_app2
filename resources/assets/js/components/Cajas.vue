@@ -157,7 +157,7 @@
 
             <!-- Modal actualizar cierre de caja -->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modalCierreCaja}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-dialog modal-primary modal-lgx" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModalCierre"></h4>
@@ -181,63 +181,48 @@
                                     </div>
                                 </div> 
                             </div>-->
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Vr. Inicial</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" v-if="tipoAccionCierre==2" disabled class="form-control" v-model="vr_inicial_cierre">
-                                        <input type="number" v-else class="form-control" v-model="vr_inicial_cierre" v-bind:class="{ 'is-invalid' : hasError.vr_inicial_cierre==1 }">
-                                    </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Vr. Inicial</label>
+                                    <input type="number" v-if="tipoAccionCierre==2" disabled class="form-control" v-model="vr_inicial_cierre">
+                                    <input type="number" v-else class="form-control" v-model="vr_inicial_cierre" v-bind:class="{ 'is-invalid' : hasError.vr_inicial_cierre==1 }">                                    
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Obs. Inicial</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" class="form-control" v-model="obs_inicial_cierre" >
-                                    </div>
+                                <div class="form-group col-md-12">
+                                    <label>Obs. Inicial</label>
+                                    <input type="text" class="form-control" v-model="obs_inicial_cierre" >                                    
+                                </div>
+                            </div>                            
+                            <div class="form-group" v-if="tipoAccionCierre==1">
+                                <label>Cajero</label>                               
+                                <select class="form-control" v-model="id_cajero">
+                                    <option value="0">Seleccione</option>
+                                    <option v-for="(cajero, index) in arrayCajeros" :key="index" :value="cajero.id" v-text="cajero.nombre"></option>
+                                </select>                                
+                            </div>
+                            
+                            <div v-if="tipoAccionCierre==2">
+                                <div class="form-group col-md-12">
+                                    <label>Vr. Gastos</label>                                    
+                                    <input type="number" class="form-control" v-model="vr_gastos_cierre" v-bind:class="{ 'is-invalid' : hasError.vr_gastos_cierre==1 }">                                   
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Obs. Gastos</label>                                    
+                                    <input type="text" class="form-control" v-model="obs_gastos_cierre">                                  
+                                </div>
+                                 <div class="form-group col-md-12">
+                                    <label>Vr. Final</label>                                    
+                                    <input type="number" class="form-control" v-model="vr_final_cierre" v-bind:class="{ 'is-invalid' : hasError.vr_final_cierre==1 }">                                   
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Cajero</label>                                    
+                                    <select class="form-control" v-model="id_cajero" disabled>
+                                        <option value="0">Seleccione</option>
+                                        <option v-for="(cajero, index) in arrayCajeros" :value="cajero.id" v-text="cajero.nombre" :key="index"></option>
+                                    </select>
+                                    
                                 </div>
                             </div>
-                            <div class="form-group row" v-if="tipoAccionCierre==1">
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Cajero</label>
-                                    <div class="col-md-9 float-right">
-                                        <select class="form-control" v-model="id_cajero">
-                                            <option value="0">Seleccione</option>
-                                            <option v-for="(cajero, index) in arrayCajeros" :key="index" :value="cajero.id" v-text="cajero.nombre"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row" v-if="tipoAccionCierre==2">
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Vr. Gastos</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" class="form-control" v-model="vr_gastos_cierre" v-bind:class="{ 'is-invalid' : hasError.vr_gastos_cierre==1 }">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Obs. Gastos</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="text" class="form-control" v-model="obs_gastos_cierre">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row" v-if="tipoAccionCierre==2">
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Vr. Final</label>
-                                    <div class="col-md-9 float-right">
-                                        <input type="number" class="form-control" v-model="vr_final_cierre" v-bind:class="{ 'is-invalid' : hasError.vr_final_cierre==1 }">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="col-md-3 float-left">Cajero</label>
-                                    <div class="col-md-9 float-right">
-                                        <select class="form-control" v-model="id_cajero" disabled>
-                                            <option value="0">Seleccione</option>
-                                            <option v-for="(cajero, index) in arrayCajeros" :value="cajero.id" v-text="cajero.nombre" :key="index"></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div v-else class="modal-body">
                             <div  v-if="tipoAccionCierre==3" class="row container">
