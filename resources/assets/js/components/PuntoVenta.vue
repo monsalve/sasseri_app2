@@ -326,13 +326,53 @@
                             </div> 
                         </div>                                  
                     </div>
-                    style="font-size: 8px;
+                    <div class="ticket">
+                           <img
+                                src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                                alt="Logotipo">
+                            <p class="centrado">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000000554554 DE DICIEMBRE 12/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CANT</th>
+                                    <th>PRODUCTO</th>
+                                    <th>$$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.00</td>
+                                    <td>CHEETOS VERDES 80 G</td>
+                                    <td>$8.50</td>
+                                </tr>
+                                <tr>
+                                    <td>2.00</td>
+                                    <td>KINDER DELICE</td>
+                                    <td>$10.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1.00</td>
+                                    <td>COCA COLA 600 ML</td>
+                                    <td>$10.00</td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL</td>
+                                    <td>$28.50</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br><br>
+                            <p class="centrado">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
+                    </div>
+                    
                    
                 </div>                    
             </div>  
         </div>
         <div>
-            <div v-show="position==6"> <!-- ticket listado preparcion chef -->
+            <div v-show="position==6"> <!-- tickets listado preparcion chef -->
                 VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
                 <div class="card">
 
@@ -1995,26 +2035,55 @@
     }
 </script>
 <style> 
-    .height {
-    min-height: 200px;
+    * {
+            font-size: 12px;
+            font-family: 'Times New Roman';
     }
 
-    .iconbig {
-        font-size: 77px;
-        color: #5CB85C;
+    td,
+    th,
+    tr,
+    table {
+        border-top: 1px solid black;
+        border-collapse: collapse;
     }
 
-    .table > tbody > tr > .emptyrow {
-        border-top: none;
+    td.producto,
+    th.producto {
+        width: 75px;
+        max-width: 75px;
     }
 
-    .table > thead > tr > .emptyrow {
-        border-bottom: none;
+    td.cantidad,
+    th.cantidad {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
     }
 
-    .table > tbody > tr > .highrow {
-        border-top: 3px solid;
+    td.precio,
+    th.precio {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
     }
+
+    .centrado {
+        text-align: center;
+        align-content: center;
+    }
+
+    .ticket {
+        width: 155px;
+        max-width: 155px;
+        margin: auto;
+    }
+
+    img {
+        max-width: inherit;
+        width: inherit;
+    }
+
 
 
     .select2-search__field {
