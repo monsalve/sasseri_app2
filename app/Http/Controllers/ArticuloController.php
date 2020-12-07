@@ -63,8 +63,9 @@ class ArticuloController extends Controller
         $id_empresa = $request->session()->get('id_empresa');
 
         if(isset($request->categoria) && $request->categoria!='' && $request->categoria!=0)
-        {
-            $cons_categoria = 'AND articulos.idcategoria2='.$request->categoria;
+        {           
+           
+            $cons_categoria = 'AND articulos.idcategoria2 IN ('.$request->categoria.')';
         }
         else
         {
