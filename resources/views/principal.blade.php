@@ -1,159 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Software financiero y contable online">
-    <meta name="author" content="fractalagenciadigital.com">
-    <meta name="keyword" content="Software financiero y contable online">
-    <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sasseri</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="css/plantilla.css" rel="stylesheet">
-    <style>
-    .btn-crea-factura {
-        height: 34px;
-    }
-    </style>
-</head>
-<?php $rol_usu = Auth::user()->idrol; ?>
-<body id="page-top">
-    <div id="app">
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Software financiero y contable online">
+        <meta name="author" content="fractalagenciadigital.com">
+        <meta name="keyword" content="Software financiero y contable online">
+        <link rel="shortcut icon" href="img/favicon.png">
+        <title>Sasseri</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link href="css/plantilla.css" rel="stylesheet">
+        <style>
+        .btn-crea-factura {
+            height: 34px;
+        }
+        </style>
+    </head>
+    <?php $rol_usu = Auth::user()->idrol; ?>
+    <body id="page-top">
+        <div id="app">
 
-        <!-- Page Wrapper -->
-        <div id="wrapper">
+            <!-- Page Wrapper -->
+            <div id="wrapper">
 
-            <!-- Sidebar -->
-        
-        @if($rol_usu==1)  
-            <ul class="navbar-nav bg-gradient-primaryx sidebar sidebar-darkx accordion" id="accordionSidebar">
-
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
-                    <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
-                </a>
+                <!-- Sidebar -->
             
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+            @if($rol_usu==1)  
+                <ul class="navbar-nav bg-gradient-primaryx sidebar sidebar-darkx accordion" id="accordionSidebar">
 
-                <li @click="menu=999991" class="nav-item">
-                    <a href="#" class="nav-link"><i class="icon-user"></i> <span>Usuarios</span></a>
-                </li>
-                <li @click="menu=10" class="nav-item">
-                    <a href="#" class="nav-link"><i class="icon-user"></i> <span>Terceros</span></a>
-                </li>
-                <li @click="menu=40" class="nav-item">
-                    <a href="#" class="nav-link"><i class="icon-screen-desktop"></i> <span>Punto de venta</span></a>
-                </li>
-                <li @click="menu=14" class="nav-item">
-                    <a href="#" class="nav-link"><i class="icon-calculator"></i><span>Facturación</span> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfig"
-                    aria-expanded="true" aria-controls="collapseConfig" >
-                        <i class="icon-wrench"></i>
-                        <span>Configuración</span>
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
+                        <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
                     </a>
-                    <ul  id="collapseConfig" class="collapse" aria-labelledby="headingConfig"
-                    data-parent="#accordionSidebar">
-                        <div class="collapse-inner">
-                            <li @click="menu=6" class="collapse-item">
-                                <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
-                            </li>
-                            <li @click="menu=12" class="collapse-item">
-                                <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
-                            </li>
-                            <li @click="menu=27" class="collapse-item">
-                                <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
-                            </li>
-                            <li @click="menu=29" class="collapse-item">
-                                <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
-                            </li>
-                        </div>
-
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
-                    aria-expanded="true" aria-controls="collapseStock">
-                        <i class="icon-bag"></i><span>Almacén</span>
-                    </a>
-                    <ul id="collapseStock" class="collapse" aria-labelledby="headingStock"
-                    data-parent="#accordionSidebar">
-                        <div class="collapse-inner">
-                            <li @click="menu=15" class="collapse-item">
-                                <a href="#" ><i class="fa fa-table"></i></i> Articulo</a>
-                            </li>
-                            <li @click="menu=17" class="collapse-item">
-                                <a href="#" ><i class="fa fa-share"></i></i> Entradas</a>
-                            </li>
-                            <li @click="menu=18" class="collapse-item">
-                                <a href="#" ><i class="fa fa-reply"></i> Salidas</a>
-                            </li>
-                            <li @click="menu=19" class="collapse-item">
-                                <a href="#" ><i class="fa fa-archive"></i> Stock</a>
-                            </li>
-                            <li @click="menu=22" class="collapse-item">
-                                <a href="#" ><i class="fa fa-circle"></i> Presentación</a>
-                            </li>
-                            <li @click="menu=23" class="collapse-item">
-                                <a href="#" ><i class="fa fa-flask"></i> Unidad de medida</a>
-                            </li>
-                            <li @click="menu=24" class="collapse-item">
-                                <a href="#" ><i class="fa fa-tint"></i> Concentración</a>
-                            </li>
-                            <li @click="menu=25" class="collapse-item">
-                                <a href="#" ><i class="fa fa-level-down"></i> Categoría</a>
-                            </li>
-                        </div>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a 
-                        class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCajas"
-                        aria-expanded="true" aria-controls="collapseCajas"
-                    >
-                        <i class="icon-basket"></i>
-                        <span> Cajas</span>                       
-                    </a>
-                    <ul 
-                        id="collapseCajas" class="collapse" aria-labelledby="headingCajas" data-parent="#accordionSidebar"                   
-                    >
-                        <div class="collapse-inner">
-                            <li @click="menu=35" class="collapse-item">
-                                <a href="#"><i class="fa fa-list-ol"></i> Gestión de cajas</a>
-                            </li>
-                            <li @click="menu=30" class="collapse-item">
-                                <a href="#"><i class="fa fa-times-circle"></i> <span>Cierre de caja</span></a>
-                            </li>
-                        </div>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCartera"
-                    aria-expanded="true" aria-controls="collapseCartera">
-                        <i class="icon-wallet"></i><span>Cartera</span>
-                    </a>
-                    <ul id="collapseCartera" class="collapse" aria-labelledby="headingCartera"
-                    data-parent="#accordionSidebar">
-                        <div class="collapse-inner">
-                            <li @click="menu=33" class="collapse-item">
-                                <a href="#"><i class="fa fa-money"></i> Cuentas por cobrar</a>
-                            </li>
-                            <li @click="menu=34" class="collapse-item">
-                                <a href="#"><i class="fa fa-money"></i> Cuentas por pagar</a>
-                            </li>
-                        </div>
-                    </ul>
-                </li>
                 
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
 
-            </ul>
-        @endif
+                    <li @click="menu=999991" class="nav-item">
+                        <a href="#" class="nav-link"><i class="icon-user"></i> <span>Usuarios</span></a>
+                    </li>
+                    <li @click="menu=10" class="nav-item">
+                        <a href="#" class="nav-link"><i class="icon-user"></i> <span>Terceros</span></a>
+                    </li>
+                    <li @click="menu=40" class="nav-item">
+                        <a href="#" class="nav-link"><i class="icon-screen-desktop"></i> <span>Punto de venta</span></a>
+                    </li>
+                    <li @click="menu=14" class="nav-item">
+                        <a href="#" class="nav-link"><i class="icon-calculator"></i><span>Facturación</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfig"
+                        aria-expanded="true" aria-controls="collapseConfig" >
+                            <i class="icon-wrench"></i>
+                            <span>Configuración</span>
+                        </a>
+                        <ul  id="collapseConfig" class="collapse" aria-labelledby="headingConfig"
+                        data-parent="#accordionSidebar">
+                            <div class="collapse-inner">
+                                <li @click="menu=6" class="collapse-item">
+                                    <a href="#"><i class="fa fa-building-o"></i> Empresa</a>
+                                </li>
+                                <li @click="menu=12" class="collapse-item">
+                                    <a href="#"><i class="fa fa-cutlery"></i> Mesas</a>
+                                </li>
+                                <li @click="menu=27" class="collapse-item">
+                                    <a href="#"><i class="fa fa-usd"></i></i> IVAs</a>
+                                </li>
+                                <li @click="menu=29" class="collapse-item">
+                                    <a href="#"><i class="fa fa-square-o"></i></i> Cajas</a>
+                                </li>
+                            </div>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
+                        aria-expanded="true" aria-controls="collapseStock">
+                            <i class="icon-bag"></i><span>Almacén</span>
+                        </a>
+                        <ul id="collapseStock" class="collapse" aria-labelledby="headingStock"
+                        data-parent="#accordionSidebar">
+                            <div class="collapse-inner">
+                                <li @click="menu=15" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-table"></i></i> Articulo</a>
+                                </li>
+                                <li @click="menu=17" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-share"></i></i> Entradas</a>
+                                </li>
+                                <li @click="menu=18" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-reply"></i> Salidas</a>
+                                </li>
+                                <li @click="menu=19" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-archive"></i> Stock</a>
+                                </li>
+                                <li @click="menu=22" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-circle"></i> Presentación</a>
+                                </li>
+                                <li @click="menu=23" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-flask"></i> Unidad de medida</a>
+                                </li>
+                                <li @click="menu=24" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-tint"></i> Concentración</a>
+                                </li>
+                                <li @click="menu=25" class="collapse-item">
+                                    <a href="#" ><i class="fa fa-level-down"></i> Categoría</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a 
+                            class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCajas"
+                            aria-expanded="true" aria-controls="collapseCajas"
+                        >
+                            <i class="icon-basket"></i>
+                            <span> Cajas</span>                       
+                        </a>
+                        <ul 
+                            id="collapseCajas" class="collapse" aria-labelledby="headingCajas" data-parent="#accordionSidebar"                   
+                        >
+                            <div class="collapse-inner">
+                                <li @click="menu=35" class="collapse-item">
+                                    <a href="#"><i class="fa fa-list-ol"></i> Gestión de cajas</a>
+                                </li>
+                                <li @click="menu=30" class="collapse-item">
+                                    <a href="#"><i class="fa fa-times-circle"></i> <span>Cierre de caja</span></a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCartera"
+                        aria-expanded="true" aria-controls="collapseCartera">
+                            <i class="icon-wallet"></i><span>Cartera</span>
+                        </a>
+                        <ul id="collapseCartera" class="collapse" aria-labelledby="headingCartera"
+                        data-parent="#accordionSidebar">
+                            <div class="collapse-inner">
+                                <li @click="menu=33" class="collapse-item">
+                                    <a href="#"><i class="fa fa-money"></i> Cuentas por cobrar</a>
+                                </li>
+                                <li @click="menu=34" class="collapse-item">
+                                    <a href="#"><i class="fa fa-money"></i> Cuentas por pagar</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            @endif
             <!-- End of Sidebar -->
 
             <!-- Content Wrapper -->
@@ -312,44 +310,44 @@
             </div>
             <!-- End of Content Wrapper -->
 
-        </div>
-        <!-- End of Page Wrapper -->
+            </div>
+            <!-- End of Page Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-   
-    <!-- Main JS-->
-    <script src="js/app.js"></script>
-    <script src="js/plantilla.js"></script>
-    <!-- <script src="js/main.js"></script>     -->
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"> </script>
+    
+        <!-- Main JS-->
+        <script src="js/app.js"></script>
+        <script src="js/plantilla.js"></script>
+        <!-- <script src="js/main.js"></script>     -->
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"> </script>
 
-    <!-- <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> -->
+        <!-- <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script> -->
 
-</body>
+    </body>
 
 </html>

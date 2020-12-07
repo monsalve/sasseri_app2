@@ -1,7 +1,6 @@
 <template>
     <main class="main">
         <div>
-
             <div class="card" v-show="position==1">  <!-- listado de productos de factura -->
                 <div class="card-header"> 
                     <div class="row mb-1">
@@ -18,15 +17,14 @@
                     <div class="row">                            
                         <div class="col-12">
                             <div class="form-group">
-                                <select class="mul-select" multiple="true" placeholder="- Categorias -">
-                                    <option value="entradas">Entradas</option>
-                                    <option value="ensaladas">Ensaladas</option>
-                                    <option value="platos fuertes">Platos fuertes</option>
-                                    <option value="postres">Postres</option>
-                                    <option value="bebidas">Bebidas</option>
-                                    <option value="salsas">Salsas</option>
-                                    <option value="aperitivos">Aperitivos</option>
+                       
+                       
+                                <select size="2" class="form-control" multiple  v-model="buscarCategoriaA"  placeholder="- Categorias -" @change="listarArticulo(buscarA,criterioA,buscarCategoriaA)">
+                                    <option value="">- Categorias -</option>
+                                    <option v-for="categoria in arrayCategoria2" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                   
                                 </select>
+
                             </div> 
                         </div>  
                     </div>
@@ -313,7 +311,6 @@
                     </div>                    
                 </div> 
             </div>
-
             <div v-show="position==5"> <!-- tickets imprimir factura -->
                 VISTA-FACTURA IMPRIMIR
                 <div class="card">
@@ -329,69 +326,53 @@
                             </div> 
                         </div>                                  
                     </div>
+                    <div class="ticket">
+                           <img
+                                src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                                alt="Logotipo">
+                            <p class="centrado">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000000554554 DE DICIEMBRE 12/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CANT</th>
+                                    <th>PRODUCTO</th>
+                                    <th>$$</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.00</td>
+                                    <td>CHEETOS VERDES 80 G</td>
+                                    <td>$8.50</td>
+                                </tr>
+                                <tr>
+                                    <td>2.00</td>
+                                    <td>KINDER DELICE</td>
+                                    <td>$10.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1.00</td>
+                                    <td>COCA COLA 600 ML</td>
+                                    <td>$10.00</td>
+                                </tr>
 
-                    <div class="card-body" style="font-size: 8px;"> 
-                        <div class="text-center">
-                            <h3 class="text-center"><strong>tICKETS FACTURAR 2</strong></h3>
-                            <h2>TICKETS FACTURAR 1</h2>
-                        </div>  
-                        <div class="table-responsive">
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <td><strong>Nombre Producto</strong></td>
-                                        <td class="text-center"><strong>Precio</strong></td>
-                                        <td class="text-center"><strong>Cantidad</strong></td>
-                                        <td class="text-right"><strong>Total</strong></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Leche Alqueria</td>
-                                        <td class="text-center">$2000</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-right">$2000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Leche Entera</td>
-                                        <td class="text-center">$3500</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-right">$10500</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="highrow"></td>
-                                        <td class="highrow"></td>
-                                        <td class="highrow text-center"><strong>Subtotal</strong></td>
-                                        <td class="highrow text-right">$12500</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="emptyrow"></td>
-                                        <td class="emptyrow"></td>
-                                        <td class="emptyrow text-center"><strong>Iva</strong></td>
-                                        <td class="emptyrow text-right">$3000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
-                                        <td class="emptyrow"></td>
-                                        <td class="emptyrow text-center"><strong>Total</strong></td>
-                                        <td class="emptyrow text-right">$15500</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>                     
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Margarita Arango Salasar
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar">$ 2000</h3>
-                            </div> 
-                        </div>
-                    </div>                    
-                </div>  
-            </div>
-
-            <div v-show="position==6"> <!-- ticket listado preparcion chef -->
+                                <tr>
+                                    <td></td>
+                                    <td>TOTAL</td>
+                                    <td>$28.50</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br><br>
+                            <p class="centrado">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
+                    </div>
+                    
+                   
+                </div>                    
+            </div>  
+        </div>
+        <div>
+            <div v-show="position==6"> <!-- tickets listado preparcion chef -->
                 VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
                 <div class="card">
 
@@ -425,8 +406,7 @@
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
                 </div>
-            </div>
-            
+            </div> 
         </div>  
     </main>
 </template>
@@ -482,7 +462,7 @@
                 buscar : '',
                 criterioA:'nombre',
                 buscarA: '',
-                buscarCategoriaA : '',
+                buscarCategoriaA : [],
                 arrayCategoria2 : [],
                 arrayArticulo: [],
                 idarticulo: 0,
@@ -2023,10 +2003,12 @@
                 tokenSeparators: ['/',',',';'," "] 
             });
             //console.log( $(".mul-select"));
-            // $(".mul-select").on("change", function (e) { log("change"); });
+             
             let me= this;
             var d = new Date();
-            
+            $(".mul-select").on("change", function (e) { 
+                me.listarArticulo(me.buscarA,me.criterioA,me.buscarCategoriaA) 
+            });
             var dd = d.getDate();
             var mm = d.getMonth()+1;
             var yyyy = d.getFullYear();
@@ -2045,7 +2027,7 @@
             me.hastaFiltro = d;
             me.fecha = d;
             me.fechaHoraActual = d+' '+h+':'+min+':'+sec;
-
+            this.selectCategoria2();
             //me.listarCajas();
             this.listarArticulo(this.buscarA,this.criterioA,this.buscarCategoriaA);
             // me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
@@ -2053,26 +2035,55 @@
     }
 </script>
 <style> 
-    .height {
-    min-height: 200px;
+    * {
+            font-size: 12px;
+            font-family: 'Times New Roman';
     }
 
-    .iconbig {
-        font-size: 77px;
-        color: #5CB85C;
+    td,
+    th,
+    tr,
+    table {
+        border-top: 1px solid black;
+        border-collapse: collapse;
     }
 
-    .table > tbody > tr > .emptyrow {
-        border-top: none;
+    td.producto,
+    th.producto {
+        width: 75px;
+        max-width: 75px;
     }
 
-    .table > thead > tr > .emptyrow {
-        border-bottom: none;
+    td.cantidad,
+    th.cantidad {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
     }
 
-    .table > tbody > tr > .highrow {
-        border-top: 3px solid;
+    td.precio,
+    th.precio {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
     }
+
+    .centrado {
+        text-align: center;
+        align-content: center;
+    }
+
+    .ticket {
+        width: 155px;
+        max-width: 155px;
+        margin: auto;
+    }
+
+    img {
+        max-width: inherit;
+        width: inherit;
+    }
+
 
 
     .select2-search__field {
