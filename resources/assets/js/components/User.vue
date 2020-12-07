@@ -46,10 +46,11 @@
                                     <td v-text="persona.tipo_documento"></td>
                                     <td v-text="persona.num_documento"></td>
                                     <td v-text="persona.direccion"></td>
-                                    <td v-text="persona.telefono"></td>
+                                    <td v-text="persona.telefono1"></td>
                                     <td v-text="persona.email"></td>
                                     <td v-text="persona.usuario"></td>
-                                    <td v-text="persona.role"></td>
+                                    <td v-text="persona.rol"></td>
+                                    
                                     <td>
                                         <button type="button" @click="abrirModal('persona','permisos', [persona.id, persona.nombre])" class="btn btn-primary btn-sm">
                                           <i class="icon-list"></i>
@@ -118,7 +119,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="dni-input">Número documento</label>                                     
-                                        <input type="email" v-model="num_documento" class="form-control" placeholder="Número de documento">                                     
+                                        <input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">                                     
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -597,7 +598,7 @@
             },
             desactivarUsuario (id)
             {
-               swal({
+               Swal.fire({
                 title: 'Esta seguro de desactivar este usuario?',
                 type: 'warning',
                 showCancelButton: true,
@@ -637,7 +638,7 @@
             },
             activarUsuario (id)
             {
-               swal({
+               Swal.fire({
                 title: 'Esta seguro de activar este usuario?',
                 type: 'warning',
                 showCancelButton: true,
