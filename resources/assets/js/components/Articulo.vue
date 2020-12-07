@@ -72,7 +72,7 @@
                                             <span>Producto simple</span>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td style="text-align:center;">
                                         <!-- <div v-if="articulo.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
@@ -2153,7 +2153,7 @@
 </script>
 <style>    
     .modal-content{
-        position: absolute !important;
+        /* position: absolute !important; */
     }
     .mostrar{
         display: list-item !important;
