@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Articulo;
 use App\Stock;
 use App\ProductoTarifario;
+use App\ConTarifario;
 use App\IvaProducto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,7 @@ class ArticuloController extends Controller
             ->leftJoin('presentacion','articulos.id_presentacion','=','presentacion.id')
             ->select('articulos.id','articulos.id as id_articulo','articulos.idcategoria','articulos.idcategoria2','articulos.codigo','articulos.nombre','modelo_contable.nombre as nombre_categoria','articulos.precio_venta','articulos.stock','id_und_medida','id_concentracion','articulos.cod_invima','articulos.lote','articulos.fec_vence','articulos.minimo','tipo_articulo','articulos.descripcion','articulos.condicion','articulos.id_presentacion','articulos.talla','articulos.marca','articulos.linea','articulos.img','articulos.id_empresa','presentacion.nombre as nom_presentacion')
             ->where('articulos.id_empresa','=',$id_empresa)
-            ->orderBy('articulos.id', 'desc')->paginate(3);
+            ->orderBy('articulos.id', 'desc')->paginate(10);
         }
         else{
             $articulos = Articulo::leftJoin('modelo_contable','articulos.idcategoria','=','modelo_contable.id')
@@ -35,7 +36,7 @@ class ArticuloController extends Controller
             ->where('articulos.id_empresa','=',$id_empresa)
             ->where('articulos.'.$criterio, 'like', '%'. $buscar . '%')
             ->orWhere('articulos.codigo', 'like', '%'. $buscar . '%')
-            ->orderBy('articulos.id', 'desc')->paginate(3);
+            ->orderBy('articulos.id', 'desc')->paginate(10);
         }
         
 
@@ -79,7 +80,7 @@ class ArticuloController extends Controller
             $cons_tarifario = '';
         }
 
-        $cons = "SELECT articulos.id,articulos.id as id_articulo,'' as id_asociado,articulos.idcategoria,articulos.idcategoria2,articulos.codigo,articulos.nombre,modelo_contable.nombre as nom_modelo_contable,modelo_contable.idIvaCompras,modelo_contable.idIvaVentas,modelo_contable.idIvaDevolucionCompras,modelo_contable.idIvaDevolucionVentas,categorias.nombre as nom_categoria,productos_tarifarios.valor as precio_venta,articulos.stock,articulos.descripcion,articulos.cod_invima,articulos.lote,articulos.minimo,articulos.tipo_articulo,articulos.condicion,articulos.id_presentacion,articulos.talla,articulos.marca,articulos.linea,articulos.img,articulos.id_empresa,presentacion.nombre as nom_presentacion,'' as padre FROM `articulos`,`modelo_contable`,`categorias`,`presentacion`,`productos_tarifarios` WHERE articulos.idcategoria=modelo_contable.id AND articulos.idcategoria2=categorias.id AND articulos.id_presentacion=presentacion.id AND productos_tarifarios.id_producto=articulos.id ".$cons_tarifario." AND productos_tarifarios.asociado=0 AND (articulos.nombre LIKE '%".$buscar."%' OR articulos.codigo LIKE '%".$buscar."%') ".$cons_categoria." AND articulos.id_empresa=".$id_empresa." GROUP BY articulos.id ORDER BY articulos.id DESC";
+        $cons = "SELECT articulos.id,articulos.id as id_articulo,'' as id_asociado,articulos.idcategoria,articulos.idcategoria2,articulos.codigo,articulos.nombre,modelo_contable.nombre as nom_modelo_contable,modelo_contable.idIvaCompras,modelo_contable.idIvaVentas,modelo_contable.idIvaDevolucionCompras,modelo_contable.idIvaDevolucionVentas,categorias.nombre as nom_categoria,productos_tarifarios.valor as precio_venta,articulos.stock,articulos.descripcion,articulos.cod_invima,articulos.lote,articulos.minimo,articulos.tipo_articulo,articulos.condicion,articulos.id_presentacion,articulos.talla,articulos.marca,articulos.linea,articulos.img,articulos.id_empresa,presentacion.nombre as nom_presentacion,'' as padre FROM `articulos`,`modelo_contable`,`categorias`,`presentacion`,`productos_tarifarios` WHERE articulos.idcategoria=modelo_contable.id AND articulos.condicion = 1 AND articulos.idcategoria2=categorias.id AND articulos.id_presentacion=presentacion.id AND productos_tarifarios.id_producto=articulos.id ".$cons_tarifario." AND productos_tarifarios.asociado=0 AND (articulos.nombre LIKE '%".$buscar."%' OR articulos.codigo LIKE '%".$buscar."%') ".$cons_categoria." AND articulos.id_empresa=".$id_empresa." GROUP BY articulos.id ORDER BY articulos.id DESC";
 
         $articulos = DB::select($cons);
 
@@ -100,7 +101,7 @@ class ArticuloController extends Controller
                 {
                     foreach($articulos2 as $a2)
                     {
-                        $cons3 = "SELECT articulos.id,articulos.id as id_articulo,productos_asociados.id as id_asociado,articulos.idcategoria,articulos.idcategoria2,productos_asociados.codigo,articulos.nombre,modelo_contable.nombre as nom_modelo_contable,modelo_contable.idIvaCompras,modelo_contable.idIvaVentas,modelo_contable.idIvaDevolucionCompras,modelo_contable.idIvaDevolucionVentas,categorias.nombre as nom_categoria,productos_tarifarios.valor as precio_venta,productos_asociados.unidades, articulos.stock,articulos.descripcion,articulos.cod_invima,articulos.lote,articulos.minimo,articulos.tipo_articulo,articulos.condicion,productos_asociados.id_presentacion,articulos.talla,articulos.marca,articulos.linea,articulos.img,articulos.id_empresa,iva.nombre as nombre_iva,iva.porcentaje,iva.porcentaje as iva,presentacion.nombre as nom_presentacion, articulos.id as padre FROM `articulos`,`modelo_contable`,`categorias`,`presentacion`,`iva`,`productos_tarifarios`,`productos_asociados` WHERE articulos.idcategoria=modelo_contable.id AND articulos.idcategoria2=categorias.id AND productos_asociados.id_presentacion=presentacion.id AND productos_tarifarios.id_producto=articulos.id ".$cons_tarifario." AND productos_asociados.id=$a2->id AND (articulos.nombre LIKE '%".$buscar."%' OR productos_asociados.codigo LIKE '%".$buscar."%') ".$cons_categoria." AND articulos.id=".$a->id_articulo." AND articulos.id_empresa=".$id_empresa." GROUP BY articulos.id ORDER BY articulos.id DESC";
+                        $cons3 = "SELECT articulos.id,articulos.id as id_articulo,productos_asociados.id as id_asociado,articulos.idcategoria,articulos.idcategoria2,productos_asociados.codigo,articulos.nombre,modelo_contable.nombre as nom_modelo_contable,modelo_contable.idIvaCompras,modelo_contable.idIvaVentas,modelo_contable.idIvaDevolucionCompras,modelo_contable.idIvaDevolucionVentas,categorias.nombre as nom_categoria,productos_tarifarios.valor as precio_venta,productos_asociados.unidades, articulos.stock,articulos.descripcion,articulos.cod_invima,articulos.lote,articulos.minimo,articulos.tipo_articulo,articulos.condicion,productos_asociados.id_presentacion,articulos.talla,articulos.marca,articulos.linea,articulos.img,articulos.id_empresa,iva.nombre as nombre_iva,iva.porcentaje,iva.porcentaje as iva,presentacion.nombre as nom_presentacion, articulos.id as padre FROM `articulos`,`modelo_contable`,`categorias`,`presentacion`,`iva`,`productos_tarifarios`,`productos_asociados` WHERE articulos.idcategoria=modelo_contable.id AND articulos.condicion = 1 AND articulos.idcategoria2=categorias.id AND productos_asociados.id_presentacion=presentacion.id AND productos_tarifarios.id_producto=articulos.id ".$cons_tarifario." AND productos_asociados.id=$a2->id AND (articulos.nombre LIKE '%".$buscar."%' OR productos_asociados.codigo LIKE '%".$buscar."%') ".$cons_categoria." AND articulos.id=".$a->id_articulo." AND articulos.id_empresa=".$id_empresa." GROUP BY articulos.id ORDER BY articulos.id DESC";
 
                         $articulos3 = DB::select($cons3);
 
@@ -159,7 +160,7 @@ class ArticuloController extends Controller
         $filtro = $request->filtro;
 
         
-        $cons = "SELECT articulos.id,'' as id_asociado,articulos.idcategoria,articulos.idcategoria2,articulos.nombre,articulos.codigo,articulos.precio_venta,articulos.stock,articulos.descripcion,articulos.cod_invima,articulos.lote,articulos.fec_vence,articulos.minimo,articulos.tipo_articulo,articulos.iva,articulos.talla,articulos.marca,articulos.linea,articulos.id_und_medida,articulos.id_concentracion,articulos.id_presentacion,articulos.id_usuario,articulos.id_empresa,presentacion.nombre as nom_presentacion FROM articulos,presentacion WHERE articulos.id_presentacion=presentacion.id AND articulos.codigo=".$filtro." AND articulos.id_empresa=".$id_empresa;
+        $cons = "SELECT articulos.id,'' as id_asociado,articulos.idcategoria,articulos.idcategoria2,articulos.nombre,articulos.codigo,articulos.precio_venta,articulos.stock,articulos.descripcion,articulos.cod_invima,articulos.lote,articulos.fec_vence,articulos.minimo,articulos.tipo_articulo,articulos.iva,articulos.talla,articulos.marca,articulos.linea,articulos.id_und_medida,articulos.id_concentracion,articulos.id_presentacion,articulos.id_usuario,articulos.id_empresa,presentacion.nombre as nom_presentacion FROM articulos,presentacion WHERE articulos.id_presentacion=presentacion.id AND articulos.codigo='".$filtro."' AND articulos.id_empresa=".$id_empresa;
         $articulos = DB::select($cons);
         if(count($articulos)>0)
         {
@@ -248,21 +249,28 @@ class ArticuloController extends Controller
                 'condicion' => '1',
                 'img' => $nombreImg,
             ];
+           
+            $tarifarios = ConTarifario::select('con_tarifarios.id','con_tarifarios.nombre','con_tarifarios.favorito')
+            ->where('con_tarifarios.id_empresa','=',$id_empresa)
+            ->where('con_tarifarios.estado','=','1')
+            ->orderBy('favorito', 'desc')
+            ->get();
 
             $articulo = Articulo::create($archivo);
 
-            $tarifarios = $request->arrayTarifarios;
-            $tarifarios = json_decode($tarifarios);
-
+            //$tarifarios = $request->arrayTarifarios;
+            //$tarifarios = json_decode($tarifarios);
+           
+            
+            
             for($i=0; $i<count($tarifarios); $i++)
             {
                 $nuevoTarifario = new ProductoTarifario();
                 $nuevoTarifario->id_tarifario = $tarifarios[$i]->id;
                 $nuevoTarifario->id_producto = $articulo->id;
-                if(isset($tarifarios[$i]->valor))
-                {
-                    $nuevoTarifario->valor = $tarifarios[$i]->valor;
-                } else { $nuevoTarifario->valor = 0;}
+                //if(isset($tarifarios[$i]->valor)){
+                    $nuevoTarifario->valor = $request->precio_venta;
+                //} else { $nuevoTarifario->valor = 0;}
                 $nuevoTarifario->asociado = 0;
 
                 $nuevoTarifario->save();

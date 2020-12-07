@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div v-for="(articulo, index) in arrayArticulo" :key="index" class="col-4 separa-cards">
-                                <div class="card text-center mb-1">
+                                <div class="card text-center mb-1" style="cursor:pointer" @click="agregaDetalleMesero(articulo)">
                                     <div class=" txt-price-prod btn-primary">
                                         <span class="num text-white "> $ {{articulo.precio_venta}} </span>
                                     </div>
@@ -423,7 +423,7 @@
             </div>
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
-                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ 500000</h3></a>
+                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
                 </div>
             </div>
             
@@ -438,7 +438,7 @@
         props : ['ruta'],
         data (){
             return {
-                position: 5,
+                position: 1,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -1354,6 +1354,38 @@
             eliminarDetalle(index){
                 let me = this;
                 me.arrayDetalle.splice(index, 1);
+            },
+            agregaDetalleMesero(producto){
+                console.log(producto);
+                let me=this;
+                 var p = '';
+                if(producto.padre='') {p = ' '+producto.nom_presentacion+' (Presentacion asociada)';}
+                else {p = ' - '+producto.nom_presentacion;}
+                var ivaVenta = 0;
+                producto.productos_iva.forEach(function(iva){
+                    if(iva.tipo_iva =='Venta'){ivaVenta=iva.porcentaje;}
+                });
+                me.arrayDetalle.push({
+                    idarticulo: producto.id_articulo,
+                    id_asociado: producto.id_asociado,
+                    articulo: producto.nombre,
+                    cantidad: 1,
+                    valor_descuento: 0,
+                    precio: producto.precio_venta,
+                    precio_venta: producto.precio_venta,
+                    iva: ivaVenta,
+                    stock : producto.stock,
+                    descuento : 0,
+                    nom_presentacion : producto.nom_presentacion,
+                    id_presentacion : producto.id_presentacion,
+                    padre : producto.padre
+                });
+
+                Swal.fire({
+                    type: 'success',
+                    title: 'Producto agregado',
+                    text: 'Progducto cargado',
+                })
             },
             agregarDetalle(){
                 let me=this;
