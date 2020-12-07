@@ -3899,6 +3899,10 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
     background-color: #97c4f7; 
 }
+*{
+    outline: none;
+    /* font-size: 14px; */
+}
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -3922,6 +3926,9 @@ a{
 }
 .btn-primary:hover{
     background-color: #003b5a;
+}
+label{
+    margin-bottom: .2rem;
 }
 .topbar{
     background-color: #cacbc7;
@@ -3963,6 +3970,10 @@ a{
 .sidebar .nav-item .collapse .collapse-inner, 
 .sidebar .nav-item .collapsing .collapse-inner{
     width: min-content;
+    background: #fff;
+}
+.page-item.active .page-link{
+    z-index: 0;
 }
 
 .sidebar #sidebarToggle::after{
@@ -3974,6 +3985,12 @@ a{
 
 .bg-dark{
     color: #fff;
+}
+@media (max-width:767.98px){
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }
 
 table.table-earning thead th{
