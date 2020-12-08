@@ -312,9 +312,7 @@
                 </div> 
             </div>
             <div v-show="position==5"> <!-- tickets imprimir factura -->
-                VISTA-FACTURA IMPRIMIR
                 <div class="card">
-
                     <div class="card-header">
                         <div class="row">
                             <div class="col-3">
@@ -327,55 +325,65 @@
                         </div>                                  
                     </div>
                     <div class="ticket">
-                           <img
-                                src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
-                                alt="Logotipo">
+                           <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
                             <p class="centrado">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000000554554 DE DICIEMBRE 12/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
-                        <table>
+                            <table class="table">
                             <thead>
                                 <tr>
-                                    <th>CANT</th>
-                                    <th>PRODUCTO</th>
-                                    <th>$$</th>
+                                <th scope="col">CANT</th>
+                                <th scope="col">DESCRIPCION</th>
+                                <th scope="col">IVA</th>
+                                <th scope="col">TOTAL</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1.00</td>
-                                    <td>CHEETOS VERDES 80 G</td>
-                                    <td>$8.50</td>
+                                <th scope="row">2</th>
+                                <td>LECHE ALQUERIA</td>
+                                <td>$300</td>
+                                <td>$5000</td>
+                                </tr>
+                                 <tr>
+                                <th scope="row">1</th>
+                                <td>CAFE NEGRO</td>
+                                <td>$100</td>
+                                <td>$2500</td>
+                                </tr>
+                                 <tr>
+                                <th scope="row">1</th>
+                                <td>PAN DE QUESO</td>
+                                <td>$50</td>
+                                <td>$2000</td>
                                 </tr>
                                 <tr>
-                                    <td>2.00</td>
-                                    <td>KINDER DELICE</td>
-                                    <td>$10.00</td>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th class="table-borderless" scope="col">SUBTOTAL</th>
+                                <th scope="col">$9000</th>
                                 </tr>
-                                <tr>
-                                    <td>1.00</td>
-                                    <td>COCA COLA 600 ML</td>
-                                    <td>$10.00</td>
+                                <tr class="table-borderless">
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">IVA</th>
+                                <th scope="col">$950</th>
                                 </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td>TOTAL</td>
-                                    <td>$28.50</td>
+                                <tr class="table-borderless">
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">TOTAL</th>
+                                <th scope="col">$9950</th>
                                 </tr>
                             </tbody>
-                        </table>
-                        <br><br>
+                            </table>
+                            <br>
                             <p class="centrado">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
-                    </div>
-                    
-                   
+                    </div> 
                 </div>                    
             </div>  
         </div>
         <div>
             <div v-show="position==6"> <!-- tickets listado preparcion chef -->
-                VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
                 <div class="card">
-
                     <div class="card-header">
                         <div class="row">
                             <div class="col-3">
@@ -389,13 +397,8 @@
                         </div>                                      
                     </div>
                     <div class="card-body">                        
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Margarita Arango Salasar
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar">$ 2000</h3>
-                            </div> 
+                        <div class="row">                                
+                    fdsfgdgafgafgafhda
                         </div>
                     </div>                    
                 </div>  
@@ -2039,52 +2042,19 @@
             font-size: 12px;
             font-family: 'Times New Roman';
     }
-
-    td,
-    th,
-    tr,
-    table {
-        border-top: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    td.producto,
-    th.producto {
-        width: 75px;
-        max-width: 75px;
-    }
-
-    td.cantidad,
-    th.cantidad {
-        width: 40px;
-        max-width: 40px;
-        word-break: break-all;
-    }
-
-    td.precio,
-    th.precio {
-        width: 40px;
-        max-width: 40px;
-        word-break: break-all;
-    }
-
     .centrado {
         text-align: center;
         align-content: center;
     }
-
     .ticket {
-        width: 155px;
-        max-width: 155px;
+        width: 288px;
+        max-width: 320px;
         margin: auto;
     }
-
-    img {
-        max-width: inherit;
-        width: inherit;
+    .img-logo {
+        max-width: 87px;
+        margin-left: 100px;
     }
-
-
 
     .select2-search__field {
             width: 100% !important;
