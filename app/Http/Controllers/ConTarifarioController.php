@@ -70,10 +70,23 @@ class ConTarifarioController extends Controller
 
         $tarifario = ConTarifario::select('con_tarifarios.id','con_tarifarios.nombre','con_tarifarios.favorito')
         ->where('con_tarifarios.id_empresa','=',$id_empresa)
-        ->orderBy('nombre', 'asc')
+        ->where('con_tarifarios.estado','=','1')
+        ->orderBy('favorito', 'desc')
         ->get();
         
         return ['tarifario' => $tarifario];
+    }
+
+    public function selectConTarifario3($id_empresa){
+        // if (!$request->ajax()) return redirect('/');
+        
+        $tarifario = ConTarifario::select('con_tarifarios.id','con_tarifarios.nombre','con_tarifarios.favorito')
+        ->where('con_tarifarios.id_empresa','=',$id_empresa)
+        ->where('con_tarifarios.estado','=','1')
+        ->orderBy('favorito', 'desc')
+        ->get();
+        
+        return $tarifario;
     }
 
     public function store(Request $request)
