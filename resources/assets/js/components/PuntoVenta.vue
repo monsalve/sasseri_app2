@@ -396,9 +396,25 @@
                             </div> 
                         </div>                                      
                     </div>
-                    <div class="card-body">                        
-                        <div class="row">                                
-                    fdsfgdgafgafgafhda
+                     <div class="ticket">
+                        <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
+
+                        <div class="input-group mb-3">
+                            <div class="col-6">
+                                <p>MESRO</p>
+                            </div> 
+                            <div class="col-6">
+                                <p>ANDRES ALBERTO</p>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                        <p>MESRO</p>
+                        </div>
+                        <div class="col-5">
+                        <p>ANDRES ALBERTO</p>
+                        </div>
+                        <div class="col-12">
+                        <p>SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154</p>
                         </div>
                     </div>                    
                 </div>  
@@ -2070,10 +2086,10 @@
     }
 </script>
 <style> 
-    * {
+    /* {
             font-size: 12px;
             font-family: 'Times New Roman';
-    }
+    }*/
     .centrado {
         text-align: center;
         align-content: center;
