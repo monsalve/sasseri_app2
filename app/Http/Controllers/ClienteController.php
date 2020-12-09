@@ -47,9 +47,12 @@ class ClienteController extends Controller
         ->orWhere('nombre', 'like', '%'. $filtro . '%')
         ->select('id','nombre','num_documento')
         ->orderBy('nombre', 'asc')->get();
-*/
-        $cons="select *,case tipo_persona when 'Juridica' then concat(nombre,' - ',num_documento) when 'Natural' then concat(nombre1,' ',nombre2,' ',apellido1,' ',apellido2,' - ',num_documento) when '' then concat(nombre,' - ',num_documento) end as nom_y_ced from personas where nombre like '%$filtro%' or num_documento like '%$filtro%' or nombre1 like '%$filtro%' or nombre2 like '%$filtro%' or apellido1 like '%$filtro%' or apellido2 like '%$filtro%' 
-        or concat(nombre1,' ',nombre2,' ',apellido1,' ',apellido2) like '%$filtro%' or concat(nombre1,' ',apellido1,' ',apellido2) like '%$filtro%' or concat(nombre1,' ',nombre2,' ',apellido1) like '%$filtro%' or concat(nombre1,' ',apellido1) like '%$filtro%' or entidad like '%$filtro%' order by nombre asc";
+*/      $aux_filtro="";
+        if ($filtro) {
+            $aux_filtro = "and (nombre like '%$filtro%'  or num_documento like '%$filtro%' or nombre1 like '%$filtro%' or nombre2 like '%$filtro%' or apellido1 like '%$filtro%' or apellido2 like '%$filtro%' or concat(nombre1,' ',nombre2,' ',apellido1,' ',apellido2) like '%$filtro%' or concat(nombre1,' ',apellido1,' ',apellido2) like '%$filtro%' or concat(nombre1,' ',nombre2,' ',apellido1) like '%$filtro%' or concat(nombre1,' ',apellido1) like '%$filtro%' or entidad like '%$filtro%') ";
+        } 
+
+        $cons="select *,case tipo_persona when 'Juridica' then concat(nombre,' - ',num_documento) when 'Natural' then concat(nombre1,' ',nombre2,' ',apellido1,' ',apellido2,' - ',num_documento) when '' then concat(nombre,' - ',num_documento) end as nom_y_ced from personas where id_empresa=$id_empresa $aux_filtro order by nombre1 ASC, nombre2 ASC, nombre ASC, apellido1 ASC, apellido2 ASC limit 20";
         //echo $cons;
 
         $clientes = DB::select($cons);
@@ -58,11 +61,11 @@ class ClienteController extends Controller
     }
     public function selectCliente2(Request $request){
         // if (!$request->ajax()) return redirect('/');
- 
+        $id_empresa = $request->session()->get('id_empresa');
          $id = $request->id;
         
          $cons="select *,case tipo_persona when 'Juridica' then concat(nombre,' - ',num_documento) when 'Natural' then concat(nombre1,' ',nombre2,' ',apellido1,' ',apellido2,' - ',num_documento) when '' then concat(nombre,' - ',num_documento) end as nom_y_ced from personas 
-         where id = $id and where 'id_empresa'='$id_empresa' order by nombre asc";
+         where id = $id and where 'id_empresa'='.$id_empresa.' order by nombre asc";
          //echo $cons;
          $clientes = DB::select($cons);
          return ['clientes' => $clientes]; 

@@ -5,11 +5,11 @@
                 <div class="card-header"> 
                     <div class="row mb-1">
                         
-                        <div class="col-9">
+                        <div class="col-10">
                             <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" v-model="buscarA" @keyup="listarArticulo(buscarA,criterioA,buscarCategoriaA)">
                         </div>
-                        <div class="col-3">
-                            <button class="btn btn-success  fa fa-search btn-buscar float-right" type="submit">
+                        <div class="col-2">
+                            <button class="btn btn-success  fa fa-search btn-buscar float-right" type="submit" @click="listarArticulo(buscarA,criterioA,buscarCategoriaA)">
                             </button>
                         </div>
                         
@@ -75,9 +75,14 @@
                                     <div class="col-1">
                                         <h3><i class="fa fa-user"></i></h3>
                                     </div>
-                                    <div class="col-9 nombre-tercero"><small class="text-muted ">CRISTIAM CAMILO MONSALVE PANTOJA</small></div>
+                                    <div class="col-9 nombre-tercero"><small class="text-muted ">{{tercero}}</small></div>
                                     <div class="col-1">
-                                        <h3 style="cursor:pointer" class="text-primary" @click="position=3"><i class="fa fa-plus-circle" href="#59981A"></i></h3>
+                                        <h3  v-if="!tercero" style="cursor:pointer" class="text-primary" @click="position=3">
+                                            <i class="fa fa-plus-circle" href="#59981A"></i>
+                                        </h3> 
+                                        <h3 v-else style="cursor:pointer" class="text-primary" @click="quitar(3)">
+                                            <i class="fa fa-times-circle" href="#59981A"></i>
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
@@ -87,77 +92,56 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01">Mezas</label>
                                         </div>
-                                        <select class="custom-select" id="inputGroupSelect01">
-                                            <option selected>Ubicacion...</option>
-                                            <option value="1">meza 1</option>
-                                            <option value="2">meza 2</option>
-                                        </select>
+                                        <select class="custom-select form-control" v-model="lugar" id="inputGroupSelect01">
+                                            <option selected>Ubicacion...</option>                                            
+                                            <option v-for="zonas in arrayZonas" :key="zonas.id" :value="zonas.id" v-text="zonas.zona"></option>
+                                        </select>                                        
                                     </div>
                                 </div>                                            
                             </div>
-                            <div class="row mt-1">
+                            <div class="row ">
                                 <div class="col-12">
-                                    <div class="row border-bottom">
-                                        <div class="col-6">
+                                    <div class="row border-bottom" v-for="(detalle,index) in arrayDetalle" :key="detalle.id">
+                                        <div class="col-5">
                                             <div class="row">
-                                                <div class="col-12"><small class="text-muted">Ensaladas</small></div>
+                                                <div class="col-12" v-if="detalle.padre==null || detalle.padre==''" >
+                                                    <small class="text-muted">{{detalle.articulo+' - '+detalle.nom_presentacion}}</small>
+                                                </div>
+                                                <div class="col-12" v-else >
+                                                    <small class="text-muted">{{detalle.articulo+' - '+detalle.nom_presentacion+' (Presentación asociada)'}}</small>
+                                                </div>
                                             </div>    
                                             <div class="row">
-                                                <div class="col-12"><small > $ 10000 | IVA = $ 1200</small></div>
-                                            </div>    
-                                        </div>
-                                        <div class="col-2 row"><p class="text-right">2</p></div>
-                                        <div class="col-4 float-right"><p class="text-right"> $ 11200 </p></div>
-                                        <div class="col-1 row">
-                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
-                                        </div>
-                                    </div>
-                                    <div class="row border-bottom">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12"><small class="text-muted">Bebidas</small></div>
-                                            </div>    
-                                            <div class="row">
-                                                <div class="col-12"><small > $ 3000 | IVA = $ 500</small></div>
+                                                <div class="col-12">
+                                                    <small > 
+                                                        $ {{detalle.precio}} | IVA = $ {{detalle.valor_iva}}
+                                                    </small>
+                                                </div>
                                             </div>    
                                         </div>
-                                        <div class="col-2 row"><p class="text-right">4</p></div>
-                                        <div class="col-4 float-right"><p class="text-right"> $ 3500 </p></div>
-                                        <div class="col-1 row">
-                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
+                                        <div class="col-2 "><p class="text-right">{{detalle.cantidad}}</p></div>
+                                        <div class="col-3 float-right"><p class="text-right"> $ {{Math.round(parseFloat((detalle.precio*detalle.cantidad)))}} </p></div>
+                                        <div class="col-1 ">
+                                            <h3 class="text-danger"  @click="eliminarDetalle(index)"><i class="fa fa-times-circle"></i></h3>
                                         </div>
                                     </div>
-                                    <div class="row border-bottom">
-                                        <div class="col-6">
-                                            <div class="row">
-                                                <div class="col-12"><small class="text-muted">Postres</small></div>
-                                            </div>    
-                                            <div class="row">
-                                                <div class="col-12"><small > $ 1800 | IVA = $ 200</small></div>
-                                            </div>    
-                                        </div>
-                                        <div class="col-2 row"><p class="text-right">1</p></div>
-                                        <div class="col-4 float-right"><p class="text-right"> $ 2000 </p></div>
-                                        <div class="col-1 row">
-                                            <h3 class="text-danger"><i class="fa fa-times-circle"></i></h3>
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                             </div> 
                             <div class="row mt-1">
-                                <div class="col-8">
+                                <div class="col-6">
                                     <b>Subtotal</b>
                                 </div>
-                                <div class="col-4 text-righ">
-                                    $ 40000
+                                <div class="col-4 text-righ text-right">
+                                    $ {{subtotal=calcularSubtotal}}
                                 </div>
                             </div>
                             <div class="row mt-1">
-                                <div class="col-8">
+                                <div class="col-6">
                                     <b>IVA</b>
                                 </div>
-                                <div class="col-4 text-righ">
-                                    $ 40000
+                                <div class="col-4 text-righ text-right">
+                                    $ {{valor_iva=calcularTotalIva}}
                                 </div>
                             </div>
                         </div>
@@ -170,83 +154,31 @@
 
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-2">
                                 <button @click="position=4" class="btn btn-success fa fa-plus"></button>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <button @click="position=2" class="btn btn-primary fa fa-undo"></button>
                             </div>
                             <div class="col-6 pr-1">
-                               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="cta_busq" v-model="terc_busq" @keyup="buscarTercero()">
                             </div> 
                         </div>                                
                     </div>
 
-                    <div class="card-body">                        
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Margarita Arango Salasar
+                    <div class="card-body">  
+                        
+                        <div class="row border-bottom resaltar" @click="showUserOpts(tercero.id)"  v-for="tercero in arrayTerceros" :key="tercero.id"  v-bind:id="'person_row_'+tercero.id" > 
+                            <div class="col-10" v-if="tercero.nombre && !tercero.nombre1">
+                                {{ tercero.nombre }} 
+                            </div>
+                            <div class="col-10" v-else>
+                                {{ tercero.nombre1 + ' ' + validarUnder(tercero.nombre2)+' '+tercero.apellido1+' '+validarUnder(tercero.apellido2) }} 
                             </div>
                             <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
+                                <h3 class="text-danger ocultar" v-bind:id="'person_opts_'+tercero.id"><i class="fa fa-times-circle"></i></h3>
                             </div> 
-                        </div>
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Milton Farias Alvarado 
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Gregorio Santander Soscue
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Pintas Revelo Chiaspud
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Efrain Carmelo Lisboa 
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Daineris Targeri Tisoy
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Marco Luisa Balvoa
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>   
-                        <div class="row border-bottom resaltar">                                
-                            <div class="col-10">
-                                Gerardo Petro Chergas
-                            </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar"><i class="fa fa-times-circle"></i></h3>
-                            </div> 
-                        </div>
+                        </div>                        
                     </div>                    
                 </div>      
             </div>
@@ -325,59 +257,53 @@
                         </div>                                  
                     </div>
                     <div class="ticket">
-                        <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
-                        <p class="centrado espacio-1">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000554554 DE DICIEMBRE 20/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
-                        -----------------------------------------
-                        <table class="table table-sm espacio-1">
+                           <img
+                                src="https://yt3.ggpht.com/-3BKTe8YFlbA/AAAAAAAAAAI/AAAAAAAAAAA/ad0jqQ4IkGE/s900-c-k-no-mo-rj-c0xffffff/photo.jpg"
+                                alt="Logotipo">
+                            <p class="centrado">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000000554554 DE DICIEMBRE 12/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        <table>
                             <thead>
                                 <tr>
-                                    <th scope="col">CANT</th>
-                                    <th colspan="2" scope="col">DESCRIPCION</th>
-                                    <th scope="col">TOTAL</th>
+                                    <th>CANT</th>
+                                    <th>PRODUCTO</th>
+                                    <th>$$</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="centrado">2</td>
-                                    <td colspan="2">LECHE ALQUERIA</td>
-                                    <td>$5000</td>
+                                    <td>1.00</td>
+                                    <td>CHEETOS VERDES 80 G</td>
+                                    <td>$8.50</td>
                                 </tr>
                                 <tr>
-                                    <td class="centrado">1</td>
-                                    <td colspan="2">CAFE NEGRO</td>
-                                    <td>$2500</td>
+                                    <td>2.00</td>
+                                    <td>KINDER DELICE</td>
+                                    <td>$10.00</td>
                                 </tr>
                                 <tr>
-                                    <td class="centrado">1</td>
-                                    <td colspan="2">PAN DE QUESO</td>
-                                    <td>$2000</td>
-                                </tr>    
-                                <tr>
-                                    <th colspan="2" scope="col">SUBTOTAL:</th>
-                                    <th scope="col"></th>
-                                    <td>$9500</td>
+                                    <td>1.00</td>
+                                    <td>COCA COLA 600 ML</td>
+                                    <td>$10.00</td>
                                 </tr>
-                                <tr class="table-borderless">
-                                    <th colspan="2" scope="col">IVA:</th>
-                                    <th scope="col"></th>
-                                    <td>$950</td>
-                                </tr>
+
                                 <tr>
-                                    <th colspan="2" scope="col">TOTAL:</th>
-                                    <th scope="col"></th>
-                                    <th>$10450</th>
+                                    <td></td>
+                                    <td>TOTAL</td>
+                                    <td>$28.50</td>
                                 </tr>
                             </tbody>
                         </table>
-                        -----------------------------------------
-                        <br>
-                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
-                    </div> 
+                        <br><br>
+                            <p class="centrado">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
+                    </div>
+                    
+                   
                 </div>                    
             </div>  
         </div>
         <div>
             <div v-show="position==6"> <!-- tickets listado preparcion chef -->
+                VISTA- LISTADO COMIDAS A PREPARAR EL CHEF
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -392,63 +318,34 @@
                         </div>                                      
                     </div>
                      <div class="ticket">
-                        <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
-                        <p class="centrado espacio-1">FECHA 20/12/2020 - 04:44:42 P.M.</p>
-                        -----------------------------------------
-                        <div class="input-group mb-0">
-                            <div class="col-6">
-                                <p class="espacio-1">MESERO:</p>
-                            </div> 
-                            <div class="col-6">
-                                <p class="espacio-1">ANDRES ALBERTO</p>
-                            </div>
-                        </div>
-                        <div class="input-group mb-0">
-                            <div class="col-6">
-                                <p class="espacio-1">MESA:</p>
-                            </div> 
-                            <div class="col-6">
-                                <p class="espacio-1 centrado">1/4</p>
-                            </div>
-                        </div>
-                        -----------------------------------------
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">CANT</th>
-                                    <th colspan="1"></th>
-                                    <th scope="col">DESCRIPCION</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="centrado">3</td>
-                                    <td colspan="1"></td>
-                                    <td>LECHE ALQUERIA</td>
-                                </tr>
-                                <tr>
-                                    <td class="centrado">1</td>
-                                    <td colspan="1"></td>
-                                    <td>PAN DE QUESO</td>
-                                </tr>
-                                <tr>
-                                    <td class="centrado">3</td>
-                                    <td colspan="1"></td>
-                                    <td>CAFE NEGRO</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        -----------------------------------------
-                        <br>
-                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.  com<br>(CEL. 312-524-2544)</p> 
-                    </div>                    
-                </div>  
+                        <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
 
-                
+                        <div class="input-group mb-3">
+                            <div class="col-6">
+                                <p>MESRO</p>
+                            </div> 
+                            <div class="col-6">
+                                <p>ANDRES ALBERTO</p>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                        <p>MESRO</p>
+                        </div>
+                        <div class="col-5">
+                        <p>ANDRES ALBERTO</p>
+                        </div>
+                        <div class="col-12">
+                        <p>SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154</p>
+                        </div>
+                    </div>                    
+                </div> 
             </div>
+        </div>
+        <div>
+            
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
-                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
+                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
                 </div>
             </div> 
         </div>  
@@ -462,7 +359,7 @@
         props : ['ruta'],
         data (){
             return {
-                position: 1,
+                position: 3,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -681,13 +578,7 @@
                 return resultado;
             },
             calcularTotalIva: function(){
-                var resultado=0.0;
-                for(var i=0;i<this.arrayDetalle.length;i++){
-                    resultado += this.arrayDetalle[i].valor_iva;
-                }
-                // resultado = this.total-resultado;
-                resultado = Math.round(resultado);
-                return resultado;
+               return this.ivaProces();
             },
             calcularSaldo: function(){
                 var resultado=0.0;
@@ -698,6 +589,20 @@
             },
         },
         methods : {
+            showUserOpts(id_resaltar){
+                console.log(id_resaltar);
+            },
+            ivaProces(){
+                 
+                var resultado=0.0;
+                for(var i=0;i<this.arrayDetalle.length;i++){                    
+                    resultado += this.arrayDetalle[i].valor_iva;                    
+                }
+                // resultado = this.total-resultado;
+                resultado = Math.round(resultado);
+                this.valor_iva = resultado;
+                return resultado;
+            },
             listarFacturacion (page,numFacturaFiltro,estadoFiltro,idTerceroFiltro,ordenFiltro,desdeFiltro,hastaFiltro,idVendedorFiltro){
                 let me=this;
 
@@ -1380,7 +1285,7 @@
                 me.arrayDetalle.splice(index, 1);
             },
             agregaDetalleMesero(producto){
-                console.log(producto);
+                //console.log(producto);
                 let me=this;
                  var p = '';
                 if(producto.padre='') {p = ' '+producto.nom_presentacion+' (Presentacion asociada)';}
@@ -1389,27 +1294,45 @@
                 producto.productos_iva.forEach(function(iva){
                     if(iva.tipo_iva =='Venta'){ivaVenta=iva.porcentaje;}
                 });
-                me.arrayDetalle.push({
-                    idarticulo: producto.id_articulo,
-                    id_asociado: producto.id_asociado,
-                    articulo: producto.nombre,
-                    cantidad: 1,
-                    valor_descuento: 0,
-                    precio: producto.precio_venta,
-                    precio_venta: producto.precio_venta,
-                    iva: ivaVenta,
-                    stock : producto.stock,
-                    descuento : 0,
-                    nom_presentacion : producto.nom_presentacion,
-                    id_presentacion : producto.id_presentacion,
-                    padre : producto.padre
-                });
+                if(ivaVenta>0) {
 
+                    var ivaVenta_vr = Math.round(parseFloat(producto.precio_venta)-parseFloat((producto.precio_venta)/((ivaVenta/100)+1)));}
+                
+                console.log("ivaVenta_vr"+ivaVenta_vr);
+                let auxPosition = me.arrayDetalle.indexOf(me.arrayDetalle.find(({codigo}) => codigo === producto.codigo));
+                
+                if(auxPosition >= 0) {
+                    me.arrayDetalle[auxPosition].cantidad+=1;
+                    me.arrayDetalle[auxPosition].valor_iva+=ivaVenta_vr;
+                }
+                 
+                else {
+                    me.arrayDetalle.push({
+                        codigo: producto.codigo,
+                        idarticulo: producto.id_articulo,
+                        id_asociado: producto.id_asociado,
+                        articulo: producto.nombre,
+                        cantidad: 1,
+                        valor_descuento: 0,
+                        precio: producto.precio_venta,
+                        precio_venta: producto.precio_venta,
+                        iva: ivaVenta,
+                        valor_iva: ivaVenta_vr,
+                        stock : producto.stock,
+                        descuento : 0,
+                        nom_presentacion : producto.nom_presentacion,
+                        id_presentacion : producto.id_presentacion,
+                        padre : producto.padre
+                    });
+                }
+               
                 Swal.fire({
                     type: 'success',
                     title: 'Producto agregado',
                     text: 'Progducto cargado',
-                })
+                });
+
+                 this.ivaProces();
             },
             agregarDetalle(){
                 let me=this;
@@ -2105,37 +2028,63 @@
             me.fechaHoraActual = d+' '+h+':'+min+':'+sec;
             this.selectCategoria2();
             //me.listarCajas();
+            me.buscarTercero();
+            me.selectZonas();
             this.listarArticulo(this.buscarA,this.criterioA,this.buscarCategoriaA);
             // me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
         }
     }
 </script>
 <style> 
-    /* {
-            font-size: 12px;
-            font-family: 'Times New Roman';
-    }*/
-    .minimizar {
-        font-size: 9px;
+    .mb-4, .my-4 {
+        margin-bottom: 9px!important;
     }
-    .espacio-1 {
-        margin-top: 0 !important; 
-        margin-bottom: 0rem !important;
+
+    td,
+    th,
+    tr,
+    table {
+        border-top: 1px solid black;
+        border-collapse: collapse;
     }
+
+    td.producto,
+    th.producto {
+        width: 75px;
+        max-width: 75px;
+    }
+
+    td.cantidad,
+    th.cantidad {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
+    }
+
+    td.precio,
+    th.precio {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
+    }
+
     .centrado {
         text-align: center;
         align-content: center;
     }
+
     .ticket {
-        width: 288px;
-        max-width: 320px;
+        width: 155px;
+        max-width: 155px;
         margin: auto;
-        line-height: 1;
     }
-    .img-logo {
-        max-width: 87px;
-        margin-left: 100px;
+
+    img {
+        max-width: inherit;
+        width: inherit;
     }
+
+
 
     .select2-search__field {
             width: 100% !important;
@@ -2163,17 +2112,15 @@
         font-size: 12px;
         border-radius: 3px !important;
     }
+    .ocultar{
+        display: none ;
+    }
     
-    h3.ocultar{
-        display: none !important;
-    }
-    h3.ocultar:hover, h3.ocultar:hover{
-        display: block !important;
-    }
-    div.resaltar:hover, div.active:hover, div>h3.resaltar:hover, div>h3.active:hover  {
+    
+    div.resaltar:hover, div.active:hover, div h3.resaltar:hover, div>h3.active:hover  {
        color: #fff!important;
        background-color: #343a40!important;
-       display: block !important;
+      
     }
     .mul-select  {
          width: 100%;

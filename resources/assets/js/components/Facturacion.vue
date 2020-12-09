@@ -1731,6 +1731,7 @@
             },
             agregarDetalle(){
                 let me=this;
+                console.log("por aca ")
                 if(me.idarticulo==0 || me.cantidad==0 || me.precio==0){
                 }
                 else{

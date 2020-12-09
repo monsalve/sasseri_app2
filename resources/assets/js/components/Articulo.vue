@@ -1434,7 +1434,7 @@
                 data.append('talla', this.talla);
                 data.append('marca', this.marca);
                 data.append('linea', this.linea);
-                data.append('arrayTarifarios', JSON.stringify(this.arrayTarifarios));
+                data.append('evidencias_ingresos', JSON.stringify(this.arrayTarifarios));
                 data.append('tipo_movimiento', 1);
                 data.append('img', this.arrayImg);
 

@@ -27,36 +27,13 @@
             <div id="wrapper">
 
                 <!-- Sidebar -->
-            
-            @if($rol_usu==1)  
-                <ul class="navbar-nav bg-gradient-primaryx sidebar sidebar-darkx accordion" id="accordionSidebar">
-
-                    <!-- Sidebar - Brand -->
-                    <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
-                        <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
-                    </a>
                 
-                    <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                    </div>
+                @if($rol_usu==1)  
+                    <ul class="navbar-nav bg-gradient-primaryx sidebar sidebar-darkx accordion" id="accordionSidebar">
 
-                    <li @click="menu=999991" class="nav-item">
-                        <a href="#" class="nav-link"><i class="icon-user"></i> <span>Usuarios</span></a>
-                    </li>
-                    <li @click="menu=10" class="nav-item">
-                        <a href="#" class="nav-link"><i class="icon-user"></i> <span>Terceros</span></a>
-                    </li>
-                    <li @click="menu=40" class="nav-item">
-                        <a href="#" class="nav-link"><i class="icon-screen-desktop"></i> <span>Punto de venta</span></a>
-                    </li>
-                    <li @click="menu=14" class="nav-item">
-                        <a href="#" class="nav-link"><i class="icon-calculator"></i><span>Facturación</span> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfig"
-                        aria-expanded="true" aria-controls="collapseConfig" >
-                            <i class="icon-wrench"></i>
-                            <span>Configuración</span>
+                        <!-- Sidebar - Brand -->
+                        <a class="sidebar-brand  d-sm-none d-md-block align-items-center justify-content-center" href="index.html" style="display:none;">
+                            <img style="width:100%;" src="img/logo.png" alt="Sasseri" />
                         </a>
                         <ul  id="collapseConfig" class="collapse" aria-labelledby="headingConfig"
                         data-parent="#accordionSidebar">
@@ -320,27 +297,8 @@
 
             <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
+                <i class="fa fa-angle-up"></i>
             </a>
-
-            <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     
