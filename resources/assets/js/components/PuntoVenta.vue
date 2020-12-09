@@ -325,58 +325,53 @@
                         </div>                                  
                     </div>
                     <div class="ticket">
-                           <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
-                            <p class="centrado">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000000554554 DE DICIEMBRE 12/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
-                            <table class="table">
+                        <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
+                        <p class="centrado espacio-1">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000554554 DE DICIEMBRE 20/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        -----------------------------------------
+                        <table class="table table-sm espacio-1">
                             <thead>
                                 <tr>
-                                <th scope="col">CANT</th>
-                                <th scope="col">DESCRIPCION</th>
-                                <th scope="col">IVA</th>
-                                <th scope="col">TOTAL</th>
+                                    <th scope="col">CANT</th>
+                                    <th colspan="2" scope="col">DESCRIPCION</th>
+                                    <th scope="col">TOTAL</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <th scope="row">2</th>
-                                <td>LECHE ALQUERIA</td>
-                                <td>$300</td>
-                                <td>$5000</td>
-                                </tr>
-                                 <tr>
-                                <th scope="row">1</th>
-                                <td>CAFE NEGRO</td>
-                                <td>$100</td>
-                                <td>$2500</td>
-                                </tr>
-                                 <tr>
-                                <th scope="row">1</th>
-                                <td>PAN DE QUESO</td>
-                                <td>$50</td>
-                                <td>$2000</td>
+                                    <td class="centrado">2</td>
+                                    <td colspan="2">LECHE ALQUERIA</td>
+                                    <td>$5000</td>
                                 </tr>
                                 <tr>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th class="table-borderless" scope="col">SUBTOTAL</th>
-                                <th scope="col">$9000</th>
+                                    <td class="centrado">1</td>
+                                    <td colspan="2">CAFE NEGRO</td>
+                                    <td>$2500</td>
+                                </tr>
+                                <tr>
+                                    <td class="centrado">1</td>
+                                    <td colspan="2">PAN DE QUESO</td>
+                                    <td>$2000</td>
+                                </tr>    
+                                <tr>
+                                    <th colspan="2" scope="col">SUBTOTAL:</th>
+                                    <th scope="col"></th>
+                                    <td>$9500</td>
                                 </tr>
                                 <tr class="table-borderless">
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col">IVA</th>
-                                <th scope="col">$950</th>
+                                    <th colspan="2" scope="col">IVA:</th>
+                                    <th scope="col"></th>
+                                    <td>$950</td>
                                 </tr>
-                                <tr class="table-borderless">
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col">TOTAL</th>
-                                <th scope="col">$9950</th>
+                                <tr>
+                                    <th colspan="2" scope="col">TOTAL:</th>
+                                    <th scope="col"></th>
+                                    <th>$10450</th>
                                 </tr>
                             </tbody>
-                            </table>
-                            <br>
-                            <p class="centrado">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
+                        </table>
+                        -----------------------------------------
+                        <br>
+                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
                     </div> 
                 </div>                    
             </div>  
@@ -397,25 +392,55 @@
                         </div>                                      
                     </div>
                      <div class="ticket">
-                        <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
-
-                        <div class="input-group mb-3">
+                        <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
+                        <p class="centrado espacio-1">FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        -----------------------------------------
+                        <div class="input-group mb-0">
                             <div class="col-6">
-                                <p>MESRO</p>
+                                <p class="espacio-1">MESERO:</p>
                             </div> 
                             <div class="col-6">
-                                <p>ANDRES ALBERTO</p>
+                                <p class="espacio-1">ANDRES ALBERTO</p>
                             </div>
                         </div>
-                        <div class="col-5">
-                        <p>MESRO</p>
+                        <div class="input-group mb-0">
+                            <div class="col-6">
+                                <p class="espacio-1">MESA:</p>
+                            </div> 
+                            <div class="col-6">
+                                <p class="espacio-1 centrado">1/4</p>
+                            </div>
                         </div>
-                        <div class="col-5">
-                        <p>ANDRES ALBERTO</p>
-                        </div>
-                        <div class="col-12">
-                        <p>SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154</p>
-                        </div>
+                        -----------------------------------------
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">CANT</th>
+                                    <th colspan="1"></th>
+                                    <th scope="col">DESCRIPCION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="centrado">3</td>
+                                    <td colspan="1"></td>
+                                    <td>LECHE ALQUERIA</td>
+                                </tr>
+                                <tr>
+                                    <td class="centrado">1</td>
+                                    <td colspan="1"></td>
+                                    <td>PAN DE QUESO</td>
+                                </tr>
+                                <tr>
+                                    <td class="centrado">3</td>
+                                    <td colspan="1"></td>
+                                    <td>CAFE NEGRO</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        -----------------------------------------
+                        <br>
+                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.  com<br>(CEL. 312-524-2544)</p> 
                     </div>                    
                 </div>  
 
@@ -2090,6 +2115,13 @@
             font-size: 12px;
             font-family: 'Times New Roman';
     }*/
+    .minimizar {
+        font-size: 9px;
+    }
+    .espacio-1 {
+        margin-top: 0 !important; 
+        margin-bottom: 0rem !important;
+    }
     .centrado {
         text-align: center;
         align-content: center;
@@ -2098,6 +2130,7 @@
         width: 288px;
         max-width: 320px;
         margin: auto;
+        line-height: 1;
     }
     .img-logo {
         max-width: 87px;
