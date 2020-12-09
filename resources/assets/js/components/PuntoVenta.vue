@@ -57,11 +57,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-9">
                                 <button class="btn btn-info" @click="position=1"><i class="fa fa-arrow-left"></i> Productos 
                                     </button>
                             </div>
-                            <div class="col-3 pr-1">
+                            <div class="col-3">
                                 <button class="btn btn-danger" style="margin-left: -31px;">Descartar
                                 </button>
                             </div>
@@ -75,7 +75,12 @@
                                     <div class="col-1">
                                         <h3><i class="fa fa-user"></i></h3>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-9 nombre-tercero"><small class="text-muted ">{{tercero}}</small></div>
+=======
+                                    <div class="col-9 nombre-tercero" style="top: 9px;
+                                     left: 12px;"><small class="text-muted ">Cristiam Camilo Monsalve Pantoja</small></div>
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
                                     <div class="col-1">
                                         <h3  v-if="!tercero" style="cursor:pointer" class="text-primary" @click="position=3">
                                             <i class="fa fa-plus-circle" href="#59981A"></i>
@@ -90,12 +95,20 @@
                                 <div class="col-12">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Mezas</label>
+                                            <label class="input-group-text" for="inputGroupSelect01">Mesas</label>
                                         </div>
+<<<<<<< HEAD
                                         <select class="custom-select form-control" v-model="lugar" id="inputGroupSelect01">
                                             <option selected>Ubicacion...</option>                                            
                                             <option v-for="zonas in arrayZonas" :key="zonas.id" :value="zonas.id" v-text="zonas.zona"></option>
                                         </select>                                        
+=======
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected>Ubicacion...</option>
+                                            <option value="1">mesa 1</option>
+                                            <option value="2">mesa 2</option>
+                                        </select>
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
                                     </div>
                                 </div>                                            
                             </div>
@@ -258,6 +271,7 @@
                     </div>
                     <div class="ticket">
 <<<<<<< HEAD
+<<<<<<< HEAD
                            <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
                             <p class="centrado">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000000554554 DE DICIEMBRE 12/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
                             <table class="table">
@@ -279,10 +293,22 @@
                                     <th>PRODUCTO</th>
                                     <th>$$</th>
 >>>>>>> ticket termico 2
+=======
+                        <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
+                        <p class="centrado espacio-1">SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154<br>RES DIAN 100000554554 DE DICIEMBRE 20/2020<br>PERSONA JURUDICA DECLARANTE - REGIMEN COMUN<br>FACTURA DE VENTA N°. 155455<br>FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        -----------------------------------------
+                        <table class="table table-sm espacio-1">
+                            <thead>
+                                <tr>
+                                    <th scope="col">CANT</th>
+                                    <th colspan="2" scope="col">DESCRIPCION</th>
+                                    <th scope="col">TOTAL</th>
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                 <th scope="row">2</th>
                                 <td>LECHE ALQUERIA</td>
@@ -294,35 +320,42 @@
                                 <td>CAFE NEGRO</td>
                                 <td>$100</td>
                                 <td>$2500</td>
-                                </tr>
-                                 <tr>
-                                <th scope="row">1</th>
-                                <td>PAN DE QUESO</td>
-                                <td>$50</td>
-                                <td>$2000</td>
+=======
+                                    <td class="centrado">2</td>
+                                    <td colspan="2">LECHE ALQUERIA</td>
+                                    <td>$5000</td>
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
                                 </tr>
                                 <tr>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th class="table-borderless" scope="col">SUBTOTAL</th>
-                                <th scope="col">$9000</th>
+                                    <td class="centrado">1</td>
+                                    <td colspan="2">CAFE NEGRO</td>
+                                    <td>$2500</td>
+                                </tr>
+                                <tr>
+                                    <td class="centrado">1</td>
+                                    <td colspan="2">PAN DE QUESO</td>
+                                    <td>$2000</td>
+                                </tr>    
+                                <tr>
+                                    <th colspan="2" scope="col">SUBTOTAL:</th>
+                                    <th scope="col"></th>
+                                    <td>$9500</td>
                                 </tr>
                                 <tr class="table-borderless">
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col">IVA</th>
-                                <th scope="col">$950</th>
+                                    <th colspan="2" scope="col">IVA:</th>
+                                    <th scope="col"></th>
+                                    <td>$950</td>
                                 </tr>
-                                <tr class="table-borderless">
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col">TOTAL</th>
-                                <th scope="col">$9950</th>
+                                <tr>
+                                    <th colspan="2" scope="col">TOTAL:</th>
+                                    <th scope="col"></th>
+                                    <th>$10450</th>
                                 </tr>
                             </tbody>
-                            </table>
-                            <br>
-                            <p class="centrado">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
+                        </table>
+                        -----------------------------------------
+                        <br>
+                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p><br>
                     </div> 
                 </div>                    
             </div>  
@@ -369,38 +402,154 @@
                                 <button @click="position=5" class="btn btn-primary fa fa-undo"></button>
                             </div>
                             <div class="col-3">
-                                <button @click="position=2" class="btn btn-primary fa fa-list"></button>
+                                <button @click="position=7" class="btn btn-primary fa fa-list"></button>
                             </div>
                             <div class="col-6 pr-1">  
                             </div> 
                         </div>                                      
                     </div>
-                     <div class="ticket">
-                        <img class="img-logo" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
-
-                        <div class="input-group mb-3">
+                    <div class="ticket">
+                        <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
+                        <p class="centrado espacio-1">FECHA 20/12/2020 - 04:44:42 P.M.</p>
+                        -----------------------------------------
+                        <div class="input-group mb-0">
                             <div class="col-6">
-                                <p>MESRO</p>
+                                <p class="espacio-1">MESERO:</p>
                             </div> 
                             <div class="col-6">
-                                <p>ANDRES ALBERTO</p>
+                                <p class="espacio-1">ANDRES ALBERTO</p>
                             </div>
                         </div>
-                        <div class="col-5">
-                        <p>MESRO</p>
+                        <div class="input-group mb-0">
+                            <div class="col-6">
+                                <p class="espacio-1">MESA:</p>
+                            </div> 
+                            <div class="col-6">
+                                <p class="espacio-1 centrado">1/4</p>
+                            </div>
                         </div>
-                        <div class="col-5">
-                        <p>ANDRES ALBERTO</p>
-                        </div>
-                        <div class="col-12">
-                        <p>SASSERI_APP_2<br>NIT: 81245875-0<br>BR/DIAGONAL LAS AMERICAS 20_CRA 15-25<br>TEL: 2448484154</p>
-                        </div>
+                        -----------------------------------------
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">CANT</th>
+                                    <th colspan="1"></th>
+                                    <th scope="col">DESCRIPCION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="centrado">3</td>
+                                    <td colspan="1"></td>
+                                    <td>LECHE ALQUERIA</td>
+                                </tr>
+                                <tr>
+                                    <td class="centrado">1</td>
+                                    <td colspan="1"></td>
+                                    <td>PAN DE QUESO</td>
+                                </tr>
+                                <tr>
+                                    <td class="centrado">3</td>
+                                    <td colspan="1"></td>
+                                    <td>CAFE NEGRO</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        -----------------------------------------
+                        <br>
+                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.  com<br>(CEL. 312-524-2544)</p><br> 
                     </div>                    
                 </div> 
             </div>
+<<<<<<< HEAD
         </div>
         <div>
             
+=======
+            <div v-show="position==7"> <!-- listado de faturas -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-3">
+                                <button @click="position=6" class="btn btn-primary fa fa-undo"></button>
+                            </div>
+                            <div class="col-3">
+                                <div class="input">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" style="margin-left: -23px;" for="inputGroupSelect01">Estado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                <select class="custom-select" id="inputGroupSelect01">
+                                    <option selected>Dias</option>
+                                    <option value="1">Dia 1</option>
+                                    <option value="2">Dia 2</option>
+                                    <option value="3">Dia 3</option>
+                                </select>  
+                            </div>  
+                        </div>                          
+                    </div>
+                    <div class="card-header" style="font-size: 13px;">
+                        <div class="row">
+                            <table class="table table-sm table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Factura</th>
+                                    <th scope="col">Mesa</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td class="centrado">0051</td>
+                                    <td class="centrado">3</td>
+                                    <td class="centrado">350.00</td>
+                                    <td class="text-success">Abierta</td>
+                                    <td class="centrado">
+                                        <button class="btn-1 btn btn-success rounded-circle">
+                                            <i class="fa fa-pencil btn-edit-factura"></i>
+                                        </button>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td class="centrado">0524</td>
+                                    <td class="centrado">1</td>
+                                    <td class="centrado">350.00</td>
+                                    <td class="text-secondary">Cerrada</td>
+                                    <td class="centrado">
+                                        
+                                        <button class="btn btn-secondary rounded-circle">
+                                            <i class="fa fa-pencil btn-edit-factura"></i>
+                                            
+                                        </button>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td class="centrado">0548</td>
+                                    <td class="centrado">2</td>
+                                    <td class="centrado">350.00</td>
+                                    <td class="text-danger">Cancelada</td>
+                                    <td class="centrado">
+                                        <button class="btn btn-secondary rounded-circle">
+                                            <i class="fa fa-pencil btn-edit-factura"></i>
+                                        </button>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>            
+                        </div>
+                    </div>                      
+                </div>  
+            </div>
+
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
@@ -417,7 +566,11 @@
         props : ['ruta'],
         data (){
             return {
+<<<<<<< HEAD
                 position: 3,
+=======
+                position:7,
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -2099,9 +2252,21 @@
             font-size: 12px;
             font-family: 'Times New Roman';
     }*/
+<<<<<<< HEAD
 
     .mb-4, .my-4 {
         margin-bottom: 9px!important;
+=======
+    .btn-edit-factura {
+        font-size: 15px !important;
+    }
+    .minimizar {
+        font-size: 9px;
+    }
+    .espacio-1 {
+        margin-top: 0 !important; 
+        margin-bottom: 0rem !important;
+>>>>>>> 06cca744c3c5cebb2b1ed5a9cbc03d730bb6941a
     }
     .centrado {
         text-align: center;
@@ -2111,6 +2276,7 @@
         width: 288px;
         max-width: 320px;
         margin: auto;
+        line-height: 1;
     }
     .img-logo {
         max-width: 87px;
@@ -2177,7 +2343,7 @@
             width: 100% !important
     }
     .nombre-tercero {
-        font-size: 13px !important;
+        font-size: 16px !important;
     }
     .txt-nom-prod {
         line-height: 1 !important;
