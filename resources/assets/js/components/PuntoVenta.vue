@@ -57,11 +57,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-9">
                                 <button class="btn btn-info" @click="position=1"><i class="fa fa-arrow-left"></i> Productos 
                                     </button>
                             </div>
-                            <div class="col-3 pr-1">
+                            <div class="col-3">
                                 <button class="btn btn-danger" style="margin-left: -31px;">Descartar
                                 </button>
                             </div>
@@ -75,7 +75,8 @@
                                     <div class="col-1">
                                         <h3><i class="fa fa-user"></i></h3>
                                     </div>
-                                    <div class="col-9 nombre-tercero"><small class="text-muted ">CRISTIAM CAMILO MONSALVE PANTOJA</small></div>
+                                    <div class="col-9 nombre-tercero" style="top: 9px;
+                                     left: 12px;"><small class="text-muted ">Cristiam Camilo Monsalve Pantoja</small></div>
                                     <div class="col-1">
                                         <h3 style="cursor:pointer" class="text-primary" @click="position=3"><i class="fa fa-plus-circle" href="#59981A"></i></h3>
                                     </div>
@@ -85,12 +86,12 @@
                                 <div class="col-12">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelect01">Mezas</label>
+                                            <label class="input-group-text" for="inputGroupSelect01">Mesas</label>
                                         </div>
                                         <select class="custom-select" id="inputGroupSelect01">
                                             <option selected>Ubicacion...</option>
-                                            <option value="1">meza 1</option>
-                                            <option value="2">meza 2</option>
+                                            <option value="1">mesa 1</option>
+                                            <option value="2">mesa 2</option>
                                         </select>
                                     </div>
                                 </div>                                            
@@ -371,7 +372,7 @@
                         </table>
                         -----------------------------------------
                         <br>
-                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p>
+                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.com<br>(CEL. 312-524-2544)</p><br>
                     </div> 
                 </div>                    
             </div>  
@@ -385,13 +386,13 @@
                                 <button @click="position=5" class="btn btn-primary fa fa-undo"></button>
                             </div>
                             <div class="col-3">
-                                <button @click="position=2" class="btn btn-primary fa fa-list"></button>
+                                <button @click="position=7" class="btn btn-primary fa fa-list"></button>
                             </div>
                             <div class="col-6 pr-1">  
                             </div> 
                         </div>                                      
                     </div>
-                     <div class="ticket">
+                    <div class="ticket">
                         <img class="img-logo espacio-1" src="http://localhost/sasseri_app2/public/Empresas/1_empresa/ImgLogos/f4f72620874a541d0113ea86bcf699a8.jpg" alt="img-logo">
                         <p class="centrado espacio-1">FECHA 20/12/2020 - 04:44:42 P.M.</p>
                         -----------------------------------------
@@ -440,12 +441,95 @@
                         </table>
                         -----------------------------------------
                         <br>
-                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.  com<br>(CEL. 312-524-2544)</p> 
+                        <p class="centrado minimizar espacio-1">POWERE BY - FRACTAL AGENCIA DIGITAL<br>www.fractalagenciadigital.  com<br>(CEL. 312-524-2544)</p><br> 
                     </div>                    
                 </div>  
 
                 
             </div>
+            <div v-show="position==7"> <!-- listado de faturas -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-3">
+                                <button @click="position=6" class="btn btn-primary fa fa-undo"></button>
+                            </div>
+                            <div class="col-3">
+                                <div class="input">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" style="margin-left: -23px;" for="inputGroupSelect01">Estado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">  
+                                <select class="custom-select" id="inputGroupSelect01">
+                                    <option selected>Dias</option>
+                                    <option value="1">Dia 1</option>
+                                    <option value="2">Dia 2</option>
+                                    <option value="3">Dia 3</option>
+                                </select>  
+                            </div>  
+                        </div>                          
+                    </div>
+                    <div class="card-header" style="font-size: 13px;">
+                        <div class="row">
+                            <table class="table table-sm table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Factura</th>
+                                    <th scope="col">Mesa</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td class="centrado">0051</td>
+                                    <td class="centrado">3</td>
+                                    <td class="centrado">350.00</td>
+                                    <td class="text-success">Abierta</td>
+                                    <td class="centrado">
+                                        <button class="btn-1 btn btn-success rounded-circle">
+                                            <i class="fa fa-pencil btn-edit-factura"></i>
+                                        </button>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td class="centrado">0524</td>
+                                    <td class="centrado">1</td>
+                                    <td class="centrado">350.00</td>
+                                    <td class="text-secondary">Cerrada</td>
+                                    <td class="centrado">
+                                        
+                                        <button class="btn btn-secondary rounded-circle">
+                                            <i class="fa fa-pencil btn-edit-factura"></i>
+                                            
+                                        </button>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td class="centrado">0548</td>
+                                    <td class="centrado">2</td>
+                                    <td class="centrado">350.00</td>
+                                    <td class="text-danger">Cancelada</td>
+                                    <td class="centrado">
+                                        <button class="btn btn-secondary rounded-circle">
+                                            <i class="fa fa-pencil btn-edit-factura"></i>
+                                        </button>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>            
+                        </div>
+                    </div>                      
+                </div>  
+            </div>
+
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
                 <div class="col-12">
                     <a @click="position=2" class="btn btn-block btn-lg active btn-success" v-show="position<3" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
@@ -462,7 +546,7 @@
         props : ['ruta'],
         data (){
             return {
-                position: 1,
+                position:7,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -2115,6 +2199,9 @@
             font-size: 12px;
             font-family: 'Times New Roman';
     }*/
+    .btn-edit-factura {
+        font-size: 15px !important;
+    }
     .minimizar {
         font-size: 9px;
     }
@@ -2144,7 +2231,7 @@
             width: 100% !important
     }
     .nombre-tercero {
-        font-size: 13px !important;
+        font-size: 16px !important;
     }
     .txt-nom-prod {
         line-height: 1 !important;
