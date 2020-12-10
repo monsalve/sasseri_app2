@@ -387,16 +387,16 @@
                             <div class="col-3">
                                 <div class="input">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text" style="margin-left: -23px;" for="inputGroupSelect01">Estado</label>
+                                        <h4  style="margin-left: -23px; margin-left: 13px; margin-top: 6px; font-size: 18px;" for="inputGroupSelect01">Estado</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">  
                                 <select class="custom-select" id="inputGroupSelect01">
-                                    <option selected>Dias</option>
-                                    <option value="1">Dia 1</option>
-                                    <option value="2">Dia 2</option>
-                                    <option value="3">Dia 3</option>
+                                    <option selected  style="font-size: 14px;">Seleccionar</option>
+                                    <option value="1" style="font-size: 14px;">Abierta</option>
+                                    <option value="2" style="font-size: 14px;">Cerrada</option>
+                                    <option value="3" style="font-size: 14px;">Cancelada</option>
                                 </select>  
                             </div>  
                         </div>                          
