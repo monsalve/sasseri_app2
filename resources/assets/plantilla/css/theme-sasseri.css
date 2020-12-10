@@ -139,6 +139,7 @@ table .table-earning tbody td{
 
 .modal-content{
     margin-top: 2rem;
+    position: fixed !important;
 }
 select {
     color: #a7a7a7;

@@ -9,6 +9,9 @@
           {{ csrf_field() }}
               <div class="card-body">
               <h1 class="text-center">Acceder</h1>
+              <!-- <div class="text-center">
+                <img style="width:200px" src="img/logo.png" alt="Sasseri"/>
+              </div> -->
               <p class="text-muted">Control de acceso al sistema</p>
 
               <div class="input-group form-group input-group-joined {{$errors->has('usuario' ? 'is-invalid' : '')}}">
