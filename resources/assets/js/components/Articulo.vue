@@ -2151,10 +2151,7 @@
         }
     }
 </script>
-<style>    
-    .modal-content{
-        /* position: absolute !important; */
-    }
+<style>   
     .mostrar{
         display: list-item !important;
         opacity: 1 !important;
