@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <div>
                         <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                             <thead>
                                 <tr>
@@ -72,37 +72,48 @@
                                     <td v-text="egreso.fecha_hora"></td>
                                     <td v-text="egreso.total"></td>
                                     <!-- <td v-text="egreso.impuesto"></td> -->
-                                    <td v-text="egreso.estado"></td>
-                                    <td>
+                                    <td class="td-estado">{{egreso.estado}}</td>
+                                    <td class="td-opciones">
                                         <button v-if="permisosUser.leer" type="button" @click="verEgreso(egreso.id)" class="btn btn-success btn-sm" title="Ver detalles">
-                                        <i class="icon-eye"></i>
+                                            <i class="icon-eye"></i>
                                         </button>
                                         <button v-else type="button" class="btn btn-secondary btn-sm" title="Ver detalles">
-                                        <i class="icon-eye"></i>
-                                        </button> &nbsp;
-
-                                        <button v-if="permisosUser.actualizar && egreso.estado=='Registrado'" type="button" @click="abrirModalActualizarEgreso(egreso)" class="btn btn-warning btn-sm" title="Actualizar"><i class="icon-pencil"></i></button>
-                                        <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar (Deshabilitado)"><i class="icon-pencil"></i></button> &nbsp;
-
-                                        <template>
-                                            <button v-if="permisosUser.anular && egreso.estado=='Registrado'" type="button" class="btn btn-danger btn-sm" @click="desactivarEgreso(egreso.id)" title="Anular">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Anular">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                        </template> &nbsp;
-
-                                        <button type="button" @click="abrirModal3('ver',egreso)" class="btn btn-info btn-sm" title="Ver evidencias">
-                                            <i class="fa fa-align-justify"></i>
-                                        </button> &nbsp;
-
-                                        <button type="button" v-if="permisosUser.actualizar && egreso.estado=='Registrado'" class="btn btn-danger btn-sm" @click="cerrarEgreso(egreso)" title="Cerrar Egreso">
-                                            <i class="fa fa-window-close"></i>
+                                            <i class="icon-eye"></i>
                                         </button>
-                                        <button type="button" v-else class="btn btn-secondary btn-sm" title="Cerrar Egreso (Deshabilidado)">
-                                            <i class="fa fa-window-close"></i>
-                                        </button> &nbsp;
+
+                                        <div class="btn-group dropleft">
+                                            <a href="#" class="btn-link btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a v-if="permisosUser.actualizar && egreso.estado=='Registrado'" @click="abrirModalActualizarEgreso(egreso)" class="dropdown-item" href="#" title="Actualizar">
+                                                    <i class="icon-pencil"></i> Actualizar
+                                                </a>
+                                                <a v-else href="#" class="dropdown-item" title="Actualizar (Deshabilitado)">
+                                                    <i class="icon-pencil"></i> Actualizar (Deshabilitado)
+                                                </a>
+
+                                                <template>
+                                                    <a v-if="permisosUser.anular && egreso.estado=='Registrado'" class="btn" @click="desactivarEgreso(egreso.id)" title="Anular">
+                                                        <i class="icon-trash"></i> Desactivar
+                                                    </a>
+                                                    <a v-else class="btn" title="Anular">
+                                                        <i class="icon-trash"></i> Desactivar
+                                                    </a>
+                                                </template>
+
+                                                <a @click="abrirModal3('ver',egreso)" class="dropdown-item" title="Ver evidencias">
+                                                    <i class="fa fa-align-justify"></i> Ver evidencias
+                                                </a>
+
+                                                <a v-if="permisosUser.actualizar && egreso.estado=='Registrado'" class="dropdown-item" @click="cerrarEgreso(egreso)" title="Cerrar Egreso">
+                                                    <i class="fa fa-window-close"></i> Cerrar egreso
+                                                </a>
+                                                <a v-else class="dropdown-item disabled" title="Cerrar Egreso (Deshabilitado)">
+                                                    <i class="fa fa-window-close"></i> Cerrar egreso (Deshabilitado)
+                                                </a> &nbsp;
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

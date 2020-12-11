@@ -153,6 +153,11 @@ select option {
 .mostrar{
     /* overflow: auto; */
 }
-.table td a > i{
+.table td.td-estado a > i{
     font-size: 1.5rem;
+}
+.dropdown-menu a i {
+    margin-right: 0.5rem;
+    color: #08537c;
+    font-weight: 800;
 }

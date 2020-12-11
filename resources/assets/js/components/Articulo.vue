@@ -72,7 +72,7 @@
                                             <span>Producto simple</span>
                                         </div>
                                     </td>
-                                    <td style="text-align:center;">
+                                    <td class="td-estado">
                                         <!-- <div v-if="articulo.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
@@ -97,8 +97,7 @@
                                             </a>
                                         </template>
                                     </td>
-                                    <td>
-                                        
+                                    <td>                                        
                                         <template>
                                             <button v-if="permisosUser.actualizar && articulo.condicion" type="button" @click="abrirModal('articulo','actualizar',articulo)" class="btn btn-success btn-sm" title="Actualizar">
                                                 <i class="icon-pencil"></i>
@@ -525,7 +524,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(tarifario, index) in arrayTarifarios">
+                                            <tr v-for="(tarifario, index) in arrayTarifarios" :key="index">
                                                 <td v-text="tarifario.nombre"></td>
                                                 <td style="text-align: right;">
                                                     <input type="number" v-if="tipoAccionModal3==2" style="text-align: right;" v-model="tarifario.valor" :min="1" @blur="(function(){if(tarifario.valor<1) tarifario.valor=1;})">
