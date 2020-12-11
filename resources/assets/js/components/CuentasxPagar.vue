@@ -15,59 +15,45 @@
                         </button>
                     </div>
                     <div class="card-body">
-                       <div class="row col-md-12">
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                <label class="col-md-3 form-control-label float-left" for="email-input">Tercero</label>
-                                    <div class="form-inline  float-right col-md-9">
-                                        <input type="text" readonly class="form-control" v-model="tercero_filtro" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" >
+                       <div class="form-row col-md-12">
+                            
+                            <div class="form-group col-md-3">
+                                <label class="form-control-label">Tercero</label>
+                                <div class="input-group">
+                                    <input type="text" readonly class="form-control" v-model="tercero_filtro" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" >
+                                    <div class="input-group-append" id="button-addon4">
                                         <button type="button" @click="abrirModal('cuentasxpagar','tercerofiltro')" class="btn btn-primary">...</button>
                                         <button type="button" @click="quitar()" class="btn btn-danger">
                                             <i class="icon-trash"></i>
                                         </button>
                                     </div>
                                 </div>
+                            </div>                            
+                             <div class="col-md-3 form-group">                               
+                                <label class="form-control-label">Desde</label>
+                                <input type="date" v-model="Bdesde" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="">                                    
                             </div>
-                             <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Desde</label>
-                                    <div class="float-right col-md-9">
-                                        <input type="date" v-model="Bdesde" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="">
-                                    </div>
-                                </div>
+                            <div class="col-md-3 form-group">                                
+                                <label class="form-control-label">Hasta</label>                                    
+                                <input type="date" v-model="Bhasta" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="">                                                                    
+                            </div>                       
+                            <div class="col-md-3 form-group">                               
+                                <label class="form-control-label">Estado</label>                                
+                                <select class="form-control custom-select" v-model="Bestado" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2">Cancelada</option>
+                                    <option value="3">Pagada</option>
+                                    <option value="">Todas</option>
+                                </select>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Hasta</label>
-                                    <div class="float-right col-md-9">
-                                        <input type="date" v-model="Bhasta" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-md-12">
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Estado</label>
-                                    <div class="float-right col-md-9">
-                                        <select class="form-control col-md-12" v-model="Bestado" @keyup.enter="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)">
-                                            <option value="1">Pendiente</option>
-                                            <option value="2">Cancelada</option>
-                                            <option value="3">Pagada</option>
-                                            <option value="">Todas</option>
-                                        </select>  
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="col-md-4">
-                                <div class="form-group row">
-                                    <button v-if="permisosUser.leer" type="submit" class="btn btn-primary" @click="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)"  title="Buscar">
+                            <div class="col-md-4 form-group">
+                                <br>                                
+                                <button v-if="permisosUser.leer" type="submit" class="btn btn-primary" @click="listarCuentasxPagar(tercero_id_filtro,Bdesde,Bhasta,Bestado)"  title="Buscar">
                                     <i class="fa fa-search"></i> Buscar
                                 </button>
                                 <button v-else type="button" class="btn btn-secondary" title="Buscar">
                                     <i class="fa fa-search"></i> Buscar
-                                </button>
-                                </div>
+                                </button>                                
                             </div>
                         </div>
                         
@@ -182,7 +168,7 @@
                             <div class="row col-md-12">
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                    <label class="col-md-1 form-control-label float-left" for="email-input">Tercero</label>
+                                    <label class="col-md-1 form-control-label float-left">Tercero</label>
                                         <div class="form-inline  float-right col-md-11">
                                             <input type="text" readonly class="form-control" :class="{'is-invalid':NoTercero}"  v-model="tercero">
                                             <button type="button" @click="abrirModal('cuentasxpagar','tercero')" class="btn btn-primary">...</button>
@@ -196,7 +182,7 @@
                             <div class="row col-md-12">
                                 <div class="col-md-4">
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label float-left" for="email-input">Valor Deuda</label>
+                                        <label class="col-md-3 form-control-label float-left">Valor Deuda</label>
                                         <div class="float-right col-md-9">
                                             <input type="number" v-model="valor_deuda"  class="form-control col-md-12" :class="{'is-invalid':NoValorDeuda}" placeholder="Valor deuda">
                                         </div>
@@ -204,7 +190,7 @@
                                 </div> 
                                 <div class="col-md-4">
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label float-left" for="email-input">Abono</label>
+                                        <label class="col-md-3 form-control-label float-left">Abono</label>
                                         <div class="float-right col-md-9">
                                             <input type="number" v-model="abono"  class="form-control col-md-12" :class="{'is-invalid':NoAbono}" placeholder="Abono">
                                         </div>
@@ -212,7 +198,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label float-left" for="email-input">Fecha</label>
+                                        <label class="col-md-3 form-control-label float-left">Fecha</label>
                                         <div class="float-right col-md-9">
                                             <input type="date" v-model="fecha"  class="form-control col-md-12" :class="{'is-invalid':NoFecha}" placeholder="fecha">
                                         </div>
@@ -304,7 +290,7 @@
                             <div class="row col-md-12">
                              <div class="col-md-6">
                                     <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Tercero</label>
+                                    <label class="col-md-3 form-control-label float-left">Tercero</label>
                                         <div class="float-right col-md-9">
                                             <input type="text" disabled class="form-control col-md-12"  
                                              v-model="tercero">
@@ -313,7 +299,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label float-left" for="email-input">Valor Deuda</label>
+                                        <label class="col-md-3 form-control-label float-left">Valor Deuda</label>
                                         <div class="float-right col-md-9">
                                             <input type="number" disabled v-model="valor_deuda"  class="form-control col-md-12">
                                         </div>
@@ -323,7 +309,7 @@
                             <div class="row col-md-12">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label float-left" for="email-input">Saldo </label>
+                                        <label class="col-md-3 form-control-label float-left">Saldo </label>
                                         <div class="float-right col-md-9">
                                             <input type="number" disabled v-model="saldo"  class="form-control col-md-12" >
                                         </div>
@@ -331,7 +317,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 form-control-label float-left" for="email-input">Abono</label>
+                                        <label class="col-md-3 form-control-label float-left">Abono</label>
                                         <div class="float-right col-md-9">
                                             <!--<input type="number" v-model="abonoPago"  class="form-control col-md-12"  :class="{'is-invalid':NoPagoAbono}" @keyup.enter="listarSaldo(cuentasxcobrar_id,abonoPago)" @blur="listarSaldo(cuentasxcobrar_id,abonoPago)" placeholder="Abono">-->
 

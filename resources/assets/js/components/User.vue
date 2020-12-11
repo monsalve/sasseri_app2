@@ -37,6 +37,7 @@
                                     <th>Email</th>
                                     <th>Usuario</th>
                                     <th>Role</th>
+                                    <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -50,24 +51,26 @@
                                     <td v-text="persona.email"></td>
                                     <td v-text="persona.usuario"></td>
                                     <td v-text="persona.rol"></td>
-                                    
-                                    <td>
-                                        <button type="button" @click="abrirModal('persona','permisos', [persona.id, persona.nombre])" class="btn btn-primary btn-sm">
-                                          <i class="icon-list"></i>
-                                        </button> &nbsp;
-                                        <button type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-warning btn-sm">
-                                          <i class="icon-pencil"></i>
-                                        </button> &nbsp;
+                                    <td class="td-estado">
                                         <template v-if="persona.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarUsuario(persona.id)">
-                                                <i class="icon-trash"></i>
-                                            </button>
+                                            <a href="#" class="btn text-success" title="Desactivar usuario" @click="desactivarUsuario(persona.id)">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarUsuario(persona.id)">
-                                                <i class="icon-check"></i>
-                                            </button>
+                                            <a href="#" class="btn text-danger" title="Activar Usuario" @click="activarUsuario(persona.id)">
+                                                <i class="fa fa-times-circle"></i>
+                                            </a>
                                         </template>
+                                    </td>
+                                    <td>
+                                        <button href="#" @click="abrirModal('persona','permisos', [persona.id, persona.nombre])" class="btn btn-primary btn-sm">
+                                          <i class="icon-list"></i>
+                                        </button> &nbsp;
+                                        <button href="#" @click="abrirModal('persona','actualizar',persona)" class="btn btn-success btn-sm">
+                                          <i class="icon-pencil"></i>
+                                        </button> &nbsp;
+                                        
                                     </td>
                                 </tr>                                
                             </tbody>

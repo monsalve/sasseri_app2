@@ -98,7 +98,10 @@ label{
 .sidebar.toggled #sidebarToggle::after{
     font-family: FontAwesome;
 }
-
+.bg-blue{
+    background-color: #003b5a;
+    color: #fff;
+}
 .bg-dark{
     color: #fff;
 }
