@@ -39,6 +39,7 @@
                                     <th>Estado</th>
                                     <th>Tiempo</th>
                                     <th>Usuario</th>
+                                    <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -51,44 +52,53 @@
                                     <td v-text="cajas.tiempo_caja"></td>
                                     <td v-if="cajas.usuario_caja!=''" v-text="cajas.usuario_caja"></td>
                                     <td v-else>N/A</td>
+                                    <td class="td-estado">
+                                        <template v-if="permisosUser.anular">
+                                            <a v-if="cajas.estado" href="#" class="btn text-success" @click="desactivarCaja(cajas.id)" title="Desactivar">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else href="#" class="btn text-danger" @click="activarCaja(cajas.id)" title="Activar">
+                                                <i class="icon-check"></i>
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a v-if="cajas.estado" href="#" class="btn text-secondary btn-sm" title="Desactivar">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else href="#" class="btn text-secondary btn-sm" title="Activar">
+                                                <i class="icon-check"></i>
+                                            </a>
+                                        </template>
+                                    </td>
                                     <td>
-                                        <button v-if="permisosUser.actualizar && cajas.estado" type="button" @click="abrirModal('cajas','actualizar',cajas)" class="btn btn-warning btn-sm" title="Editar">
+                                        <button v-if="permisosUser.actualizar && cajas.estado" type="button" @click="abrirModal('cajas','actualizar',cajas)" class="btn btn-success btn-sm" title="Editar">
                                           <i class="icon-pencil"></i>
                                         </button>
                                         <button v-else type="button" class="btn btn-secondary btn-sm" title="Editar (Deshabilitado)">
                                           <i class="icon-pencil"></i>
-                                        </button>
-
-                                        <template v-if="permisosUser.anular">
-                                            <button v-if="cajas.estado" type="button" class="btn btn-danger btn-sm" @click="desactivarCaja(cajas.id)" title="Desactivar">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-info btn-sm" @click="activarCaja(cajas.id)" title="Activar">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button v-if="cajas.estado" type="button" class="btn btn-secondary btn-sm" title="Desactivar">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Activar">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
+                                        </button>                                        
                                         <template v-if="cajas.estado==1">
                                             <button v-if="cajas.estado_caja!=1" type="button" class="btn btn-info btn-sm" title="Abrir caja" @click="abrirModal('cierres_caja','registrar', cajas)">
-                                                <i class="fas fa-box-open"></i>
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                                                </svg>
                                             </button>
                                             <button v-else type="button" class="btn btn-warning btn-sm" title="Cerrar caja" @click="abrirModal('cierres_caja','cerrar_caja', cajas)">
-                                                <i class="fas fa-box-open"></i>
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-seam" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                                                </svg>
                                             </button>
                                         </template>
                                         <template v-else>
                                             <button v-if="cajas.estado_caja!=2" type="button" class="btn btn-secondary btn-sm" title="Abrir">
-                                                <i class="fas fa-box-open"></i>
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-seam" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                                                </svg>
                                             </button>
                                             <button v-else type="button" class="btn btn-secondary btn-sm" title="Cerrar">
-                                                <i class="fas fa-box-open"></i>
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-box-seam" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                                                </svg>
                                             </button>
                                         </template>
                                     </td>

@@ -128,10 +128,10 @@
                                     </div>
                                     <div class="col-md-1">
                                         <button type="button" v-if="idCajaAgregar!=0" class="btn btn-success btn-sm" @click="agregarDetalleCajasAdmin()">
-                                            <i class="fas fa-plus-circle"></i>
+                                            <i class="fa fa-plus-circle"></i>
                                         </button>
                                         <button type="button" v-else class="btn btn-secondary btn-sm">
-                                            <i class="fas fa-plus-circle"></i>
+                                            <i class="fa fa-plus-circle"></i>
                                         </button>
                                     </div>
                                 </div>

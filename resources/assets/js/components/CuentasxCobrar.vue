@@ -15,68 +15,56 @@
                         </button>
                     </div>
                     <div class="card-body">
-                       <div class="row col-md-12">
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                <label class="col-md-3 form-control-label float-left" for="email-input">Tercero</label>
-                                    <div class="form-inline  float-right col-md-9">
-                                        <input type="text" readonly class="form-control" v-model="tercero_filtro" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" >
+                       <div class="form-row col-md-12">                        
+                            <div class="form-group col-md-4">
+                                <label class="form-control-label" for="email-input">Tercero</label>
+                                <div class="input-group">
+                                    <input type="text" readonly class="form-control" v-model="tercero_filtro" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" >
+                                    <div class="input-group-prepend" id="button-addon3">
                                         <button type="button" @click="abrirModal('cuentasxcobrar','tercerofiltro')" class="btn btn-primary">...</button>
                                         <button type="button" @click="quitar()" class="btn btn-danger">
                                             <i class="icon-trash"></i>
                                         </button>
-                                    </div>
+                                    </div>                                    
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">N° Factura</label>
-                                    <div class="float-right col-md-9">
-                                        <input type="number" v-model="Bfactura" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="Numero de factura">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Estado</label>
-                                    <div class="float-right col-md-9">
-                                        <select class="form-control col-md-12" v-model="Bestado" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)">
-                                            <option value="1">Pendiente</option>
-                                            <option value="2">Cancelada</option>
-                                            <option value="3">Pagada</option>
-                                            <option value="">Todas</option>
-                                        </select>  
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-md-12">
-                             <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Desde</label>
-                                    <div class="float-right col-md-9">
-                                        <input type="date" v-model="Bdesde" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label float-left" for="email-input">Hasta</label>
-                                    <div class="float-right col-md-9">
-                                        <input type="date" v-model="Bhasta" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" class="form-control col-md-12" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="col-md-4">
-                                <div class="form-group row">
-                                    <button v-if="permisosUser.leer" type="submit" class="btn btn-primary" @click="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)"  title="Buscar">
+                            </div>                  
+                            
+                            <div class="form-group col-md-4">
+                                <label class="form-control-label" for="email-input">N° Factura</label>
+                                <input type="number" v-model="Bfactura" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" class="form-control" placeholder="Numero de factura">                                
+                            </div>                           
+                            
+                            <div class="form-group col-md-4">
+                                <label class="form-control-label" for="email-input">Estado</label>                                    
+                                <select class="form-control custom-select" v-model="Bestado" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)">
+                                    <option value="1">Pendiente</option>
+                                    <option value="2">Cancelada</option>
+                                    <option value="3">Pagada</option>
+                                    <option value="">Todas</option>
+                                </select>                                      
+                            </div>                            
+                        <!-- </div>
+                        <div class="row col-md-12"> -->
+                             
+                            <div class="form-group col-md-4">
+                                <label class="form-control-label" for="email-input">Desde</label>
+                                <input type="date" v-model="Bdesde" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" class="form-control" placeholder="">                                
+                            </div>                            
+                            
+                            <div class="form-group col-md-4">
+                                <label class="form-control-label" for="email-input">Hasta</label>
+                                <input type="date" v-model="Bhasta" @keyup.enter="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)" class="form-control" placeholder="">                                   
+                            </div>                            
+                             
+                            <div class="form-group col-md-4">
+                                <br>
+                                <button v-if="permisosUser.leer" type="submit" class="btn btn-primary" @click="listarCuentasxCobrar(tercero_id_filtro,Bfactura,Bdesde,Bhasta,Bestado)"  title="Buscar">
                                     <i class="fa fa-search"></i> Buscar
                                 </button>
                                 <button v-else type="button" class="btn btn-secondary" title="Buscar">
                                     <i class="fa fa-search"></i> Buscar
                                 </button>
-                                </div>
-                            </div>
+                            </div>                            
                         </div>
                         
                         <div class="col-md-2">                                  

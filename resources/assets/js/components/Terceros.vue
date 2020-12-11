@@ -65,7 +65,7 @@
                                     <td v-text="persona.telefono1"></td>
                                     <td v-text="persona.email"></td>
                                     <td>
-                                        <button v-if="permisosUser.actualizar" type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-warning btn-sm">
+                                        <button v-if="permisosUser.actualizar" type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-success btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button>
                                         <button v-else type="button" class="btn btn-secondary btn-sm">

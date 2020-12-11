@@ -34,36 +34,38 @@
                         <thead>
                             <tr>
                                 <th class="col-md-11">Nombre</th>
+                                <th class="td-estado">Estado</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody v-if="permisosUser.leer && arrayUndMedida.length">
                             <tr v-for="und_medida in arrayUndMedida" :key="und_medida.id">
                                 <td v-text="und_medida.nombre"></td>
+                                <td class="td-estado">
+                                     <template v-if="permisosUser.anular">
+                                        <a v-if="und_medida.estado" href="#" class="btn text-success" @click="desactivarUndMedida(und_medida.id)" title="Desactivar">
+                                            <i class="fa fa-check-circle"></i>
+                                        </a>
+                                        <a v-else href="#" class="btn text-danger" @click="activarUndMedida(und_medida.id)" title="Activar">
+                                            <i class="fa fa-times-circle"></i>
+                                        </a>
+                                    </template>
+                                    <template v-else>
+                                        <a v-if="und_medida.estado" href="#" class="btn text-secondary" title="Desactivar (Deshabilitado)">
+                                            <i class="fa fa-check-circle"></i>
+                                        </a>
+                                        <a v-else href="#" class="btn text-secondary" title="Activar (Deshabilitado)">
+                                            <i class="fa fa-times-circle"></i>
+                                        </a>
+                                    </template>
+                                </td>
                                 <td>
-                                    <button v-if="permisosUser.actualizar && und_medida.estado" type="button" @click="abrirModal('und_medida','actualizar',und_medida)" class="btn btn-warning btn-sm" title="Actualizar">
+                                    <button v-if="permisosUser.actualizar && und_medida.estado" type="button" @click="abrirModal('und_medida','actualizar',und_medida)" class="btn btn-success btn-sm" title="Actualizar">
                                         <i class="icon-pencil"></i>
                                     </button>
                                     <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar (Deshabilitado)">
                                         <i class="icon-pencil"></i>
-                                    </button> &nbsp;
-
-                                    <template v-if="permisosUser.anular">
-                                        <button v-if="und_medida.estado" type="button" class="btn btn-danger btn-sm" @click="desactivarUndMedida(und_medida.id)" title="Desactivar">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                        <button v-else type="button" class="btn btn-info btn-sm" @click="activarUndMedida(und_medida.id)" title="Activar">
-                                            <i class="icon-check"></i>
-                                        </button>
-                                    </template>
-                                    <template v-else>
-                                        <button v-if="und_medida.estado" type="button" class="btn btn-secondary btn-sm" title="Desactivar (Deshabilitado)">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                        <button v-else type="button" class="btn btn-secondary btn-sm" title="Activar (Deshabilitado)">
-                                            <i class="icon-check"></i>
-                                        </button>
-                                    </template>
+                                    </button> &nbsp;                                   
                                 </td>
                             </tr>                                
                         </tbody>

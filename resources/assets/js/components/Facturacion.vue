@@ -55,15 +55,15 @@
                                 </div>
                                 -->
                                 <div class="form-group col-md-3">
-                                    <label class="float-left">N° factura</label>
-                                    <div class="col-md-8 float-right">
+                                    <label>N° factura</label>
+                                    <div class="">
                                         <input v-if="permisosUser.leer" type="number" :min=0 class="form-control" v-model="numFacturaFiltro">
                                         <input v-else disabled type="number" :min=0 class="form-control" v-model="numFacturaFiltro">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="float-left">Estado</label>
-                                    <div class="col-md-8 float-right">
+                                    <label>Estado</label>
+                                    <div class="">
                                         <select v-if="permisosUser.leer" class="form-control" v-model="estadoFiltro">
                                             <option value="0">Todas</option>
                                             <option value="1">Activa</option>
@@ -75,63 +75,64 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="">Tercero(*) </label>
+                                    
+                                    <div class="input-group">
+                                        <input type="text" readonly  class="form-control" name="cuenta_fin" v-model="terceroFiltro">
+                                        <div class="input-group-prepend">
+                                            <button v-if="permisosUser.leer" @click="abrirModalT('tercero_filtro')" class="btn btn-primary form-control">...</button>
+                                            <button v-else  class="btn btn-secondary form-control">...</button>
+
+                                            <button v-if="permisosUser.leer" @click="quitar(4)" class="btn btn-danger form-control">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                            <button v-else class="btn btn-secondary form-control">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Orden</label>                                    
+                                    <select v-if="permisosUser.leer" v-model="ordenFiltro" class="form-control">
+                                        <option value="" disabled>Seleccionar</option>
+                                        <option value="num_factura">N° Factura</option>
+                                        <option value="nom_tercero">Tercero</option>
+                                    </select>
+                                    <select v-else v-model="ordenFiltro" class="form-control">
+                                    </select>                                    
+                                </div>
+                            <!-- </div>
+                            <div class="row"> -->
+                                <div class="col-md-3">
+                                    <label>Desde:</label>                                   
+                                    <input v-if="permisosUser.leer" type="date" class="form-control" v-model="desdeFiltro">
+                                    <input v-else disabled type="date" class="form-control" v-model="desdeFiltro">
+                                   
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Hasta:</label>                                   
+                                    <input v-if="permisosUser.leer" type="date" class="form-control" v-model="hastaFiltro">
+                                    <input v-else disabled type="date" class="form-control" v-model="hastaFiltro">
+                                   
+                                </div>
                                 <div class="form-group col-md-3">
-                                    <label for="" class="float-left">Tercero(*) </label>
-                                    <div class="form-inline float-right">
-                                        <input type="text" readonly style="max-width: 85px;" class="form-control" name="cuenta_fin" v-model="terceroFiltro">
+                                    <label for="" class="">Vendedor(*) </label>
+                                    <div class="input-group">
+                                        <input type="text" readonly class="form-control" name="cuenta_fin" v-model="vendedorFiltro">
+                                        <div class="input-group-prepend">
 
-                                        <button v-if="permisosUser.leer" @click="abrirModalT('tercero_filtro')" style="min-width: 30px;" class="btn btn-primary form-control">...</button>
-                                        <button v-else  style="min-width: 30px;" class="btn btn-secondary form-control">...</button>
+                                            <button v-if="permisosUser.leer" @click="abrirModalT('vendedor_filtro')" class="btn btn-primary form-control">...</button>
+                                            <button v-else class="btn btn-secondary form-control">...</button>
 
-                                        <button v-if="permisosUser.leer" @click="quitar(4)" style="min-width: 30px;" class="btn btn-danger form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                        <button v-else style="min-width: 30px;" class="btn btn-secondary form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="float-left">Orden</label>
-                                    <div class="col-md-8 float-right">
-                                        <select v-if="permisosUser.leer" v-model="ordenFiltro" class="form-control">
-                                            <option value="num_factura">N° Factura</option>
-                                            <option value="nom_tercero">Tercero</option>
-                                        </select>
-                                        <select v-else v-model="ordenFiltro" class="form-control">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label class="float-left">Desde:</label>
-                                    <div class="col-md-8 float-right">
-                                        <input v-if="permisosUser.leer" type="date" class="form-control" v-model="desdeFiltro">
-                                        <input v-else disabled type="date" class="form-control" v-model="desdeFiltro">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="float-left">Hasta:</label>
-                                    <div class="col-md-8 float-right">
-                                        <input v-if="permisosUser.leer" type="date" class="form-control" v-model="hastaFiltro">
-                                        <input v-else disabled type="date" class="form-control" v-model="hastaFiltro">
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="" class="float-left">Vendedor(*) </label>
-                                    <div class="form-inline float-right">
-                                        <input type="text" readonly style="max-width: 85px;" class="form-control" name="cuenta_fin" v-model="vendedorFiltro">
-
-                                        <button v-if="permisosUser.leer" @click="abrirModalT('vendedor_filtro')" style="min-width: 30px;" class="btn btn-primary form-control">...</button>
-                                        <button v-else style="min-width: 30px;" class="btn btn-secondary form-control">...</button>
-
-                                        <button v-if="permisosUser.leer" @click="quitar(5)" style="min-width: 30px;" class="btn btn-danger form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                        <button v-else style="min-width: 30px;" class="btn btn-secondary form-control">
-                                            <i class="icon-trash"></i>
-                                        </button>
+                                            <button v-if="permisosUser.leer" @click="quitar(5)" class="btn btn-danger form-control">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                            <button v-else class="btn btn-secondary form-control">
+                                                <i class="icon-trash"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

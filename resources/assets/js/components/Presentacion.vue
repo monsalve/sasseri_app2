@@ -43,38 +43,37 @@
                             <tbody v-if="permisosUser.actualizar && arrayPresentacion.length">
                                 <tr v-for="presentacion in arrayPresentacion" :key="presentacion.id">
                                     <td v-text="presentacion.nombre"></td>
-                                    <td>
-                                        <div v-if="presentacion.estado">
+                                    <td class="td-estado">
+                                        <!-- <div v-if="presentacion.estado">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
                                             <span class="badge badge-danger">Desactivado</span>
-                                        </div>
+                                        </div> -->
+                                        <template v-if="permisosUser.anular">
+                                            <a v-if="presentacion.estado" class="btn text-success" @click="desactivarPresentacion(presentacion.id)" title="Desactivar">
+                                                 <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else class="btn text-danger" @click="activarPresentacion(presentacion.id)" title="Activar">
+                                                 <i class="fa fa-times-circle"></i>
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a v-if="presentacion.estado" class="btn text-success" title="Desactivar (Deshabilitado)">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else class="btn text-danger" title="Activar (Deshabilitado)">
+                                                 <i class="fa fa-times-circle"></i>
+                                            </a>
+                                        </template>
                                     </td>
                                     <td>
-                                        <button v-if="permisosUser.actualizar && presentacion.estado" type="button" @click="abrirModal('presentacion','actualizar',presentacion)" class="btn btn-warning btn-sm" title="Actualizar">
+                                        <button v-if="permisosUser.actualizar && presentacion.estado" type="button" @click="abrirModal('presentacion','actualizar',presentacion)" class="btn btn-success btn-sm" title="Actualizar">
                                           <i class="icon-pencil"></i>
                                         </button>
                                         <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar (Deshabilitado)">
                                           <i class="icon-pencil"></i>
-                                        </button> &nbsp;
-
-                                        <template v-if="permisosUser.anular">
-                                            <button v-if="presentacion.estado" type="button" class="btn btn-danger btn-sm" @click="desactivarPresentacion(presentacion.id)" title="Desactivar">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-info btn-sm" @click="activarPresentacion(presentacion.id)" title="Activar">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button v-if="presentacion.estado" type="button" class="btn btn-secondary btn-sm" title="Desactivar (Deshabilitado)">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Activar (Deshabilitado)">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
+                                        </button>                                        
                                     </td>
                                 </tr>                                
                             </tbody>

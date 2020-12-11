@@ -36,36 +36,38 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th class="col-md-1">Opciones</th>
+                                    <th class="col-1">Estado</th>
+                                    <th class="col-1">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody v-if="permisosUser.leer && arrayZona.length">
                                 <tr v-for="zona in arrayZona" :key="zona.id">
                                     <td v-text="zona.zona"></td>
+                                    <td class="td-estado">
+                                        <template v-if="permisosUser.anular">
+                                            <a v-if="zona.estado" href="" class="btn text-success" @click="desactivarZona(zona.id)" title="Desactivar">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else href="" class="btn text-danger" @click="activarZona(zona.id)" title="Activar">
+                                                <i class="fa fa-times-circle"></i>
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a v-if="zona.estado" href="" class="btn text-secondary btn-sm" title="Desactivar (Deshabilitado)">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else href="" class="btn text-secondary btn-sm" title="Activar (Deshabilitado)">
+                                                <i class="fa fa-times-circle"></i>
+                                            </a>
+                                        </template>
+                                    </td>
                                     <td>
-                                        <button v-if="permisosUser.actualizar && zona.estado" type="button" @click="abrirModal('zona','actualizar',zona)" class="btn btn-warning btn-sm" title="Actualizar">
+                                        <button v-if="permisosUser.actualizar && zona.estado" type="button" @click="abrirModal('zona','actualizar',zona)" class="btn btn-success btn-sm" title="Actualizar">
                                           <i class="icon-pencil"></i>
                                         </button>
                                         <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar (Deshabilitado)">
                                           <i class="icon-pencil"></i>
-                                        </button> &nbsp;
-
-                                        <template v-if="permisosUser.anular">
-                                            <button v-if="zona.estado" type="button" class="btn btn-danger btn-sm" @click="desactivarZona(zona.id)" title="Desactivar">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-info btn-sm" @click="activarZona(zona.id)" title="Activar">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button v-if="zona.estado" type="button" class="btn btn-secondary btn-sm" title="Desactivar (Deshabilitado)">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Activar (Deshabilitado)">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
+                                        </button> 
                                     </td>
                                 </tr>                                
                             </tbody>
@@ -92,7 +94,7 @@
             </div>
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-dialog modal-primary modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -102,20 +104,14 @@
                         </div>
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
-                                        <div class="col-md-11 float-right">
-                                            <input type="text" v-model="zona" class="form-control float-right">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="col-md-3 form-control-label float-left" for="text-input">Observación</label>
-                                        <div class="col-md-9 float-right">
-                                            <textarea type="text" v-model="observacion" class="form-control col-md-12"></textarea>
-                                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label class="form-control-label" for="text-input">Nombre</label>
+                                        <input type="text" v-model="zona" class="form-control">                                       
+                                    </div>                                
+                                    <div class="form-group col-12">
+                                        <label class="form-control-label" for="text-input">Observación</label>                                        
+                                        <textarea type="text" v-model="observacion" class="form-control col-md-12"></textarea>                                        
                                     </div>
                                 </div>
                                 <div v-show="errorZona" class="form-group row div-error">

@@ -196,7 +196,7 @@
                                                 aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-search fa-sm"></i>
+                                                    <i class="fa fa-search fa-sm"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -221,7 +221,7 @@
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="mr-3">
                                             <div class="icon-circle bg-primary">
-                                                <i class="fas fa-file-alt text-white"></i>
+                                                <i class="fa fa-file-alt text-white"></i>
                                             </div>
                                         </div>
                                         <div>
@@ -232,7 +232,7 @@
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="mr-3">
                                             <div class="icon-circle bg-success">
-                                                <i class="fas fa-donate text-white"></i>
+                                                <i class="fa fa-donate text-white"></i>
                                             </div>
                                         </div>
                                         <div>
@@ -243,7 +243,7 @@
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="mr-3">
                                             <div class="icon-circle bg-warning">
-                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                                <i class="fa fa-exclamation-triangle text-white"></i>
                                             </div>
                                         </div>
                                         <div>
@@ -274,7 +274,7 @@
                                     aria-labelledby="userDropdown">
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        <i class="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

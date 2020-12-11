@@ -96,7 +96,7 @@
                 </div>
                 <!-- Fin ejemplo de tabla Listado -->
                 <div class="card border-success" v-if="superAdmin==0">
-                    <div class="card-header bg-dark">
+                    <div class="card-header bg-blue">
                         <i class="fa fa-align-justify"></i> Configuraciones generales
                         <!--<button v-if="permisosUser.crear && !arrayConfigGenerales.length" type="button" @click="abrirModal('configgenerales','registrar')" class="btn btn-primary" title="Nuevo">
                             <i class="icon-plus"></i>&nbsp;Nuevo
@@ -118,7 +118,7 @@
                                     <div class="col-md-12 mb-2"><span v-text="'CELULAR : '+configgenerales.celular"></span></div>
                                     <div class="col-md-12 mb-4"><span v-text="'TELÉFONO : '+configgenerales.telefono"></span></div>
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-warning btn-sm" @click="abrirModal('configgenerales','actualizar',configgenerales)" title="Actualizar">
+                                        <button type="button" class="btn btn-success btn-sm" @click="abrirModal('configgenerales','actualizar',configgenerales)" title="Actualizar">
                                             Actualizar <i class="icon-pencil"></i>
                                         </button>
                                     </div>

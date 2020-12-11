@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
+                        <div>
                             <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                                 <thead>
                                     <tr>
@@ -57,46 +57,56 @@
                                 <tbody v-if="permisosUser.leer && arrayIngreso.length">
                                     <tr v-for="ingreso in arrayIngreso" :key="ingreso.id">
                                         <td v-text="ingreso.usuario"></td>
-                                        <td v-text="ingreso.nombre"></td>
+                                        <td v-text="ingreso.nombre1"></td>
                                         <!--
                                         <td v-text="ingreso.tipo_comprobante"></td>
                                         <td v-text="ingreso.serie_comprobante"></td>
                                         <td v-text="ingreso.num_comprobante"></td>
                                         -->
-                                        <td v-text="ingreso.fecha_hora"></td>
+                                        <td v-text="ingreso.fecha_hora"></td>                                       
                                         <td v-text="ingreso.total"></td>
                                         <!-- <td v-text="ingreso.impuesto"></td> -->
-                                        <td v-text="ingreso.estado"></td>
-                                        <td>
+                                        <td class="td-estado">{{ingreso.estado}}</td>
+                                        <td class="td-opciones">
                                             <button v-if="permisosUser.leer" type="button" @click="verIngreso(ingreso.id)" class="btn btn-success btn-sm" title="Ver ingreso">
-                                            <i class="icon-eye"></i>
+                                            <i class="icon-eye"></i>                                            
                                             </button>
                                             <button v-else type="button" class="btn btn-secondary btn-sm" title="Ver ingreso (Deshabilitado)">
                                             <i class="icon-eye"></i>
-                                            </button> &nbsp;
-
-                                            <button v-if="permisosUser.actualizar && ingreso.estado=='Registrado'" type="button" @click="abrirModalActualizarIngreso(ingreso)" class="btn btn-warning btn-sm" title="Actualizar"><i class="icon-pencil"></i></button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm"><i class="icon-pencil" title="Actualizar (Deshabilitado)"></i></button> &nbsp;
-
-                                            <template>
-                                                <button v-if="permisosUser.anular && ingreso.estado=='Registrado'" type="button" class="btn btn-danger btn-sm" @click="desactivarIngreso(ingreso.id)" title="Anular">
-                                                    <i class="icon-trash"></i>
-                                                </button>
-                                                <button v-else type="button" class="btn btn-secondary btn-sm" title="Anular (Deshabilitado)">
-                                                    <i class="icon-trash"></i>
-                                                </button>
-                                            </template> &nbsp;
-
-                                            <button type="button" @click="abrirModal3('ver',ingreso)" class="btn btn-info btn-sm" title="Evidencias">
-                                                <i class="fa fa-align-justify"></i>
-                                            </button> &nbsp;
-
-                                            <button type="button" v-if="permisosUser.actualizar && ingreso.estado=='Registrado'" class="btn btn-danger btn-sm" @click="cerrarIngreso(ingreso)" title="Cerrar Egreso">
-                                                <i class="fa fa-window-close"></i>
                                             </button>
-                                            <button type="button" v-else class="btn btn-secondary btn-sm" title="Cerrar Egreso (Deshabilidado)">
-                                                <i class="fa fa-window-close"></i>
-                                            </button> &nbsp;
+
+                                            <div class="btn-group dropleft">
+                                                <a href="#" class="btn-link btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu">
+                                                    <a v-if="permisosUser.actualizar && ingreso.estado=='Registrado'" href="#" @click="abrirModalActualizarIngreso(ingreso)" class="dropdown-item" title="Actualizar">
+                                                        <i class="icon-pencil"></i>Actualizar
+                                                    </a>
+                                                    <a v-else href="#" class="dropdown-item">
+                                                        <i class="icon-pencil" title="Actualizar (Deshabilitado)"></i>Actualizar (Deshabilitado)
+                                                    </a>
+                                                    <template>
+                                                        <a  href="#" v-if="permisosUser.anular && ingreso.estado=='Registrado'" class="dropdown-item" @click="desactivarIngreso(ingreso.id)" title="Anular">
+                                                            <i class="icon-trash"></i>Anular
+                                                        </a>
+                                                        <a v-else href="#" class="dropdown-item" title="Anular (Deshabilitado)">
+                                                            <i class="icon-trash"></i> Activar
+                                                        </a>
+                                                    </template>
+
+                                                    <a @click="abrirModal3('ver',ingreso)" href="#" class="dropdown-item" title="Evidencias">
+                                                        <i class="fa fa-align-justify"></i> Evidencias
+                                                    </a>
+
+                                                    <a v-if="permisosUser.actualizar && ingreso.estado=='Registrado'" href="#" class="dropdown-item" @click="cerrarIngreso(ingreso)" title="Cerrar Egreso">
+                                                        <i class="fa fa-window-close"></i> Cerrar Egreso
+                                                    </a>
+                                                    <a v-else  class="dropdown-item disabled" href="#" title="Cerrar Egreso (Deshabilitado)">
+                                                        <i class="fa fa-window-close"></i> Cerrar Egreso (Deshabilitado)
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>

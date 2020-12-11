@@ -35,37 +35,39 @@
                         <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
                             <thead>
                                 <tr>
-                                    <th class="col-md-11">Nombre</th>
+                                    <th class="col-md-10">Nombre</th>
+                                    <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody v-if="permisosUser.leer && arrayIva.length">
                                 <tr v-for="iva in arrayIva" :key="iva.id">
                                     <td v-text="iva.nombre"></td>
+                                    <td class="td-estado">
+                                        <template v-if="permisosUser.anular">
+                                            <a v-if="iva.estado" href="#" class="btn text-success" @click="desactivarIva(iva.id)" title="Desactivar">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else href="#" class="btn text-danger" @click="activarIva(iva.id)" title="Activar">
+                                                <i class="fa fa-times-circle"></i>
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a v-if="iva.estado" href="#" class="btn text-secondary " title="Desactivar (Deshabilitado)">
+                                                <i class="fa fa-check-circle"></i>
+                                            </a>
+                                            <a v-else href="#" class="btn text-secondary " title="Activar (Deshabilitado)">
+                                                <i class="fa fa-times-circle"></i>
+                                            </a>
+                                        </template>
+                                    </td>
                                     <td>
-                                        <button v-if="permisosUser.actualizar && iva.estado" type="button" @click="abrirModal('iva','actualizar',iva)" class="btn btn-warning btn-sm" title="Actualizar">
+                                        <button v-if="permisosUser.actualizar && iva.estado" type="button" @click="abrirModal('iva','actualizar',iva)" class="btn btn-success btn-sm" title="Actualizar">
                                           <i class="icon-pencil"></i>
                                         </button>
                                         <button v-else type="button" class="btn btn-secondary btn-sm" title="Actualizar (Deshabilitado)">
                                           <i class="icon-pencil"></i>
-                                        </button> &nbsp;
-
-                                        <template v-if="permisosUser.anular">
-                                            <button v-if="iva.estado" type="button" class="btn btn-danger btn-sm" @click="desactivarIva(iva.id)" title="Desactivar">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-info btn-sm" @click="activarIva(iva.id)" title="Activar">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button v-if="iva.estado" type="button" class="btn btn-secondary btn-sm" title="Desactivar (Deshabilitado)">
-                                                <i class="icon-trash"></i>
-                                            </button>
-                                            <button v-else type="button" class="btn btn-secondary btn-sm" title="Activar (Deshabilitado)">
-                                                <i class="icon-check"></i>
-                                            </button>
-                                        </template>
+                                        </button>                                        
                                     </td>
                                 </tr>                                
                             </tbody>
@@ -92,7 +94,7 @@
             </div>
             <!--Inicio del modal agregar/actualizar-->
             <div class="modal fade" tabindex="-1" :class="{'mostrar' : modal}" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-primary modal-lg" role="document">
+                <div class="modal-dialog modal-primary modalxsm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" v-text="tituloModal"></h4>
@@ -102,36 +104,28 @@
                         </div>
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <label class="col-md-1 form-control-label float-left" for="text-input">Nombre</label>
-                                        <div class="col-md-11 float-right">
-                                            <input type="text" v-model="nombre" class="form-control float-right" placeholder="Nombre del iva">
-                                        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12 col-xs-12">                                    
+                                        <label class="form-control-label" for="text-input">Nombre</label>
+                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del iva">                                                                        
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label class="col-md-3 form-control-label" for="text-input">Tipo</label>
-                                        <div class="col-md-9">
-                                            <select v-model="tipo" class="form-control">
-                                                <option value="">Seleccione</option>
-                                                <option value="compras">Compras</option>
-                                                <option value="ventas">Ventas</option>
-                                                <option value="devoluciones_compras">Devoluciones compras</option>
-                                                <option value="devoluciones_ventas">Devoluciones ventas</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group col-lg-6 col-xs-12">                                  
+                                        <label class="" for="text-input">Tipo</label>                                   
+                                        <select v-model="tipo" class="form-control">
+                                            <option value="">Seleccione</option>
+                                            <option value="compras">Compras</option>
+                                            <option value="ventas">Ventas</option>
+                                            <option value="devoluciones_compras">Devoluciones compras</option>
+                                            <option value="devoluciones_ventas">Devoluciones ventas</option>
+                                        </select>                                                                      
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="col-md-3 form-control-label" for="text-input">Porcentaje</label>
-                                        <div class="col-md-9">
-                                            <input type="number" v-model="porcentaje" class="form-control" @blur="function(){
-                                                if(porcentaje<0){porcentaje=0;}
-                                                else if (porcentaje>99){porcentaje=99}
-                                                else if(porcentaje==''){porcentaje=0};
-                                            }">
-                                        </div>
+                                    <div class="form-group col-lg-6 col-xs-12">                                  
+                                        <label class="" for="text-input">Porcentaje</label>                                    
+                                        <input type="number" v-model="porcentaje" class="form-control" @blur="function(){
+                                            if(porcentaje<0){porcentaje=0;}
+                                            else if (porcentaje>99){porcentaje=99}
+                                            else if(porcentaje==''){porcentaje=0};
+                                        }">
                                     </div>
                                 </div>
                                 <div v-show="errorIva" class="form-group row div-error">
@@ -140,7 +134,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                         <div class="modal-footer">

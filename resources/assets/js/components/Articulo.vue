@@ -72,7 +72,7 @@
                                             <span>Producto simple</span>
                                         </div>
                                     </td>
-                                    <td style="text-align:center;">
+                                    <td class="td-estado">
                                         <!-- <div v-if="articulo.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
@@ -82,23 +82,22 @@
 
                                         <template v-if="permisosUser.anular">
                                             <a href="#" class="btn text-success" v-if="articulo.condicion" @click="desactivarArticulo(articulo.id)" title="Activar">
-                                                <i class="fa fa-check-circle"></i>&nbsp;
+                                                <i class="fa fa-check-circle"></i>
                                             </a>
                                             <a href="#" class="btn text-danger" v-else @click="activarArticulo(articulo.id)" title="Desactivar">
-                                                <i class="fa fa-times-circle"></i>&nbsp;
+                                                <i class="fa fa-times-circle"></i>
                                             </a>                                           
                                         </template>
                                         <template v-else>
                                             <a href="#" class="btn text-success" v-if="articulo.condicion" title="Activar">
-                                                <i class="fa fa-check-circle"></i>&nbsp;
+                                                <i class="fa fa-check-circle"></i>
                                             </a>
                                             <a href="#" class="btn text-danger" v-else title="Anular">
-                                                <i class="fa fa-times-circle"></i>&nbsp;
+                                                <i class="fa fa-times-circle"></i>
                                             </a>
                                         </template>
                                     </td>
-                                    <td>
-                                        
+                                    <td>                                        
                                         <template>
                                             <button v-if="permisosUser.actualizar && articulo.condicion" type="button" @click="abrirModal('articulo','actualizar',articulo)" class="btn btn-success btn-sm" title="Actualizar">
                                                 <i class="icon-pencil"></i>
@@ -525,7 +524,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(tarifario, index) in arrayTarifarios">
+                                            <tr v-for="(tarifario, index) in arrayTarifarios" :key="index">
                                                 <td v-text="tarifario.nombre"></td>
                                                 <td style="text-align: right;">
                                                     <input type="number" v-if="tipoAccionModal3==2" style="text-align: right;" v-model="tarifario.valor" :min="1" @blur="(function(){if(tarifario.valor<1) tarifario.valor=1;})">
@@ -637,7 +636,7 @@
                                         <div class="col-md-9 float-right">
                                             <select class="form-control" v-model="idIvaCompras" v-bind:class="{ 'is-invalid' : hasError.idIvaCompras==1}">
                                                 <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasCompras" :value="iva.id" v-text="iva.nombre"></option>
+                                                <option v-for="(iva, index) in arrayIvasCompras" :value="iva.id" v-text="iva.nombre" :key="index"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -646,7 +645,7 @@
                                         <div class="col-md-9 float-right">
                                             <select class="form-control" v-model="idIvaVentas" v-bind:class="{ 'is-invalid' : hasError.idIvaVentas==1}">
                                                 <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasVentas" :value="iva.id" v-text="iva.nombre"></option>
+                                                <option v-for="(iva, index) in arrayIvasVentas" :value="iva.id" :key="index" v-text="iva.nombre"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -657,7 +656,7 @@
                                         <div class="col-md-9 float-right">
                                             <select class="form-control" v-model="idIvaDevolucionCompras" v-bind:class="{ 'is-invalid' : hasError.idIvaDevolucionCompras==1}">
                                                 <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasDevolucionCompras" :value="iva.id" v-text="iva.nombre"></option>
+                                                <option v-for="(iva, index) in arrayIvasDevolucionCompras" :value="iva.id" :key="index" v-text="iva.nombre"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -666,7 +665,7 @@
                                         <div class="col-md-9 float-right">
                                             <select class="form-control" v-model="idIvaDevolucionVentas" v-bind:class="{ 'is-invalid' : hasError.idIvaDevolucionVentas==1}">
                                                 <option value="0">Seleccione</option>
-                                                <option v-for="(iva, index) in arrayIvasDevolucionVentas" :value="iva.id" v-text="iva.nombre"></option>
+                                                <option v-for="(iva, index) in arrayIvasDevolucionVentas" :value="iva.id" :key="index" v-text="iva.nombre"></option>
                                             </select>
                                         </div>
                                     </div>
