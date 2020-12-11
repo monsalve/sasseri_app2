@@ -82,18 +82,18 @@
 
                                         <template v-if="permisosUser.anular">
                                             <a href="#" class="btn text-success" v-if="articulo.condicion" @click="desactivarArticulo(articulo.id)" title="Activar">
-                                                <i class="fa fa-check-circle"></i>&nbsp;
+                                                <i class="fa fa-check-circle"></i>
                                             </a>
                                             <a href="#" class="btn text-danger" v-else @click="activarArticulo(articulo.id)" title="Desactivar">
-                                                <i class="fa fa-times-circle"></i>&nbsp;
+                                                <i class="fa fa-times-circle"></i>
                                             </a>                                           
                                         </template>
                                         <template v-else>
                                             <a href="#" class="btn text-success" v-if="articulo.condicion" title="Activar">
-                                                <i class="fa fa-check-circle"></i>&nbsp;
+                                                <i class="fa fa-check-circle"></i>
                                             </a>
                                             <a href="#" class="btn text-danger" v-else title="Anular">
-                                                <i class="fa fa-times-circle"></i>&nbsp;
+                                                <i class="fa fa-times-circle"></i>
                                             </a>
                                         </template>
                                     </td>

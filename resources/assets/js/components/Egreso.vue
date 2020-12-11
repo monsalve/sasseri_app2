@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div>
-                        <table class="table table-bordered table-striped table-sm  table-responsive table-earning">
+                        <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                             <thead>
                                 <tr>
                                     <th>Usuario</th>
@@ -94,22 +94,22 @@
                                                 </a>
 
                                                 <template>
-                                                    <a v-if="permisosUser.anular && egreso.estado=='Registrado'" class="btn" @click="desactivarEgreso(egreso.id)" title="Anular">
+                                                    <a v-if="permisosUser.anular && egreso.estado=='Registrado'" href="#" class="dropdown-item" @click="desactivarEgreso(egreso.id)" title="Anular">
                                                         <i class="icon-trash"></i> Desactivar
                                                     </a>
-                                                    <a v-else class="btn" title="Anular">
+                                                    <a v-else class="dropdown-item" href="#" title="Anular">
                                                         <i class="icon-trash"></i> Desactivar
                                                     </a>
                                                 </template>
 
-                                                <a @click="abrirModal3('ver',egreso)" class="dropdown-item" title="Ver evidencias">
+                                                <a @click="abrirModal3('ver',egreso)" class="dropdown-item" href="#" title="Ver evidencias">
                                                     <i class="fa fa-align-justify"></i> Ver evidencias
                                                 </a>
 
-                                                <a v-if="permisosUser.actualizar && egreso.estado=='Registrado'" class="dropdown-item" @click="cerrarEgreso(egreso)" title="Cerrar Egreso">
+                                                <a v-if="permisosUser.actualizar && egreso.estado=='Registrado'" href="#" class="dropdown-item" @click="cerrarEgreso(egreso)" title="Cerrar Egreso">
                                                     <i class="fa fa-window-close"></i> Cerrar egreso
                                                 </a>
-                                                <a v-else class="dropdown-item disabled" title="Cerrar Egreso (Deshabilitado)">
+                                                <a v-else href="#" class="dropdown-item disabled" title="Cerrar Egreso (Deshabilitado)">
                                                     <i class="fa fa-window-close"></i> Cerrar egreso (Deshabilitado)
                                                 </a> &nbsp;
                                             </div>
