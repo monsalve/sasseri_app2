@@ -73,7 +73,7 @@ const app = new Vue({
             'anular': 1,
         }
     },
-
+    
     mounted() {
         let me = this;
         var url = this.ruta + '/permisos/listarPermisosLogueado';

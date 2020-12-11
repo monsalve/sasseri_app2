@@ -1212,6 +1212,7 @@
                 let me=this;
                 var url= this.ruta +'/cierres_caja/validarCierreCaja';
                 axios.get(url).then(function (response) {
+                    console.log(response.data)
                     var respuesta= response.data;
                     var ban = respuesta.ban;
                     me.arrayCierresXCajas = respuesta.cierres_cajas;
@@ -2025,7 +2026,7 @@
 
                                 me.arrayArticulo=[];
                                 me.arrayDetalle=[];
-                                me.arrayTerceros=[];
+                               // me.arrayTerceros=[];
                                 me.listarFacturacion(1,'','','','','','','');
                                 break;
                             };

@@ -167,7 +167,8 @@
 
                         <!-- Sidebar Toggle (Topbar) -->
                         @if($rol_usu==2)  
-                            <input type="button" class="btn btn-primary btn-crea-factura" value="Crear Facturar" @click="menu=40">
+                            <input type="button" v-if="menu==0" class="btn btn-primary btn-crea-factura" value="Ir a Facturas" @click="menu=40">
+                            <input type="button" v-if="menu==40" class="btn btn-primary btn-crea-factura" value="Inicio" @click="menu=0">
                         @endif
                         @if($rol_usu==1)  
                             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

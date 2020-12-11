@@ -34,9 +34,10 @@ class FacturacionController extends Controller
         $desdeFiltro = $request->desdeFiltro;
         $hastaFiltro = $request->hastaFiltro;
         $idVendedorFiltro = $request->idVendedorFiltro;
-
+        
         if(isset($request->filtroInformes))
         {
+            
             $n = '';
             $facturacion = Facturacion::join('personas', 'facturacion.id_tercero','=','personas.id')
             ->join('zona', 'facturacion.lugar','=','zona.id');
@@ -73,6 +74,7 @@ class FacturacionController extends Controller
         }
         else
         {
+            
             $facturacion = Facturacion::join('personas', 'facturacion.id_tercero','=','personas.id')
             ->join('zona', 'facturacion.lugar','=','zona.id')
             ->select('facturacion.id','facturacion.num_factura','facturacion.id_tercero','personas.nombre as nom_tercero','facturacion.id_usuario','facturacion.fec_crea','facturacion.fec_edita','facturacion.usu_edita','facturacion.subtotal','facturacion.valor_iva','facturacion.total','abono','facturacion.saldo','facturacion.detalle','facturacion.lugar','zona.zona as nom_lugar','facturacion.descuento','facturacion.fec_registra','facturacion.fec_envia','facturacion.fec_anula','facturacion.usu_registra','facturacion.usu_envia','facturacion.usu_anula','facturacion.fecha','facturacion.id_tarifario','facturacion.estado');

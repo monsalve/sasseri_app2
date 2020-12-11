@@ -52,17 +52,17 @@
                     </div>
                 </div>
             </div>
-            <div v-show="position==2">  <!-- listado de facturacion -->
+            <div v-show="position==2">  <!-- VISTA NUEVA FACTURA -->
                 
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-6">
                                 <button class="btn btn-info" @click="position=1"><i class="fa fa-arrow-left"></i> Productos 
                                     </button>
                             </div>
-                            <div class="col-3 pr-1">
-                                <button class="btn btn-danger" style="margin-left: -31px;">Descartar
+                            <div class="col-5 pr-1">
+                                <button class="btn btn-danger" style="margin-left: -31px;" @click="ocultarDetalle(); position=7;">Descartar <i class="fa fa-trash"></i>
                                 </button>
                             </div>
                             
@@ -168,16 +168,19 @@
 
                     <div class="card-body">  
                         
-                        <div class="row border-bottom resaltar" @click="showUserOpts(tercero.id)"  v-for="tercero in arrayTerceros" :key="tercero.id"  v-bind:id="'person_row_'+tercero.id" > 
-                            <div class="col-10" v-if="tercero.nombre && !tercero.nombre1">
+                        <div class="row border-bottom resaltar" @click="showUserOpts(tercero.id); id_selected_row=tercero.id"  v-for="tercero in arrayTerceros" :key="tercero.id"  v-bind:id="'person_row_'+tercero.id" > 
+                            <div v-if="tercero.nombre && !tercero.nombre1" class="col-8" >
                                 {{ tercero.nombre }} 
                             </div>
-                            <div class="col-10" v-else>
+                            <div v-else class="col-8" >
                                 {{ tercero.nombre1 + ' ' + validarUnder(tercero.nombre2)+' '+tercero.apellido1+' '+validarUnder(tercero.apellido2) }} 
                             </div>
-                            <div class="col-2">
-                                <h3 class="text-danger ocultar" v-bind:id="'person_opts_'+tercero.id"><i class="fa fa-times-circle"></i></h3>
+                            <div class="col-2 text-right">
+                                <h3 v-if="id_selected_row==tercero.id" class="text-primary" v-bind:id="'person_opts_'+tercero.id" style="margin: auto; font-size: 19px;"><i class="fa fa-check"></i></h3>
                             </div> 
+                            <div class="col-2 text-right">
+                                <h3 v-if="id_selected_row==tercero.id" class="text-success" v-bind:id="'person_opts_'+tercero.id" style="margin: auto; font-size: 19px;"><i class="fa fa-pencil"></i></h3>
+                            </div>
                         </div>                        
                     </div>                    
                 </div>      
@@ -381,9 +384,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
+                            <!--
                             <div class="col-3">
                                 <button @click="position=6" class="btn btn-primary fa fa-undo"></button>
-                            </div>
+                            </div>-->
                             <div class="col-3">
                                 <div class="input">
                                     <div class="input-group-prepend">
@@ -391,7 +395,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">  
+                            <div class="col-8">  
                                 <select class="custom-select" id="inputGroupSelect01">
                                     <option selected  style="font-size: 14px;">Seleccionar</option>
                                     <option value="1" style="font-size: 14px;">Abierta</option>
@@ -415,44 +419,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td class="centrado">0051</td>
-                                    <td class="centrado">3</td>
-                                    <td class="centrado">350.00</td>
-                                    <td class="text-success">Abierta</td>
-                                    <td class="centrado">
-                                        <button class="btn-1 btn btn-success rounded-circle">
-                                            <i class="fa fa-pencil btn-edit-factura"></i>
-                                        </button>
-                                    </td>
+                                    <tr v-for="facturacion in arrayFacturacion" :key="facturacion.id" style="text-align: right;">
+                                        <th scope="row">1</th>
+                                        <td v-text="facturacion.num_factura? facturacion.num_factura: ''"></td>
+                                        <td class="centrado" v-text="facturacion.nom_lugar? facturacion.nom_lugar : ''"></td>
+                                        <td class="text-right" v-text="facturacion.total? '$ '+facturacion.total : ''"></td>
+                                        <td v-if="facturacion.estado==1" class="text-warning">Abierta</td>
+                                        <td v-if="facturacion.estado==2" class="text-success">Cerrada</td>
+                                        <td v-if="facturacion.estado==0" class="text-danger">Cancelada</td>
+                                        <td class="centrado">
+                                            <button class="btn-1 btn btn-success rounded-circle">
+                                                <i class="fa fa-pencil btn-edit-factura"></i>
+                                            </button>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td class="centrado">0524</td>
-                                    <td class="centrado">1</td>
-                                    <td class="centrado">350.00</td>
-                                    <td class="text-secondary">Cerrada</td>
-                                    <td class="centrado">
-                                        
-                                        <button class="btn btn-secondary rounded-circle">
-                                            <i class="fa fa-pencil btn-edit-factura"></i>
-                                            
-                                        </button>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td class="centrado">0548</td>
-                                    <td class="centrado">2</td>
-                                    <td class="centrado">350.00</td>
-                                    <td class="text-danger">Cancelada</td>
-                                    <td class="centrado">
-                                        <button class="btn btn-secondary rounded-circle">
-                                            <i class="fa fa-pencil btn-edit-factura"></i>
-                                        </button>
-                                    </td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>            
                         </div>
@@ -461,8 +442,11 @@
             </div>
             
             <div class="row mt-1 fixed-bottom mx-auto"> <!-- boton de facturar -->
-                <div class="col-12">
-                    <a @click="position=2" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
+                <div class="col-12" v-if="position==1||position==2">
+                    <a @click="validarFacturacion();" class="btn btn-block btn-lg active btn-success" href="#" role="button"><h3 class="text-white">Facturar $ {{saldo=calcularSaldo}}</h3></a>
+                </div>
+                <div class="col-12" v-if="position==7">
+                    <a @click="position=1;mostrarDetalle()" class="btn btn-block btn-lg active btn-success"  href="#" role="button"><h3 class="text-white">Iniciar Factura</h3></a>
                 </div>
             </div> 
         </div>  
@@ -476,7 +460,7 @@
         props : ['ruta'],
         data (){
             return {
-                position: 3,
+                position: 7,
                 ingreso_id: 0,
                 idproveedor:0,
                 proveedor:'',
@@ -546,7 +530,7 @@
                 terc_busq : '',
                 tipo_ingreso: '',
                 arrayTerceros : [],
-
+                id_selected_row: '',
                 cuenta_ini : '',
                 id_cuenta_ini : '',
                 cuenta_fin : '',
@@ -783,107 +767,11 @@
                     console.log(error);
                 });
             },
-            /*listarCajas(page,buscar,criterio){
-                let me=this;
-                var ban1 = 0;
-                var ban2 = 0;
-                var url= this.ruta +'/cierres_caja?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio+ '&fec_desde=&fec_hasta=';
-                axios.get(url).then(function (response) {
-                    var respuesta= response.data;
-                    me.arrayCierresXCajas = respuesta.cierres_caja.data;
-
-                    if(!me.arrayCierresXCajas.length){
-                        me.mostrarDetalle('cierres_caja','registrar');
-                    }
-                    else
-                    {
-                        me.arrayCierresXCajas.forEach(function(cierre){
-                            if(cierre['usu_crea']==respuesta.id_usuario)
-                            {
-                                ban1 = 1;
-                                if(cierre['estado']==1)
-                                {
-                                    ban2 = 1;
-                                    
-                                    var d = new Date;
-                                    var dd = d.getDate(); var mm = d.getMonth()+1; var yyyy = d.getFullYear();
-                                    var h = d.getHours(); var min = d.getMinutes(); var sec = d.getSeconds();
-                                    
-                                    if(dd<10){dd='0'+dd;}  if(mm<10){mm='0'+mm;} if(h<10){h='0'+h;} if(min<10){min='0'+min;} if(sec<10){sec='0'+sec;}
-
-                                    var fechaHora = yyyy+'-'+mm+'-'+dd+' '+h+':'+min+':'+sec;
-                                    var fecha = yyyy+'-'+mm+'-'+dd;
-
-                                    var n1 = cierre['created_at'].split(" "); var n2 = n1[0].split("-"); var n3 = n1[1].split(":");
-                                                                        
-                                    if(yyyy == n2[0])
-                                    {
-                                        if(mm == n2[1])
-                                        {
-                                            var restaDia = parseFloat(dd)-parseFloat(n2[2]);
-                                            if(restaDia<=1)
-                                            {
-                                                if(restaDia==1)
-                                                {
-                                                    var horasDiaAnterior = 24-n3[0]
-                                                    var sumaHoras = horasDiaAnterior+h;
-                                                    if(sumaHoras<24)
-                                                    {
-                                                        me.id_cierre_caja_facturacion = cierre['id'];
-                                                        me.nom_caja_cierre_facturacion = cierre['nombre'];
-                                                        me.cierre_caja_id = cierre['id'];
-                                                        me.id_caja_cierre = cierre['id_caja'];
-                                                        me.nom_caja_cierre = cierre['nombre'];
-                                                        me.vr_inicial_cierre = cierre['vr_inicial'];
-                                                        me.obs_inicial_cierre = cierre['obs_inicial'];
-                                                        
-                                                        me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
-                                                    }
-                                                    else{ me.mostrarDetalle('cierres_caja','listar_cierres',cierre); }
-                                                }
-                                                else
-                                                {
-                                                    me.id_cierre_caja_facturacion = cierre['id'];
-                                                    me.nom_caja_cierre_facturacion = cierre['nombre'];
-                                                    me.cierre_caja_id = cierre['id'];
-                                                    me.id_caja_cierre = cierre['id_caja'];
-                                                    me.nom_caja_cierre = cierre['nombre'];
-                                                    me.vr_inicial_cierre = cierre['vr_inicial'];
-                                                    me.obs_inicial_cierre = cierre['obs_inicial'];
-
-                                                    me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
-                                                }
-                                            }
-                                            else{ me.mostrarDetalle('cierres_caja','listar_cierres',cierre); }
-                                        }
-                                        else{ me.mostrarDetalle('cierres_caja','listar_cierres',cierre); }
-                                    }
-                                    else{ me.mostrarDetalle('cierres_caja','listar_cierres',cierre); }
-                                }
-                            }
-                        });
-
-                        if(ban1 == 1)
-                        {
-                            if(ban2 == 0)
-                            {
-                                me.mostrarDetalle('cierres_caja','registrar');
-                            }
-                        }
-                        else
-                        {
-                            me.mostrarDetalle('cierres_caja','registrar');
-                        }
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            },*/
             listarCajas(){
                 let me=this;
                 var url= this.ruta +'/cierres_caja/validarCierreCaja';
                 axios.get(url).then(function (response) {
+                    //console.log(response.data);
                     var respuesta= response.data;
                     var ban = respuesta.ban;
                     me.arrayCierresXCajas = respuesta.cierres_cajas;
@@ -913,12 +801,13 @@
                             me.nom_caja_cierre = me.arrayCierresXCajas[0]['nombre'];
                             me.vr_inicial_cierre = me.arrayCierresXCajas[0]['vr_inicial'];
                             me.obs_inicial_cierre = me.arrayCierresXCajas[0]['obs_inicial'];
-                            
+                            //console.log("entra al ban 3");
                             me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
                         }
 
                         if(ban==2)
                         {
+                            //console.log("entra al ban 2");
                             // me.mostrarDetalle('cierres_caja','listar_cierres',me.arrayCierresXCajas[0]);
                             Swal.fire({
                                 // toast: true,
@@ -1692,17 +1581,23 @@
             },
             validarFacturacion(){
                 this.errorFacturacion=0;
-                this.errorMostrarMsjFacturacion =[];
+                if(this.position==2) {
+                
+                    this.errorMostrarMsjFacturacion =[];
 
-                if (this.fecha==0) this.errorMostrarMsjFacturacion.push("Ingrese la fecha");
-                // if (this.num_factura==0) this.errorMostrarMsjFacturacion.push("Seleccione el comprobante");
-                if (!this.id_tercero) this.errorMostrarMsjFacturacion.push("Seleccione un tercero");
-                if (!this.lugar) this.errorMostrarMsjFacturacion.push("Seleccione un lugar");
-                if (this.arrayDetalle.length<=0) this.errorMostrarMsjFacturacion.push("Ingrese detalles");
+                    // if (this.fecha==0) this.errorMostrarMsjFacturacion.push("Ingrese la fecha");
+                    // if (this.num_factura==0) this.errorMostrarMsjFacturacion.push("Seleccione el comprobante");
+                    if (!this.id_tercero) alert("Seleccione un tercero");
+                    if (!this.mesa) alert("Seleccione una mesa");
+                    if (this.arrayDetalle.length<=0) alert("Debe agregar productos");
 
-                if (this.errorMostrarMsjFacturacion.length) this.errorFacturacion = 1;
+                    if (this.errorMostrarMsjFacturacion.length) this.errorFacturacion = 1;
 
-                return this.errorFacturacion;
+                    return this.errorFacturacion;
+                }
+                else {
+                    this.position = 2;
+                }
             },
             selectZonas(){
                 let me=this;
@@ -1910,7 +1805,7 @@
                 me.fec_envia='',
                 me.fec_anula='',
                 // me.fecha = '',
-                me.id_tarifario = 0;
+                //me.id_tarifario = 0;
                 me.estado = 0,
                 // me.arrayFacturacion=[];
                 // me.arrayFacturacionT=[];
@@ -2143,12 +2038,13 @@
             me.hastaFiltro = d;
             me.fecha = d;
             me.fechaHoraActual = d+' '+h+':'+min+':'+sec;
+            this.ocultarDetalle();
             this.selectCategoria2();
-            //me.listarCajas();
+            me.listarCajas();
             me.buscarTercero();
             me.selectZonas();
             this.listarArticulo(this.buscarA,this.criterioA,this.buscarCategoriaA);
-            // me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
+             me.listarFacturacion(1,me.numFacturaFiltro,me.estadoFiltro,me.idTerceroFiltro,me.ordenFiltro,me.desdeFiltro,me.hastaFiltro,me.idVendedorFiltro);
         }
     }
 </script>
@@ -2211,13 +2107,10 @@
     h3.ocultar{
         display: none !important;
     }
-    h3.ocultar:hover, h3.ocultar:hover{
-        display: block !important;
-    }
+    
     div.resaltar:hover, div.active:hover, div h3.resaltar:hover, div>h3.active:hover  {
-        color: #fff!important;
-        background-color: #343a40!important;
-        display: block !important;
+        background-color: #d1d3e2!important;
+       
     }
     .mul-select  {
          width: 100%;
