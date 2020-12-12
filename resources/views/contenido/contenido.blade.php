@@ -8,7 +8,9 @@
     @if(Auth::check())
         <template v-if="menu==0">
             <br>
-            <h1>Bienvenido al sistema Sasseri</h1>
+            <div class="card text-center">
+                <img src="img/targeta.PNG" class="card-img-top" alt="">
+            </div>   
         </template>
         @if($rol_usu==2)             
             <template v-if="menu==40">

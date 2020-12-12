@@ -178,8 +178,8 @@
                             <div class="col-2 text-right">
                                 <h3 v-if="id_selected_row==tercero.id" class="text-primary" v-bind:id="'person_opts_'+tercero.id" style="margin: auto; font-size: 19px;"><i class="fa fa-check"></i></h3>
                             </div> 
-                            <div class="col-2 text-right">
-                                <h3 v-if="id_selected_row==tercero.id" class="text-success" v-bind:id="'person_opts_'+tercero.id" style="margin: auto; font-size: 19px;"><i class="fa fa-pencil"></i></h3>
+                            <div class="col-2 text-center">
+                                <h3 v-if="id_selected_row==tercero.id" class="text-success ex1" v-bind:id="'person_opts_'+tercero.id" style="margin: auto; font-size: 19px;"><i class="fa fa-pencil"></i></h3>
                             </div>
                         </div>                        
                     </div>                    
@@ -2053,6 +2053,12 @@
             font-size: 12px;
             font-family: 'Times New Roman';
     }*/
+    .ex1 {
+        border: 1px solid rgb(49, 173, 45);
+        outline-style: solid;
+        outline-color: rgba(45, 189, 76, 0.87);
+        outline-width: thin;
+}
     .btn-edit-factura {
         font-size: 15px !important;
     }
