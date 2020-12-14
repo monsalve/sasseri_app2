@@ -99,7 +99,11 @@ class CajasAdminController extends Controller
         
         return ['cajas_admin' => $cajas_admin];
     }
-
+    public function listarVendedores(Request $request) {
+        $id_empresa = $request->session()->get('id_empresa');
+        $vendedores = User::where('idrol','2')->where('empresas_id','=',$id_empresa)->where('condicion','1')->get();
+        return ['clientes' => $vendedores];
+    }
     public function listarCajasAdmin(Request $request){
         // if(!$request->ajax()) return redirect('/');
 
@@ -121,6 +125,8 @@ class CajasAdminController extends Controller
         $cajas_admin = CajasAdmin::leftJoin('users','cajas_admin.id_usuario','users.id')
         ->select('users.id','cajas_admin.id_caja','cajas_admin.id_usuario','users.usuario as nombre')
         ->where('cajas_admin.id_caja','=',$request->id)->get();
+
+
         
         return ['cajas_admin' => $cajas_admin];
     }

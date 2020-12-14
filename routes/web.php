@@ -315,7 +315,8 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/cajas_admin/listarCajerosAdmin', 'CajasAdminController@listarCajerosAdmin');
         Route::put('/cajas_admin/desactivar', 'CajasAdminController@desactivar');
         Route::put('/cajas_admin/activar', 'CajasAdminController@activar');
-
+        Route::get('/cajas_admin/listarVendedores', 'CajasAdminController@listarVendedores');
+        
         Route::get('/cierres_caja', 'CierresXCajaController@index');
         Route::post('/cierres_caja/registrar', 'CierresXCajaController@store');
         Route::put('/cierres_caja/actualizar', 'CierresXCajaController@update');

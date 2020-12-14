@@ -199,9 +199,19 @@
                                 <div>
                                     <table class="table table-bordered table-striped table-sm table-responsive table-earning">
                                         
-                                            <tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>
-                                        
-                                            <tr v-for="tercero in arrayTerceros" :key="tercero.id">
+                                            <!--<tr><th>Documento</th><th>Nombre</th><th style="    width: 35px;">-</th></tr>-->
+                                            <tr><th>Usuario</th><th>-</th></tr>
+                                                <tr v-for="tercero in arrayTerceros" :key="tercero.id">
+                                                    <td>
+                                                        {{tercero.usuario}}
+                                                    </td>
+                                                    <td>
+                                                    <button type="button" style=" margin-right: -8px;" @click="cargarTercero(tercero)" class="btn btn-success btn-sm" title='Ver formato'>
+                                                        <i class="icon-check"></i>
+                                                    </button>
+                                                </td>
+                                                </tr>
+                                            <!-- <tr v-for="tercero in arrayTerceros" :key="tercero.id">
                                                 <td v-text="tercero.num_documento"></td>
                                                 <td v-if="tercero.nombre && !tercero.nombre1">{{ tercero.nombre }}  </td>
                                                 <td v-else>{{ tercero.nombre1 + ' ' + validarUnder(tercero.nombre2)+' '+tercero.apellido1+' '+validarUnder(tercero.apellido2) }} </td>
@@ -210,7 +220,7 @@
                                                         <i class="icon-check"></i>
                                                     </button>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                     </table>
                                 </div>
                             </div>
@@ -553,14 +563,14 @@
                 this.arrayTerceros = [];
             },
             cargarTercero(tercero){
-                this.tercero = tercero['num_documento'];
+                this.tercero = tercero['usuario'];
                 this.id_tercero = tercero['id'];
                 this.cerrarModalT();
             },
             buscarTercero(){
                 let me=this;
                 var search = this.terc_busq;
-                var url= this.ruta +'/cliente/selectCliente?filtro='+search;
+                var url= this.ruta +'/cajas_admin/listarVendedores?filtro='+search;
                  axios.get(url).then(function (response) {
                     var respuesta = response.data;
                     me.arrayTerceros = respuesta.clientes;                    
